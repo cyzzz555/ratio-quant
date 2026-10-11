@@ -5,7 +5,13 @@ from decimal import Decimal
 from typing import Literal, Protocol
 
 from app.bars import payload_hash
-from app.research_models import BacktestRequest, CandidateSignal, MarketContext, ResearchBar
+from app.research_models import (
+    BacktestRequest,
+    CandidateSignal,
+    MarketContext,
+    ResearchBar,
+    TrendParameters,
+)
 
 
 def mean(rows: list[ResearchBar]) -> Decimal:
@@ -16,14 +22,16 @@ class Strategy(Protocol):
     identifier: str
 
     def evaluate(
-        self, context: MarketContext, params: BacktestRequest
+        self, context: MarketContext, params: BacktestRequest | TrendParameters
     ) -> CandidateSignal | None: ...
 
 
 class TrendPullback:
     identifier = "TrendPullback"
 
-    def evaluate(self, context: MarketContext, params: BacktestRequest) -> CandidateSignal | None:
+    def evaluate(
+        self, context: MarketContext, params: BacktestRequest | TrendParameters
+    ) -> CandidateSignal | None:
         hourly = [b for b in context.bars if b.timeframe == "1h"]
         lower = [b for b in context.bars if b.timeframe == params.timeframe]
         if len(hourly) < params.slow_window or len(lower) < max(
@@ -87,7 +95,9 @@ class TrendPullback:
 class MeanReversion:
     identifier = "MeanReversion"
 
-    def evaluate(self, context: MarketContext, params: BacktestRequest) -> CandidateSignal | None:
+    def evaluate(
+        self, context: MarketContext, params: BacktestRequest | TrendParameters
+    ) -> CandidateSignal | None:
         # Interface retained until instrument-specific mean-reversion assumptions are validated.
         return None
 
@@ -95,7 +105,9 @@ class MeanReversion:
 class EventDriven:
     identifier = "EventDriven"
 
-    def evaluate(self, context: MarketContext, params: BacktestRequest) -> CandidateSignal | None:
+    def evaluate(
+        self, context: MarketContext, params: BacktestRequest | TrendParameters
+    ) -> CandidateSignal | None:
         # MarketContext rejects events unavailable at decision time. No invented provider feed.
         return None
 

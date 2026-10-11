@@ -1,0 +1,50 @@
+{
+  "state": "STOPPED",
+  "events": 2743,
+  "checkpoints": 10,
+  "final_hash": "67c789668433ab2d223499e4f96288ccae29f4fcf1f2a5ca40b029cd4af33ee4",
+  "journal": ".runtime/realtime/64002a5e-9ec2-4dd2-bbab-2ed1b15b7ae8/events.jsonl",
+  "allow_new_risk": false,
+  "live_trading_enabled": false,
+  "instruments": [
+    {
+      "symbol": "MUUSDT",
+      "pool": "WATCHLIST",
+      "closed_minutes": 784,
+      "latest_closed_at": "2026-10-11T16:25:59.999000Z",
+      "gaps": []
+    },
+    {
+      "symbol": "BTCUSDT",
+      "pool": "DISCOVERY",
+      "closed_minutes": 784,
+      "latest_closed_at": "2026-10-11T16:25:59.999000Z",
+      "gaps": []
+    },
+    {
+      "symbol": "ETHUSDT",
+      "pool": "DISCOVERY",
+      "closed_minutes": 784,
+      "latest_closed_at": "2026-10-11T16:25:59.999000Z",
+      "gaps": []
+    }
+  ],
+  "signals": [
+    {
+      "symbol": "ETHUSDT",
+      "direction": "LONG",
+      "state": "INVALIDATED",
+      "executable": false,
+      "discovered_at": "2026-10-11T16:25:00.083304Z",
+      "reason": "STOPPING"
+    },
+    {
+      "symbol": "MUUSDT",
+      "direction": "LONG",
+      "state": "INVALIDATED",
+      "executable": false,
+      "discovered_at": "2026-10-11T16:25:00.132220Z",
+      "reason": "STOPPING"
+    }
+  ]
+}

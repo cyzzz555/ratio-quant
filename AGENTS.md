@@ -1,8 +1,8 @@
-# Quant System V1.2 · P0 工程约束
+# Quant System V1.2 · 研究阶段工程约束
 
 默认以简体中文沟通。交接来源约束见 `codex/AGENTS.md`、`00_START_HERE.md` 与 `docs/`。
 
-- 当前仅 P0；未经阶段验收不进入后续开发。
+- 用户已授权 P2 开发；当前交付 P2 首批公共实时研究功能，P1 PostgreSQL 验收仍未完成，不得声称完整 P2 已验收。
 - `LIVE_TRADING_ENABLED=false`、`APPROVAL_MODE=HUMAN`、`TRADE_ADAPTER=PAPER_BROKER`。
 - 本工程不包含执行适配层，不接收账户密钥，不实现订单调用。
 - 公共行情可见不代表账户/地区/杠杆能力。未核验项不得填 YES/0/假价格。

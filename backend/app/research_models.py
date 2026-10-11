@@ -105,14 +105,25 @@ class DatasetRequest(ResearchModel):
     days: int = Field(default=7, ge=1, le=14)
 
 
-class BacktestRequest(ResearchModel):
-    dataset_id: str = Field(pattern=r"^[0-9a-f-]{36}$")
-    strategy: Literal["TrendPullback"] = "TrendPullback"
+class TrendParameters(ResearchModel):
+    """Shared research windows, with no dataset or simulated-account assumptions."""
+
     timeframe: Literal["5m", "15m"] = "5m"
     fast_window: int = Field(default=6, ge=2, le=30)
     slow_window: int = Field(default=12, ge=4, le=60)
     pullback_window: int = Field(default=6, ge=2, le=30)
     stop_window: int = Field(default=5, ge=2, le=30)
+
+    @model_validator(mode="after")
+    def windows(self) -> "TrendParameters":
+        if self.fast_window >= self.slow_window:
+            raise ValueError("fast window must be below slow window")
+        return self
+
+
+class BacktestRequest(TrendParameters):
+    dataset_id: str = Field(pattern=r"^[0-9a-f-]{36}$")
+    strategy: Literal["TrendPullback"] = "TrendPullback"
     max_holding_bars: int = Field(default=12, ge=1, le=100)
     initial_equity: ExactDecimal = Field(default=Decimal("1000"), gt=0)
     risk_pct: ExactDecimal = Field(default=Decimal("1"), gt=0, le=2)
@@ -124,9 +135,3 @@ class BacktestRequest(ResearchModel):
     simulated_multiplier: ExactDecimal = Field(default=Decimal("1"), gt=0)
     simulated_exchange_leverage: int = Field(default=20, ge=1, le=20)
     status: Literal["RESEARCH_ONLY"] = "RESEARCH_ONLY"
-
-    @model_validator(mode="after")
-    def windows(self) -> "BacktestRequest":
-        if self.fast_window >= self.slow_window:
-            raise ValueError("fast window must be below slow window")
-        return self

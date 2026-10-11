@@ -29,6 +29,7 @@ ALLOWED: dict[str, tuple[int, set[str]]] = {
     "/fapi/v1/premiumIndex": (1, {"symbol"}),
     "/fapi/v1/fundingRate": (1, {"symbol", "limit", "startTime", "endTime"}),
     "/fapi/v1/tradingSchedule": (5, set()),
+    "/fapi/v1/ticker/24hr": (40, set()),  # all-symbol snapshot; conservative audited weight
 }
 
 

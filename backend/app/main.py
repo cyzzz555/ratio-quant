@@ -1,6 +1,8 @@
 """Local public read-only API. Authenticated account APIs belong to later phases."""
 
 import json
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 from datetime import timedelta
 from pathlib import Path
 from typing import Any, Literal
@@ -11,6 +13,8 @@ from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
 
 from app.models import Capability, Phase0Report, utc_now
 from app.probe_jobs import ProbeBusy, ProbeCooldown, ProbeRunner, ProbeStatus
+from app.realtime_api import router as realtime_router
+from app.realtime_worker import RealtimeController
 from app.research_api import router
 from app.settings import ROOT, load_settings
 
@@ -43,13 +47,22 @@ class QualityRow(BaseModel):
 
 def create_app(root: Path = ROOT) -> FastAPI:
     load_settings(root)
-    api = FastAPI(title="Quant System Research", version="0.1.0")
+    controller = RealtimeController(root)
+
+    @asynccontextmanager
+    async def lifespan(_: FastAPI) -> AsyncIterator[None]:
+        yield
+        await controller.shutdown()
+
+    api = FastAPI(title="Quant System Research", version="0.2.0", lifespan=lifespan)
+    api.state.realtime = controller
+    api.include_router(realtime_router(controller))
     api.include_router(router(root))
     runner = ProbeRunner(root)
 
     @api.get("/health/live")
     def live() -> dict[str, Any]:
-        return {"alive": True, "phase": "P1_RESEARCH_IN_PROGRESS", "live_trading_enabled": False}
+        return {"alive": True, "phase": "P2_FIRST_INCREMENT", "live_trading_enabled": False}
 
     @api.get("/health/ready")
     def ready() -> JSONResponse:
