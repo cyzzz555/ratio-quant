@@ -4,7 +4,8 @@ import subprocess
 import threading
 import time
 from pathlib import Path
-from typing import Any
+from typing import IO, Any
+from uuid import uuid4
 
 import pytest
 from app.main import create_app
@@ -99,6 +100,27 @@ def test_orphan_state_not_claimed_running(console_root: Path) -> None:
     )
     assert runner.status().state == "FAILED"
     assert "中断" in runner.status().message
+
+
+def test_completion_between_status_read_and_lock_is_preserved(
+    console_root: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    runner = ProbeRunner(console_root)
+    running = ProbeStatus(state="RUNNING", job_id=uuid4(), started_at=utc_now())
+    atomic_json(runner.status_path, running.model_dump(mode="json"))
+    acquire = runner._lock
+    completed = running.model_copy(
+        update={"state": "SUCCEEDED", "exit_code": 0, "finished_at": utc_now()}
+    )
+
+    def completed_before_lock() -> IO[str]:
+        atomic_json(runner.status_path, completed.model_dump(mode="json"))
+        return acquire()
+
+    monkeypatch.setattr(runner, "_lock", completed_before_lock)
+    status = runner.status()
+    assert status.state == "SUCCEEDED" and status.exit_code == 0
+    assert ProbeStatus.model_validate_json(runner.status_path.read_text()).state == "SUCCEEDED"
 
 
 def test_cli_probe_lock_prevents_overlapping_job(console_root: Path) -> None:

@@ -95,7 +95,7 @@ pnpm build
 QUANT_TEST_POSTGRES=1 .venv/bin/pytest -m postgres -q
 ```
 
-最近验证：137 个离线测试通过；Ruff、mypy（23 个源文件）、TypeScript/Vite 构建通过。2 个 PostgreSQL 集成测试未运行；1 个可选公共网络测试未运行。
+最近验证：167 个离线测试通过；Ruff、mypy（24 个源文件）通过；最近 TypeScript/Vite 构建通过。2 个 PostgreSQL 集成测试未运行；1 个可选公共网络测试未运行。
 真实公共数据采集与界面操作另有实际证据，见 `reports/P1_RESEARCH_UPDATE.md`、`reports/p1_validation.json`。
 历史搜索、删除与恢复的最新真实测试记录见 `reports/HISTORY_SEARCH_RECORD_DELETE_UPDATE_2026-10-11.md`。
 

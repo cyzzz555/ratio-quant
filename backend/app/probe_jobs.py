@@ -102,14 +102,22 @@ class ProbeRunner:
                 else:
                     # A held process lock is required to claim a job is still running.
                     try:
-                        status = status.model_copy(
-                            update={
-                                "state": "FAILED",
-                                "finished_at": utc_now(),
-                                "message": "任务控制进程已中断；采集子进程可能仍在运行，请检查日志",
-                            }
-                        )
-                        self._write(status)
+                        # The worker can persist completion and release its lock after
+                        # our initial read. Re-read while we own the process lock before
+                        # deciding that a RUNNING state is orphaned, across runners too.
+                        status = self._read()
+                        if status.state == "RUNNING":
+                            status = status.model_copy(
+                                update={
+                                    "state": "FAILED",
+                                    "finished_at": utc_now(),
+                                    "message": (
+                                        "任务控制进程已中断；"
+                                        "采集子进程可能仍在运行，请检查日志"
+                                    ),
+                                }
+                            )
+                            self._write(status)
                     finally:
                         lock.close()
             if status.job_id:

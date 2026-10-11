@@ -20,6 +20,7 @@
 | `.githooks/pre-push` | 推送前扫描完整可达历史，覆盖非当前分支和旧提交中已删除的密钥 |
 | `.github/workflows/credential-guard.yml` | 只读权限，拉取完整历史，在 GitHub 再执行检查，不注入或打印账户凭据 |
 | `tests/test_git_secret_guard.py` | 使用合成数据和一次性本地 Git 仓库验证检测、钩子、历史、输出脱敏和失败阻断 |
+| `backend/app/probe_jobs.py`、`tests/test_console_jobs.py` | 修复云端测试暴露的任务完成/状态读取竞态，避免把刚完成的探测误写为失败；增加确定性回归测试 |
 | `README.md` | 公开源码、克隆后启用钩子的方法、密钥存放和检测边界 |
 | 本报告 | 记录真实验证结果和已知边界 |
 
@@ -35,7 +36,8 @@
 .venv/bin/pytest -m 'not network and not postgres' -q
 ```
 
-- 全量离线测试：**166 passed，3 deselected，1 warning，7.14 秒**。
+- 上传保护首次全量离线测试：166 passed，3 deselected，1 warning，7.14 秒。
+- 任务状态竞态修复后的最新全量离线测试：**167 passed，3 deselected，1 warning，6.64 秒**。
 - 其中新增凭据保护测试 29 项；真实 pre-commit 拒绝强制暂存的 `.env`，未产生提交；真实 pre-push 拒绝含旧密钥的历史，一次性远程仓库未收到分支。
 - 暂存区中含合成密钥、工作副本已清除：仍被阻断；输出不包含合成密钥原文。
 - 非当前分支中的合成密钥仍被历史扫描检出；中文/含换行文件名正确处理，符号链接目标文件不会被读取。
@@ -43,7 +45,9 @@
 - 原公共接口拒绝测试中的固定 `forbidden` 哨兵不是真实凭据，仅对该测试文件的该固定值作窄范围处理；其它值/规则仍扫描，有专门测试。
 - Ruff 全部通过；mypy 检查 24 个源文件通过。
 - 1 条警告为既有 Starlette/httpx 弃用提示。前端源码未变更，本轮未重复前端构建。
-- GitHub 工作流的最终运行结果以该提交对应的 Actions 页面为准。
+- 首次保护提交 `c23d61f` 的 GitHub [credential-guard 检查](https://github.com/cyzzz555/ratio-quant/actions/runs/38134058101)已成功：完整历史扫描通过。
+- 同提交的主流程中，29 个上传保护测试全部通过；既有任务测试发现读取 RUNNING 状态之后、获取锁之前任务恰好完成的竞态。修复为获取锁后再次读取持久状态，完成状态不会被覆盖成 FAILED；真正中断的 RUNNING 任务仍判失败。
+- 增加确定性测试，在初次读取和获取锁之间模拟完成，断言内存与持久状态仍是 SUCCEEDED。主流程修复后的最终云端结果以对应提交的 [Actions 页面](https://github.com/cyzzz555/ratio-quant/actions)为准。
 
 ## 边界与后续
 
