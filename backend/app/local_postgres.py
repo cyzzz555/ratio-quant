@@ -52,7 +52,9 @@ def main() -> None:
                 "port": "55432",
             }
         )
-        (ROOT / "config/local_runtime.json").write_text(json.dumps({"database_url": url}) + "\n")
+        (ROOT / "config/local_runtime.json").write_text(
+            json.dumps({"database_url": url}) + "\n", encoding="utf-8"
+        )
         print("Local research database initialized; no TCP listener configured")
     else:
         os.execv(

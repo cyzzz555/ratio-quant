@@ -90,7 +90,7 @@ class PublicClient:
             if not path.exists():
                 path.write_bytes(payload or b"")
         event.update(raw_hash=digest, raw_file=raw_file)
-        with (self.audit_dir / "requests.jsonl").open("a") as f:
+        with (self.audit_dir / "requests.jsonl").open("a", encoding="utf-8") as f:
             f.write(json.dumps(event, ensure_ascii=False) + "\n")
         return Evidence(
             source=event["url"],

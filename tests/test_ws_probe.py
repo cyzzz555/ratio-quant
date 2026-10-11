@@ -62,4 +62,4 @@ def test_matching_ws_frame_verified_and_saved(
     monkeypatch.setattr("app.ws_probe.connect", lambda *_args, **_kw: FakeSocket([payload]))
     works, evidence, bar = asyncio.run(probe_ws("NVDAUSDT", "1" * 64, tmp_path, None))
     assert works is True and bar is not None and bar.is_closed is False
-    assert (tmp_path / str(evidence.raw_file)).read_text() == payload
+    assert (tmp_path / str(evidence.raw_file)).read_text(encoding="utf-8") == payload

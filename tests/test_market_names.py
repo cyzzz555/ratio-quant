@@ -19,15 +19,21 @@ def directory(
 ) -> CatalogService:
     (root / "config").mkdir()
     (root / "config/market_names.zh.json").write_text(
-        '{"EQUITY:NVDA":"英伟达", "BTC":"比特币"}'
+        '{"EQUITY:NVDA":"英伟达", "BTC":"比特币"}', encoding="utf-8"
     )
-    rows = [symbol_row, {**symbol_row, "symbol": "NVDAUSDC", "quoteAsset": "USDC"},
-            {**symbol_row, "symbol": "NVDATOKENUSDT", "underlyingType": "COIN"}]
+    rows = [
+        symbol_row,
+        {**symbol_row, "symbol": "NVDAUSDC", "quoteAsset": "USDC"},
+        {**symbol_row, "symbol": "NVDATOKENUSDT", "underlyingType": "COIN"},
+    ]
 
     def factory(family: ProductFamily, audit: Path) -> PublicClient:
-        return PublicClient(family, audit, sleep=lambda _: None, transport=httpx.MockTransport(
-            lambda _: httpx.Response(200, json={"symbols": rows})
-        ))
+        return PublicClient(
+            family,
+            audit,
+            sleep=lambda _: None,
+            transport=httpx.MockTransport(lambda _: httpx.Response(200, json={"symbols": rows})),
+        )
 
     monkeypatch.setattr(market_catalog, "PublicClient", factory)
     service = CatalogService(root)
@@ -50,9 +56,11 @@ def test_save_local_persistent_and_related_assets_only(
     assert names["NVDAUSDT"] == names["NVDAUSDC"] == "英伟达（NVIDIA）"
     assert names["NVDATOKENUSDT"] == "中文名待补充"
     assert saved.catalog.live_trading_enabled is False
-    aliases = json.loads((tmp_path / "config/market_names.zh.json").read_text())
+    aliases = json.loads((tmp_path / "config/market_names.zh.json").read_text(encoding="utf-8"))
     assert aliases["BTC"] == "比特币" and aliases["EQUITY:NVDA"] == "英伟达（NVIDIA）"
-    events = (tmp_path / "reports/market/name_updates.jsonl").read_text().splitlines()
+    events = (
+        (tmp_path / "reports/market/name_updates.jsonl").read_text(encoding="utf-8").splitlines()
+    )
     assert json.loads(events[0])["before"] == "英伟达"
     # A new process can edit from the persisted observed directory without any network fetch.
     restarted = CatalogService(tmp_path)
@@ -74,9 +82,9 @@ def test_conflict_or_unknown_symbol_preserves_file(
     with pytest.raises(NameConflict):
         CatalogService(tmp_path).save_name(edit("不应覆盖"))
     with pytest.raises(ValueError, match="不在已观测目录"):
-        service.save_name(NameUpdateRequest(
-            symbol="FAKEUSDT", name_zh="不存在", expected_name="中文名待补充"
-        ))
+        service.save_name(
+            NameUpdateRequest(symbol="FAKEUSDT", name_zh="不存在", expected_name="中文名待补充")
+        )
     assert path.read_bytes() == before
 
 
@@ -96,8 +104,12 @@ def test_edit_api_local_origin_validation_conflict_and_persistence(
     body = edit().model_dump()
     headers = {"Origin": "http://127.0.0.1:5173"}
     assert client.post("/api/v1/market/names", json=body).status_code == 403
-    assert client.post("/api/v1/market/names", json={**body, "path": "../../secret"},
-                       headers=headers).status_code == 422
+    assert (
+        client.post(
+            "/api/v1/market/names", json={**body, "path": "../../secret"}, headers=headers
+        ).status_code
+        == 422
+    )
     assert client.post("/api/v1/market/names", json=body, headers=headers).status_code == 200
     assert client.post("/api/v1/market/names", json=body, headers=headers).status_code == 409
     assert client.post("/api/v1/orders", json={}).status_code == 404

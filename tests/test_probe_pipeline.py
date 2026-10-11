@@ -19,7 +19,7 @@ def test_complete_report_pipeline_offline(
 ) -> None:
     shutil.copytree(ROOT / "config", tmp_path / "config")
     (tmp_path / "config/instruments.example.yaml").write_text(
-        "watchlist_candidates:\n  stock_linked: [NVDAUSDT, MISSINGUSDT]\n"
+        "watchlist_candidates:\n  stock_linked: [NVDAUSDT, MISSINGUSDT]\n", encoding="utf-8"
     )
 
     def handler(request: httpx.Request) -> httpx.Response:
@@ -63,7 +63,7 @@ def test_complete_report_pipeline_offline(
     assert absent["capability_state"] == "UNKNOWN"
     assert absent["historical_bars_available"] is None
     assert report["account_check_performed"] is False
-    quality = json.loads((tmp_path / "reports/data_quality.json").read_text())
+    quality = json.loads((tmp_path / "reports/data_quality.json").read_text(encoding="utf-8"))
     assert quality[0]["inserted"] == 1 and quality[0]["duplicates"] == 1
     first = visible["first_verified_at"]
     assert run(tmp_path, with_ws=False)["instruments"][0]["first_verified_at"] == first

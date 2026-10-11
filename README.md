@@ -11,6 +11,48 @@ P3 的纸面订单、审批、持仓管理尚未开发；当前「交易准备�
 42 轮决策及原始技术规格在 `docs/`；微资金本金亏损容忍 50%、常规单仓 10–20x、最高 25x 保留。
 其余微资金风险参数保持研究/模拟候选，不能当作实盘授权。
 
+## 在 Windows 运行
+
+支持 Windows 10/11 x64，沿用原网页研究工作台。安装 Python 3.12、[uv](https://docs.astral.sh/uv/getting-started/installation/)、[Node.js 24 LTS](https://nodejs.org/)，再执行 `npm install -g pnpm@11.25.0`。
+
+下载或克隆项目后，双击根目录 `start-windows.cmd`。首次启动会执行 `uv sync --frozen` 和 `pnpm install --frozen-lockfile` 安装锁定依赖，需要网络。随后打开 `http://127.0.0.1:5173/#market`；保持窗口打开，Ctrl+C 停止本次启动的 API 和前端。数据保存在工程的 `data/` 和 `reports/`，更新代码时请保留这两个目录。
+
+未配置数据库时，启动器默认使用**文件研究模式**：行情、历史采集、回测、中文名称维护、报告下载/回收站和模拟风控可用；页面保留“数据库未就绪/文件暂存”的提示，不代表数据库阶段验收。手动启动命令（PowerShell）：
+
+```powershell
+uv sync --frozen
+pnpm --dir frontend install --frozen-lockfile
+$env:PYTHONPATH = "$PWD/backend"
+$env:PYTHONUTF8 = "1"
+uv run python -m app.local_workspace --file-only
+```
+
+### Windows PostgreSQL 模式
+
+使用 [PostgreSQL 官方 Windows 下载入口](https://www.postgresql.org/download/windows/) 安装 PostgreSQL，为本项目创建专用用户和空数据库，例如 `quant_local` / `quant_research`。将服务监听范围限制为本机，保留密码认证。Windows 不使用 Mac 的 Unix socket 或 `pgserver`，启动器不会安装、启动或停止已有数据库服务。
+
+在 PowerShell 中配置连接（密码中的特殊字符需 URL 编码），然后启动：
+
+```powershell
+$env:DATABASE_URL = 'postgresql+psycopg://quant_local:YOUR_URL_ENCODED_PASSWORD@127.0.0.1:5432/quant_research'
+$env:PYTHONPATH = "$PWD/backend"
+$env:PYTHONUTF8 = '1'
+uv run python -m app.local_workspace
+```
+
+也可把连接保存到被 Git 忽略的 `config/local_runtime.json`，内容为 `{"database_url":"postgresql+psycopg://..."}`，然后双击启动器。不要提交密码。数据库模式会执行 Alembic 迁移和暂存研究元数据同步，因此只连接本项目专用数据库。连接失败会明确报错，不会静默切换到文件模式或 SQLite。
+
+### 移植验证
+
+Windows、macOS、Linux 的 GitHub Actions 均执行离线测试、ruff、mypy 和前端构建。PostgreSQL 集成测试需显式启用 `QUANT_TEST_POSTGRES=1`，只创建/删除随机测试 schema：
+
+```powershell
+$env:QUANT_TEST_POSTGRES = '1'
+uv run pytest -m postgres
+```
+
+此移植保持 `LIVE_TRADING_ENABLED=false`、`HUMAN`、`PAPER_BROKER`，不增加账户密钥或下单路径。
+
 ## 在这台 Mac 运行
 
 当前网页：[行情](http://127.0.0.1:5173/#market)、[历史与回测](http://127.0.0.1:5173/#research)、[交易准备](http://127.0.0.1:5173/#risk)。

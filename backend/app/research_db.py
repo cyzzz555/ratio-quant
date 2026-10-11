@@ -112,7 +112,9 @@ def database_url(root: Path = ROOT) -> str:
     value = os.environ.get("DATABASE_URL")
     if value is None:
         try:
-            value = json.loads((root / "config/local_runtime.json").read_text())["database_url"]
+            value = json.loads((root / "config/local_runtime.json").read_text(encoding="utf-8"))[
+                "database_url"
+            ]
         except (OSError, ValueError, KeyError) as exc:
             raise RuntimeError("PostgreSQL 尚未配置；请启动本地研究数据库") from exc
     if not value.startswith("postgresql+psycopg://"):
@@ -146,7 +148,8 @@ def list_runs(root: Path = ROOT) -> list[dict[str, Any]]:
             for r in session.scalars(
                 select(ResearchRunRecord)
                 .where(ResearchRunRecord.result["record_state"].astext.is_distinct_from("DELETED"))
-                .order_by(ResearchRunRecord.created_at.desc()).limit(30)
+                .order_by(ResearchRunRecord.created_at.desc())
+                .limit(30)
             )
         ]
 

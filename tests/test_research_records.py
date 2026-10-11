@@ -1,4 +1,3 @@
-import fcntl
 import hashlib
 import json
 from pathlib import Path
@@ -6,7 +5,7 @@ from typing import Any
 from uuid import uuid4
 
 import pytest
-from app import backtest, research_records
+from app import backtest, file_lock, research_records
 from app.bars import payload_hash
 from app.research_api import router
 from app.storage import atomic_json
@@ -50,7 +49,9 @@ def test_soft_delete_restore_bytes_dataset_and_audit(tmp_path: Path) -> None:
     assert hashlib.sha256(dataset.read_bytes()).hexdigest() == dataset_hash
     audit = [
         json.loads(row)
-        for row in (tmp_path / "reports/research_record_actions.jsonl").read_text().splitlines()
+        for row in (tmp_path / "reports/research_record_actions.jsonl")
+        .read_text(encoding="utf-8")
+        .splitlines()
     ]
     assert [a["action"] for a in audit] == ["DELETE", "DELETE", "RESTORE", "RESTORE"]
     assert all(a["file_hash"] == hashlib.sha256(before).hexdigest() for a in audit)
@@ -61,8 +62,8 @@ def test_conflict_lock_missing_and_corruption_fail_closed(tmp_path: Path) -> Non
     identifier = report["run_id"]
     with pytest.raises(research_records.RecordConflict, match="已变化"):
         research_records.change(tmp_path, identifier, "delete", "0" * 64)
-    with (tmp_path / "reports/research_worker.lock").open("a") as lease:
-        fcntl.flock(lease, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    with (tmp_path / "reports/research_worker.lock").open("a", encoding="utf-8") as lease:
+        file_lock.flock(lease, file_lock.LOCK_EX | file_lock.LOCK_NB)
         with pytest.raises(research_records.RecordConflict, match="正在运行"):
             research_records.change(tmp_path, identifier, "delete", report["result_hash"])
     with pytest.raises(FileNotFoundError):

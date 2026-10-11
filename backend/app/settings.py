@@ -10,7 +10,9 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 def load_settings(root: Path = ROOT) -> dict[str, Any]:
-    values: dict[str, Any] = yaml.safe_load((root / "config/settings.example.yaml").read_text())
+    values: dict[str, Any] = yaml.safe_load(
+        (root / "config/settings.example.yaml").read_text(encoding="utf-8")
+    )
     safety, platform = values["safety"], values["platform"]
     if (
         os.environ.get("LIVE_TRADING_ENABLED", "false").lower() != "false"

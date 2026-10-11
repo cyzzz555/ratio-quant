@@ -1,11 +1,13 @@
-"""Launch the Mac research workspace; foreground ownership and explicit DB failures."""
+"""Launch the cross-platform research workspace; foreground ownership and explicit DB failures."""
 
+import argparse
 import json
 import os
 import shutil
 import subprocess
 import sys
 import time
+import webbrowser
 from pathlib import Path
 
 import httpx
@@ -13,18 +15,17 @@ import httpx
 from app.settings import ROOT
 
 
-def frontend_runtime() -> tuple[str, dict[str, str]]:
+def frontend_runtime() -> tuple[list[str], dict[str, str]]:
     env = dict(os.environ)
     bundled = Path.home() / ".cache/codex-runtimes/codex-primary-runtime/dependencies"
     if (bundled / "node/bin/node").exists():
         env["PATH"] = str(bundled / "node/bin") + os.pathsep + env.get("PATH", "")
-    pnpm = shutil.which("pnpm", path=env.get("PATH"))
-    fallback = bundled / "bin/fallback/pnpm"
-    if pnpm is None and fallback.exists():
-        pnpm = str(fallback)
-    if pnpm is None:
-        raise RuntimeError("Node.js / pnpm 未安装；请按 README 安装前端依赖")
-    return pnpm, env
+    node = shutil.which("node", path=env.get("PATH"))
+    vite = ROOT / "frontend/node_modules/vite/bin/vite.js"
+    if node is None or not vite.exists():
+        raise RuntimeError("Node.js / 前端依赖缺失；请按 README 安装并运行 pnpm install")
+    # Launch Node directly so closing the workspace also stops Vite on Windows.
+    return [node, str(vite)], env
 
 
 def available(url: str) -> bool:
@@ -36,46 +37,58 @@ def available(url: str) -> bool:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description="本地研究工作台；实盘始终禁用")
+    parser.add_argument("--file-only", action="store_true", help="文件研究模式，不启动或迁移数据库")
+    args = parser.parse_args()
     from app.research_db import health
     from app.research_ledger import synchronize
 
     env = dict(os.environ, PYTHONPATH=str(ROOT / "backend"))
     children: list[subprocess.Popen[bytes]] = []
     try:
-        from sqlalchemy import text
+        if not args.file_only:
+            from sqlalchemy import text
 
-        from app.research_db import engine
+            from app.research_db import engine
 
-        def connected() -> bool:
-            try:
-                with engine(ROOT).connect() as connection:
-                    connection.execute(text("select 1"))
-                return True
-            except Exception:
-                return False
+            def connected() -> bool:
+                try:
+                    with engine(ROOT).connect() as connection:
+                        connection.execute(text("select 1"))
+                    return True
+                except Exception:
+                    return False
 
-        if not connected():
-            if os.environ.get("DATABASE_URL"):
-                raise RuntimeError("已配置的 PostgreSQL 无法连接；不自动切换数据库")
+            if not connected():
+                if os.name == "nt" or os.environ.get("DATABASE_URL"):
+                    raise RuntimeError(
+                        "PostgreSQL 无法连接；Windows 请配置 DATABASE_URL，"
+                        "或使用 --file-only 文件研究模式"
+                    )
+                subprocess.run(
+                    [sys.executable, "-m", "app.local_postgres", "init"],
+                    cwd=ROOT,
+                    env=env,
+                    check=True,
+                )
+                process = subprocess.Popen(
+                    [sys.executable, "-m", "app.local_postgres", "serve"], cwd=ROOT, env=env
+                )
+                children.append(process)
+                for _ in range(30):
+                    if connected():
+                        break
+                    time.sleep(0.2)
+                else:
+                    raise RuntimeError("PostgreSQL 未启动；请保留终端报错")
             subprocess.run(
-                [sys.executable, "-m", "app.local_postgres", "init"], cwd=ROOT, env=env, check=True
+                [sys.executable, "-m", "alembic", "upgrade", "head"], cwd=ROOT, env=env, check=True
             )
-            process = subprocess.Popen(
-                [sys.executable, "-m", "app.local_postgres", "serve"], cwd=ROOT, env=env
-            )
-            children.append(process)
-            for _ in range(30):
-                if connected():
-                    break
-                time.sleep(0.2)
-            else:
-                raise RuntimeError("PostgreSQL 未启动；请保留终端报错")
-        subprocess.run(
-            [str(ROOT / ".venv/bin/alembic"), "upgrade", "head"], cwd=ROOT, env=env, check=True
-        )
-        if not health(ROOT)["ready"]:
-            raise RuntimeError("PostgreSQL 迁移未通过健康检查")
-        print(json.dumps(synchronize(ROOT), ensure_ascii=False))
+            if not health(ROOT)["ready"]:
+                raise RuntimeError("PostgreSQL 迁移未通过健康检查")
+            print(json.dumps(synchronize(ROOT), ensure_ascii=False))
+        else:
+            print("文件研究模式：数据库未验收，研究结果仅文件暂存。", flush=True)
         if not available("http://127.0.0.1:8000/api/v1/research/status"):
             children.append(
                 subprocess.Popen(
@@ -94,10 +107,8 @@ def main() -> None:
                 )
             )
         if not available("http://127.0.0.1:5173"):
-            pnpm, frontend_env = frontend_runtime()
-            children.append(
-                subprocess.Popen([pnpm, "dev"], cwd=ROOT / "frontend", env=frontend_env)
-            )
+            command, frontend_env = frontend_runtime()
+            children.append(subprocess.Popen(command, cwd=ROOT / "frontend", env=frontend_env))
         for _ in range(40):
             if available("http://127.0.0.1:5173") and available(
                 "http://127.0.0.1:8000/api/v1/research/status"
@@ -106,12 +117,12 @@ def main() -> None:
             time.sleep(0.25)
         else:
             raise RuntimeError("本机服务未就绪；请检查端口与终端日志")
-        subprocess.run(["open", "http://127.0.0.1:5173/#market"], check=True)
+        webbrowser.open("http://127.0.0.1:5173/#market")
         print(
             "研究工作台已打开。LIVE=false。保持窗口打开，Ctrl+C 关闭本脚本启动的服务。", flush=True
         )
         while True:
-            if any(c.poll() not in (None, 0) for c in children):
+            if any(c.poll() is not None for c in children):
                 raise RuntimeError("服务进程异常退出；请查看终端日志")
             time.sleep(1)
     except KeyboardInterrupt:
@@ -124,6 +135,7 @@ def main() -> None:
                     child.wait(timeout=10)
                 except subprocess.TimeoutExpired:
                     child.kill()
+                    child.wait(timeout=10)
 
 
 if __name__ == "__main__":

@@ -70,7 +70,7 @@ def test_failed_probe_preserves_previous_report(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     report = console_root / "reports/instrument_capabilities.json"
-    report.write_text('{"previous": true}')
+    report.write_text('{"previous": true}', encoding="utf-8")
 
     def fake_run(*args: Any, **kwargs: Any) -> subprocess.CompletedProcess[bytes]:
         if failure == "timeout":
@@ -83,7 +83,7 @@ def test_failed_probe_preserves_previous_report(
     status = wait_finished(runner)
     assert status.state == "FAILED"
     assert status.exit_code == (7 if failure == "nonzero" else None)
-    assert report.read_text() == '{"previous": true}'
+    assert report.read_text(encoding="utf-8") == '{"previous": true}'
     if failure == "timeout":
         assert "PROBE_TIMEOUT" in status.log
 
@@ -173,16 +173,18 @@ def test_reports_download_allowlist_and_missing_data(console_root: Path) -> None
         "normalization_errors": [],
         "latest_closed_at": None,
     }
-    (console_root / "reports/data_quality.json").write_text(json.dumps([row]))
+    (console_root / "reports/data_quality.json").write_text(json.dumps([row]), encoding="utf-8")
     assert client.get("/api/v1/data-quality").json() == [row]
     response = client.get("/api/v1/reports/quality_json")
     assert response.status_code == 200
     assert "data_quality.json" in response.headers["content-disposition"]
     assert client.get("/api/v1/reports/settings.example.yaml").status_code == 422
     assert client.get("/api/v1/reports/..%2Fconfig%2Fsettings.example.yaml").status_code == 404
-    (console_root / "reports/data_quality.json").write_text("{}")
+    (console_root / "reports/data_quality.json").write_text("{}", encoding="utf-8")
     assert client.get("/api/v1/data-quality").status_code == 503
-    (console_root / "reports/data_quality.json").write_text('[{"symbol": "NVDAUSDT"}]')
+    (console_root / "reports/data_quality.json").write_text(
+        '[{"symbol": "NVDAUSDT"}]', encoding="utf-8"
+    )
     assert client.get("/api/v1/data-quality").status_code == 503
 
 
