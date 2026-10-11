@@ -20,7 +20,7 @@ function ModeDialog({title,mode,simpleDescription,onDismiss,onApply}:Omit<Props,
     node?.showModal();
     return()=>{if(node?.open)node.close();if(previousFocus instanceof HTMLElement)previousFocus.focus();};
   },[]);
-  return <dialog ref={dialog} className="mode-dialog" aria-labelledby={titleId} onCancel={onDismiss} onClose={onDismiss}>
+  return <dialog ref={dialog} className="mode-dialog" aria-labelledby={titleId} onCancel={onDismiss}>
     <form onSubmit={e=>{e.preventDefault();onApply(choice);}}>
       <div className="section-heading"><h2 id={titleId}>{title} · 选择操作模式</h2><button type="button" aria-label="关闭模式窗口" onClick={onDismiss}>×</button></div>
       <fieldset className="mode-choices"><legend className="sr-only">操作模式</legend>
