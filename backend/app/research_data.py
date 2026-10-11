@@ -264,7 +264,7 @@ def manifests(root: Path, limit: int | None = 30) -> list[dict[str, Any]]:
         key=lambda p: p.stat().st_mtime,
         reverse=True,
     )
-    return [json.loads(p.read_text()) for p in paths[:limit]]
+    return [json.loads(p.read_text(encoding="utf-8")) for p in paths[:limit]]
 
 
 def load_dataset(
@@ -273,7 +273,7 @@ def load_dataset(
     if str(__import__("uuid").UUID(identifier)) != identifier:
         raise ValueError("数据集 ID 无效")
     folder = root / "data/research" / identifier
-    manifest = json.loads((folder / "manifest.json").read_text())
+    manifest = json.loads((folder / "manifest.json").read_text(encoding="utf-8"))
     import hashlib
 
     if (
@@ -295,6 +295,6 @@ def load_dataset(
     return (
         manifest,
         bars,
-        json.loads((folder / "funding.json").read_text()),
-        json.loads((folder / "spec.json").read_text()),
+        json.loads((folder / "funding.json").read_text(encoding="utf-8")),
+        json.loads((folder / "spec.json").read_text(encoding="utf-8")),
     )

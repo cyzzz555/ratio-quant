@@ -97,13 +97,18 @@ def _run(root: Path, *, with_ws: bool) -> dict[str, Any]:
     report_dir = root / "reports"
     raw_dir = report_dir / "raw" / run_id
     store = BarStore(root / "data")
-    candidates = yaml.safe_load((root / "config/instruments.example.yaml").read_text())
+    candidates = yaml.safe_load(
+        (root / "config/instruments.example.yaml").read_text(encoding="utf-8")
+    )
     caps, quality = [], []
     previous: dict[str, Any] = {}
     prior_path = report_dir / "instrument_capabilities.json"
     if prior_path.exists():
         try:
-            previous = {x["symbol"]: x for x in json.loads(prior_path.read_text())["instruments"]}
+            previous = {
+                x["symbol"]: x
+                for x in json.loads(prior_path.read_text(encoding="utf-8"))["instruments"]
+            }
         except (ValueError, KeyError, TypeError):
             previous = {}
     with PublicClient(ProductFamily.USD_M_FUTURES, raw_dir) as client:
@@ -327,7 +332,7 @@ def _run(root: Path, *, with_ws: bool) -> dict[str, Any]:
         "history_start_at",
         "verified_at",
     ]
-    with (report_dir / "instrument_capabilities.csv").open("w", newline="") as f:
+    with (report_dir / "instrument_capabilities.csv").open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fields)
         writer.writeheader()
         for cap in caps:
@@ -370,7 +375,7 @@ def _run(root: Path, *, with_ws: bool) -> dict[str, Any]:
     ]
     for cap in caps:
         lines += [f"- {cap.symbol}：{'; '.join(cap.notes)}"]
-    (report_dir / "data_quality_report.md").write_text("\n".join(lines) + "\n")
+    (report_dir / "data_quality_report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     return envelope
 
 

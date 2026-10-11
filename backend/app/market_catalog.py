@@ -1,6 +1,5 @@
 """Current public USD-M directory; display aliases never grant account permissions."""
 
-import fcntl
 import json
 import re
 import threading
@@ -12,6 +11,7 @@ from uuid import uuid4
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
 
+from app import file_lock
 from app.models import ProductFamily, utc_now
 from app.public_client import PublicClient
 from app.storage import atomic_json
@@ -97,8 +97,9 @@ def visible_rows(payload: Any) -> list[dict[str, Any]]:
 def display_name(row: dict[str, Any], aliases: dict[str, str]) -> str | None:
     # Asset codes can collide across token/equity products (e.g. F and C).
     qualified = f"{row.get('underlyingType', '')}:{row['baseAsset']}"
-    return aliases.get("SYMBOL:" + row.get("symbol", ""),
-                       aliases.get(qualified, aliases.get(row["baseAsset"])))
+    return aliases.get(
+        "SYMBOL:" + row.get("symbol", ""), aliases.get(qualified, aliases.get(row["baseAsset"]))
+    )
 
 
 class CatalogService:
@@ -112,8 +113,14 @@ class CatalogService:
     def with_names(catalog: MarketCatalog, aliases: dict[str, str]) -> MarketCatalog:
         updated = catalog.model_copy(deep=True)
         for item in updated.instruments:
-            name = display_name({"symbol": item.symbol, "underlyingType": item.underlying_type,
-                                 "baseAsset": item.base_asset}, aliases)
+            name = display_name(
+                {
+                    "symbol": item.symbol,
+                    "underlyingType": item.underlying_type,
+                    "baseAsset": item.base_asset,
+                },
+                aliases,
+            )
             item.name_zh = name or "中文名待补充"
             item.name_source = "LOCAL_DISPLAY_ALIAS" if name else "UNAVAILABLE"
         return updated
@@ -121,7 +128,9 @@ class CatalogService:
     def get(self, *, refresh: bool = False) -> MarketCatalog:
         with self.lock:
             if not refresh and self.cached is not None and time.monotonic() < self.expires_at:
-                aliases = json.loads((self.root / "config/market_names.zh.json").read_text())
+                aliases = json.loads(
+                    (self.root / "config/market_names.zh.json").read_text(encoding="utf-8")
+                )
                 return self.with_names(self.cached, aliases)
             audit = self.root / "reports/market/catalog_raw" / str(uuid4())
             with PublicClient(ProductFamily.USD_M_FUTURES, audit) as client:
@@ -129,7 +138,9 @@ class CatalogService:
             if not response.ok or not response.evidence.raw_hash:
                 raise ValueError("公共合约目录暂不可用：" + response.evidence.result)
             rows = visible_rows(response.data)
-            aliases = json.loads((self.root / "config/market_names.zh.json").read_text())
+            aliases = json.loads(
+                (self.root / "config/market_names.zh.json").read_text(encoding="utf-8")
+            )
             catalog = MarketCatalog(
                 observed_at=response.evidence.timestamp,
                 raw_hash=response.evidence.raw_hash,
@@ -157,28 +168,35 @@ class CatalogService:
         """Local edit using observed directory; never makes an exchange/account request."""
         with self.lock:
             catalog = self.cached or MarketCatalog.model_validate_json(
-                (self.root / "reports/market/catalog.json").read_text()
+                (self.root / "reports/market/catalog.json").read_text(encoding="utf-8")
             )
             target = next((i for i in catalog.instruments if i.symbol == params.symbol), None)
             if target is None:
                 raise ValueError("合约不在已观测目录中，请刷新合约目录后重试")
             key = (
-                f"{target.underlying_type}:{target.base_asset}" if target.underlying_type
+                f"{target.underlying_type}:{target.base_asset}"
+                if target.underlying_type
                 else "SYMBOL:" + target.symbol
             )
             affected = [
-                i.symbol for i in catalog.instruments
-                if i.symbol == target.symbol or (
-                    target.underlying_type and i.underlying_type == target.underlying_type
+                i.symbol
+                for i in catalog.instruments
+                if i.symbol == target.symbol
+                or (
+                    target.underlying_type
+                    and i.underlying_type == target.underlying_type
                     and i.base_asset == target.base_asset
                 )
             ]
             path = self.root / "config/market_names.zh.json"
-            with path.with_suffix(".lock").open("a") as lease:
-                fcntl.flock(lease, fcntl.LOCK_EX)
-                aliases: dict[str, str] = json.loads(path.read_text())
-                row = {"symbol": target.symbol, "underlyingType": target.underlying_type,
-                       "baseAsset": target.base_asset}
+            with path.with_suffix(".lock").open("a", encoding="utf-8") as lease:
+                file_lock.flock(lease, file_lock.LOCK_EX)
+                aliases: dict[str, str] = json.loads(path.read_text(encoding="utf-8"))
+                row = {
+                    "symbol": target.symbol,
+                    "underlyingType": target.underlying_type,
+                    "baseAsset": target.base_asset,
+                }
                 current = display_name(row, aliases) or "中文名待补充"
                 if current != params.expected_name:
                     raise NameConflict("名称已被其他窗口修改，请刷新目录后重新编辑")
@@ -189,15 +207,26 @@ class CatalogService:
                 saved_at = utc_now()
                 audit_path = self.root / "reports/market/name_updates.jsonl"
                 audit_path.parent.mkdir(parents=True, exist_ok=True)
-                with audit_path.open("a") as audit:
+                with audit_path.open("a", encoding="utf-8") as audit:
                     atomic_json(path, aliases)
-                    audit.write(json.dumps({
-                        "event": "LOCAL_DISPLAY_NAME_SAVED", "saved_at": saved_at.isoformat(),
-                        "key": key, "symbol": target.symbol, "before": current,
-                        "after": params.name_zh, "affected_symbols": affected,
-                        "directory_hash": catalog.raw_hash,
-                        "account_permission": "UNKNOWN", "live_trading_enabled": False,
-                    }, ensure_ascii=False) + "\n")
+                    audit.write(
+                        json.dumps(
+                            {
+                                "event": "LOCAL_DISPLAY_NAME_SAVED",
+                                "saved_at": saved_at.isoformat(),
+                                "key": key,
+                                "symbol": target.symbol,
+                                "before": current,
+                                "after": params.name_zh,
+                                "affected_symbols": affected,
+                                "directory_hash": catalog.raw_hash,
+                                "account_permission": "UNKNOWN",
+                                "live_trading_enabled": False,
+                            },
+                            ensure_ascii=False,
+                        )
+                        + "\n"
+                    )
             updated = self.with_names(catalog, aliases)
             self.cached = updated
             atomic_json(self.root / "reports/market/catalog.json", updated.model_dump(mode="json"))

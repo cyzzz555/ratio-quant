@@ -337,4 +337,4 @@ def runs(root: Path, limit: int | None = 30) -> list[dict[str, Any]]:
     files = sorted(
         (root / "reports/research").glob("*.json"), key=lambda p: p.stat().st_mtime, reverse=True
     )
-    return [json.loads(f.read_text()) for f in files[:limit]]
+    return [json.loads(f.read_text(encoding="utf-8")) for f in files[:limit]]

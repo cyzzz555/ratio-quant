@@ -1,6 +1,5 @@
 """Local research operations; background history/backtest jobs, no trading routes."""
 
-import fcntl
 import json
 import logging
 import threading
@@ -11,7 +10,7 @@ from uuid import uuid4
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import FileResponse
 
-from app import backtest, research_data, research_db, research_records
+from app import backtest, file_lock, research_data, research_db, research_records
 from app.market_catalog import (
     CatalogRequest,
     CatalogService,
@@ -50,11 +49,11 @@ class ResearchJobs:
         self.path = root / "reports/research_job.json"
         self.snapshot: dict[str, Any] = {"state": "IDLE", "message": "尚未运行研究任务"}
         if self.path.exists():
-            self.snapshot = json.loads(self.path.read_text())
+            self.snapshot = json.loads(self.path.read_text(encoding="utf-8"))
             if self.snapshot["state"] == "RUNNING":
-                with (root / "reports/research_worker.lock").open("w") as lease:
+                with (root / "reports/research_worker.lock").open("a", encoding="utf-8") as lease:
                     try:
-                        fcntl.flock(lease, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                        file_lock.flock(lease, file_lock.LOCK_EX | file_lock.LOCK_NB)
                     except BlockingIOError:
                         pass
                     else:
@@ -68,7 +67,7 @@ class ResearchJobs:
         with self.snapshot_lock:
             self.snapshot = {**self.snapshot, **values}
             atomic_json(self.path, self.snapshot)
-            with (self.root / "reports/research_jobs.jsonl").open("a") as audit:
+            with (self.root / "reports/research_jobs.jsonl").open("a", encoding="utf-8") as audit:
                 audit.write(
                     json.dumps({"at": utc_now().isoformat(), **self.snapshot}, ensure_ascii=False)
                     + "\n"
@@ -77,15 +76,15 @@ class ResearchJobs:
     def status(self) -> dict[str, Any]:
         with self.snapshot_lock:
             if self.path.exists():
-                return dict(json.loads(self.path.read_text()))
+                return dict(json.loads(self.path.read_text(encoding="utf-8")))
             return dict(self.snapshot)
 
     def start(self, kind: str, params: DatasetRequest | BacktestRequest) -> dict[str, Any]:
         if not self.lock.acquire(blocking=False):
             raise HTTPException(409, "已有研究任务正在运行")
-        lease = (self.root / "reports/research_worker.lock").open("w")
+        lease = (self.root / "reports/research_worker.lock").open("a", encoding="utf-8")
         try:
-            fcntl.flock(lease, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            file_lock.flock(lease, file_lock.LOCK_EX | file_lock.LOCK_NB)
         except BlockingIOError as exc:
             lease.close()
             self.lock.release()
@@ -172,7 +171,9 @@ def router(root: Path) -> APIRouter:
 
     @api.post("/research/runs/{identifier}/{action}")
     def change_record(
-        request: Request, identifier: str, action: Literal["delete", "restore"],
+        request: Request,
+        identifier: str,
+        action: Literal["delete", "restore"],
         params: RecordChangeRequest,
     ) -> dict[str, Any]:
         local_request(request)

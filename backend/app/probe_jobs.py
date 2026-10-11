@@ -1,6 +1,5 @@
 """Local fixed-command public probe jobs; no account credentials or order commands."""
 
-import fcntl
 import os
 import re
 import subprocess
@@ -16,6 +15,7 @@ from uuid import UUID, uuid4
 import yaml
 from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
 
+from app import file_lock
 from app.models import utc_now
 from app.settings import load_settings
 from app.storage import atomic_json
@@ -48,15 +48,15 @@ def exclusive_probe(root: Path) -> Iterator[None]:
     """Protect the whole report set across CLI and UI invocations."""
     directory = root / "reports"
     directory.mkdir(parents=True, exist_ok=True)
-    with (directory / ".probe.lock").open("a") as lock:
+    with (directory / ".probe.lock").open("a", encoding="utf-8") as lock:
         try:
-            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            file_lock.flock(lock, file_lock.LOCK_EX | file_lock.LOCK_NB)
         except BlockingIOError as exc:
             raise ProbeBusy("已有只读探测正在运行，请等待完成") from exc
         try:
             yield
         finally:
-            fcntl.flock(lock, fcntl.LOCK_UN)
+            file_lock.flock(lock, file_lock.LOCK_UN)
 
 
 class ProbeRunner:
@@ -74,7 +74,7 @@ class ProbeRunner:
         if not self.status_path.exists():
             return ProbeStatus()
         try:
-            return ProbeStatus.model_validate_json(self.status_path.read_text())
+            return ProbeStatus.model_validate_json(self.status_path.read_text(encoding="utf-8"))
         except (OSError, ValueError):
             return ProbeStatus(state="FAILED", message="本地任务状态文件不可用")
 
@@ -83,9 +83,9 @@ class ProbeRunner:
 
     def _lock(self) -> IO[str]:
         self.directory.mkdir(parents=True, exist_ok=True)
-        lock = (self.directory / ".runner.lock").open("a")
+        lock = (self.directory / ".runner.lock").open("a", encoding="utf-8")
         try:
-            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            file_lock.flock(lock, file_lock.LOCK_EX | file_lock.LOCK_NB)
         except BlockingIOError as exc:
             lock.close()
             raise ProbeBusy("已有控制台探测正在运行") from exc
@@ -143,7 +143,7 @@ class ProbeRunner:
                 with exclusive_probe(self.root):
                     pass
                 candidates: dict[str, Any] = yaml.safe_load(
-                    (self.root / "config/instruments.example.yaml").read_text()
+                    (self.root / "config/instruments.example.yaml").read_text(encoding="utf-8")
                 )
                 count = sum(len(x) for x in candidates["watchlist_candidates"].values())
                 status = ProbeStatus(
@@ -173,7 +173,7 @@ class ProbeRunner:
                     "TRADE_ADAPTER": "PAPER_BROKER",
                 }
             )
-            with (self.directory / f"{status.job_id}.log").open("w") as output:
+            with (self.directory / f"{status.job_id}.log").open("w", encoding="utf-8") as output:
                 try:
                     result = subprocess.run(
                         [sys.executable, "-m", "app.probe"],

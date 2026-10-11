@@ -119,7 +119,8 @@ def test_read_only_api_and_unready(tmp_path: Path, info_result: ReadResult) -> N
                 "raw_directory": "reports/raw/fixture",
                 "instruments": [cap.model_dump(mode="json")],
             }
-        )
+        ),
+        encoding="utf-8",
     )
     assert client.get("/api/v1/instruments").status_code == 200
     ready = client.get("/health/ready")
@@ -128,5 +129,5 @@ def test_read_only_api_and_unready(tmp_path: Path, info_result: ReadResult) -> N
     for path in ["/api/v1/instruments", "/health/live"]:
         assert client.post(path, json={}).status_code == 405
     assert client.post("/api/v1/orders", json={}).status_code == 404
-    (tmp_path / "reports/instrument_capabilities.json").write_text("{}")
+    (tmp_path / "reports/instrument_capabilities.json").write_text("{}", encoding="utf-8")
     assert client.get("/health/ready").json()["service_ready"] is False

@@ -1,8 +1,8 @@
 """Small P0 single-writer archive with locked atomic updates and conflicting-bar detection."""
 
-import fcntl
 import json
 import os
+import time
 from datetime import datetime
 from decimal import Decimal
 from pathlib import Path
@@ -11,6 +11,7 @@ from typing import Any
 import pyarrow as pa
 import pyarrow.parquet as pq
 
+from app import file_lock
 from app.models import Bar
 
 
@@ -25,8 +26,18 @@ def atomic_json(path: Path, value: Any) -> None:
             return str(item)
         raise TypeError(f"Unsupported JSON type: {type(item).__name__}")
 
-    tmp.write_text(json.dumps(value, ensure_ascii=False, indent=2, default=encode) + "\n")
-    os.replace(tmp, path)
+    tmp.write_text(
+        json.dumps(value, ensure_ascii=False, indent=2, default=encode) + "\n", encoding="utf-8"
+    )
+    # Windows readers briefly prevent replacement; never fall back to an in-place write.
+    for attempt in range(21):
+        try:
+            os.replace(tmp, path)
+            break
+        except PermissionError:
+            if os.name != "nt" or attempt == 20:
+                raise
+            time.sleep(0.05)
 
 
 def bar_row(bar: Bar) -> dict[str, Any]:
@@ -53,8 +64,8 @@ class BarStore:
             raise ValueError("archive instrument mismatch")
         closed_path = self.root / "closed" / f"{symbol}.parquet"
         open_path = self.root / "open" / f"{symbol}.json"
-        with (self.root / f"{symbol}.lock").open("w") as lock:
-            fcntl.flock(lock, fcntl.LOCK_EX)
+        with (self.root / f"{symbol}.lock").open("a", encoding="utf-8") as lock:
+            file_lock.flock(lock, file_lock.LOCK_EX)
             existing = []
             if closed_path.exists():
                 existing = [Bar.model_validate(x) for x in pq.read_table(closed_path).to_pylist()]
@@ -62,7 +73,10 @@ class BarStore:
             opened = {}
             if open_path.exists():
                 opened = {
-                    b.key: b for b in map(Bar.model_validate, json.loads(open_path.read_text()))
+                    b.key: b
+                    for b in map(
+                        Bar.model_validate, json.loads(open_path.read_text(encoding="utf-8"))
+                    )
                 }
             inserted = duplicate = 0
             for bar in bars:

@@ -1,6 +1,5 @@
 """Reversible research report removal; immutable datasets and report bytes are retained."""
 
-import fcntl
 import hashlib
 import json
 import os
@@ -10,6 +9,7 @@ from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from app import file_lock
 from app.bars import payload_hash
 from app.models import utc_now
 from app.storage import atomic_json
@@ -30,7 +30,7 @@ def valid_id(identifier: str) -> None:
 
 
 def read_report(path: Path, identifier: str) -> dict[str, Any]:
-    report: dict[str, Any] = json.loads(path.read_text())
+    report: dict[str, Any] = json.loads(path.read_text(encoding="utf-8"))
     keys = ["parameter_hash", "data_hash", "code_hash", "splits", "stress"]
     if (
         not isinstance(report, dict)
@@ -48,7 +48,7 @@ def deleted_reports(root: Path) -> list[dict[str, Any]]:
     for path in folder.glob("*.json"):
         valid_id(path.stem)
         report = read_report(path, path.stem)
-        meta = json.loads((folder / "metadata" / path.name).read_text())
+        meta = json.loads((folder / "metadata" / path.name).read_text(encoding="utf-8"))
         if hashlib.sha256(path.read_bytes()).hexdigest() != meta["file_hash"]:
             raise ValueError("回收站报告哈希校验失败，禁止恢复")
         records.append({**report, "record_state": "DELETED", "deleted_at": meta["deleted_at"]})
@@ -66,9 +66,9 @@ def change(
     valid_id(identifier)
     reports = root / "reports/research"
     reports.mkdir(parents=True, exist_ok=True)
-    with (root / "reports/research_worker.lock").open("a") as lease:
+    with (root / "reports/research_worker.lock").open("a", encoding="utf-8") as lease:
         try:
-            fcntl.flock(lease, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            file_lock.flock(lease, file_lock.LOCK_EX | file_lock.LOCK_NB)
         except BlockingIOError as exc:
             raise RecordConflict("研究任务或记录操作正在运行，请完成后重试") from exc
         active = reports / (identifier + ".json")
@@ -84,7 +84,7 @@ def change(
         at = utc_now().isoformat()
         if action == "delete":
             atomic_json(meta_path, {"deleted_at": at, "file_hash": digest})
-        elif digest != json.loads(meta_path.read_text())["file_hash"]:
+        elif digest != json.loads(meta_path.read_text(encoding="utf-8"))["file_hash"]:
             raise ValueError("回收站报告哈希校验失败，禁止恢复")
         event = {
             "at": at,
@@ -98,7 +98,7 @@ def change(
         # The atomic rename is the source of truth after an interrupted operation.
         # A pre-operation audit survives interruption before the completion entry.
         audit_path = root / "reports/research_record_actions.jsonl"
-        with audit_path.open("a") as audit:
+        with audit_path.open("a", encoding="utf-8") as audit:
             audit.write(json.dumps({**event, "state": "REQUESTED"}) + "\n")
             audit.flush()
             os.fsync(audit.fileno())

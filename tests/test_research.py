@@ -386,11 +386,11 @@ def test_dataset_hashes_and_duckdb_utc_read(tmp_path: Path) -> None:
     atomic_json(folder / "manifest.json", manifest)
     _, bars, _, _ = load_dataset(tmp_path, identifier)
     assert len(bars) == 5 and bars[0].open_time_utc.tzinfo is UTC
-    (folder / "funding.json").write_text("[{}]")
+    (folder / "funding.json").write_text("[{}]", encoding="utf-8")
     with pytest.raises(ValueError, match="哈希"):
         load_dataset(tmp_path, identifier)
     (folder / "manifest.json").write_text(
-        json.dumps({"files": {"../../outside": "x"}, "data_hash": "x"})
+        json.dumps({"files": {"../../outside": "x"}, "data_hash": "x"}), encoding="utf-8"
     )
     with pytest.raises(ValueError, match="manifest"):
         load_dataset(tmp_path, identifier)
@@ -431,8 +431,12 @@ def test_research_jobs_cross_runner_lock_orphan_and_audit(
     assert runner.status()["state"] == "SUCCEEDED"
     audit = [
         json.loads(row)
-        for row in (tmp_path / "reports/research_jobs.jsonl").read_text().splitlines()
+        for row in (tmp_path / "reports/research_jobs.jsonl")
+        .read_text(encoding="utf-8")
+        .splitlines()
     ]
     assert any(row["message"] == "fixture progress" for row in audit)
-    (tmp_path / "reports/research_job.json").write_text(json.dumps({"state": "RUNNING"}))
+    (tmp_path / "reports/research_job.json").write_text(
+        json.dumps({"state": "RUNNING"}), encoding="utf-8"
+    )
     assert ResearchJobs(tmp_path).status()["state"] == "FAILED"

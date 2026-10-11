@@ -18,7 +18,7 @@ from app.settings import ROOT, load_settings
 def read_report(root: Path) -> dict[str, Any]:
     try:
         data: dict[str, Any] = json.loads(
-            (root / "reports/instrument_capabilities.json").read_text()
+            (root / "reports/instrument_capabilities.json").read_text(encoding="utf-8")
         )
         return Phase0Report.model_validate(data).model_dump(mode="json")
     except (OSError, ValueError, KeyError, TypeError) as exc:
@@ -109,7 +109,9 @@ def create_app(root: Path = ROOT) -> FastAPI:
     @api.get("/api/v1/data-quality")
     def data_quality() -> list[QualityRow]:
         try:
-            result: Any = json.loads((root / "reports/data_quality.json").read_text())
+            result: Any = json.loads(
+                (root / "reports/data_quality.json").read_text(encoding="utf-8")
+            )
             if not isinstance(result, list) or not all(isinstance(x, dict) for x in result):
                 raise ValueError("invalid data quality report")
             return [QualityRow.model_validate(x) for x in result]

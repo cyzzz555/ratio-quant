@@ -27,7 +27,7 @@ def test_catalog_full_directory_aliases_cache_and_expired_failure(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch, symbol_row: dict[str, Any]
 ) -> None:
     (tmp_path / "config").mkdir()
-    (tmp_path / "config/market_names.zh.json").write_text('{"BTC":"比特币"}')
+    (tmp_path / "config/market_names.zh.json").write_text('{"BTC":"比特币"}', encoding="utf-8")
     rows = [
         {**symbol_row, "symbol": "BTCUSDT", "baseAsset": "BTC"},
         {**symbol_row, "symbol": "NEWUSDT", "baseAsset": "NEW"},
@@ -51,17 +51,20 @@ def test_catalog_full_directory_aliases_cache_and_expired_failure(
     assert first.live_trading_enabled is False
     first.instruments.clear()
     assert len(service.get().instruments) == 2 and len(calls) == 1
-    snapshot = json.loads((tmp_path / "reports/market/catalog.json").read_text())
+    snapshot = json.loads((tmp_path / "reports/market/catalog.json").read_text(encoding="utf-8"))
     assert len(snapshot["raw_hash"]) == 64
     assert list((tmp_path / "reports/market/catalog_raw").rglob("requests.jsonl"))
     service.get(refresh=True)
     assert len(calls) == 2
-    snapshot = json.loads((tmp_path / "reports/market/catalog.json").read_text())
+    snapshot = json.loads((tmp_path / "reports/market/catalog.json").read_text(encoding="utf-8"))
     service.expires_at = 0
     rows.clear()
     with pytest.raises(ValueError, match="没有当前可见"):
         service.get()
-    assert json.loads((tmp_path / "reports/market/catalog.json").read_text()) == snapshot
+    assert (
+        json.loads((tmp_path / "reports/market/catalog.json").read_text(encoding="utf-8"))
+        == snapshot
+    )
 
 
 @pytest.mark.parametrize(

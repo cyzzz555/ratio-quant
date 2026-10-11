@@ -79,7 +79,10 @@ def test_retry_audit_and_payload_hash(tmp_path: Path, status: int) -> None:
     ) as c:
         result = c.get("/fapi/v1/time")
     assert result.ok and len(calls) == 3 and clock.sleeps == [1, 2]
-    audits = [json.loads(s) for s in (tmp_path / "requests.jsonl").read_text().splitlines()]
+    audits = [
+        json.loads(s)
+        for s in (tmp_path / "requests.jsonl").read_text(encoding="utf-8").splitlines()
+    ]
     assert len(audits) == 3 and len({x["request_id"] for x in audits}) == 1
     assert result.evidence.raw_file and (tmp_path / result.evidence.raw_file).is_file()
 
