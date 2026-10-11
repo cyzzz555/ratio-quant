@@ -36,3 +36,34 @@ config/market_names.zh.lock
 *.pfx
 
 /reports/*.lock
+
+# Credentials are local-only, including copies and CLI authentication stores.
+secrets/
+.secrets/
+credentials/
+.credentials/
+.aws/
+.ssh/
+.gnupg/
+.netrc
+hosts.yml
+hosts.yaml
+id_rsa*
+id_ed25519*
+*.jks
+*.keystore
+*.pem.*
+*.key.*
+credentials.json
+credentials.yaml
+credentials.yml
+credentials.*
+secrets.json
+secrets.yaml
+secrets.yml
+secrets.*
+*api_keys*
+*api_secrets*
+*binance_keys*
+*binance_secrets*
+*binance_credentials*
