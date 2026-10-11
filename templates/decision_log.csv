@@ -1,0 +1,5 @@
+decision_id,date,topic,status,requested_change,proposed_values,approved_by,evidence_link,notes
+D-000,2026-10-10,micro startup capital,USER_CONFIRMED,CNY 500-1000,500-1000,user,,confirmed in conversation
+D-001,2026-10-10,micro principal loss tolerance,USER_CONFIRMED,50%,50%,user,,not a guaranteed stop
+D-002,2026-10-10,position exchange leverage,USER_CONFIRMED,normal 10-20x max 25x,10-20x;25x,user,,account effective leverage separate
+D-003,2026-10-10,gross effective leverage,RESEARCH_ONLY,not approved,2x proposal,,,do not enforce as approved live config

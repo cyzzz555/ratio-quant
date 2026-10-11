@@ -1,0 +1,23 @@
+# CANDIDATES only. No symbol is marked VERIFIED or TRADEABLE in advance.
+venue: BINANCE
+product_family: UNVERIFIED
+watchlist_candidates:
+  stock_linked:
+    - NVDAUSDT
+    - TSLAUSDT
+    - METAUSDT
+    - GOOGLUSDT
+  energy:
+    - CLUSDT
+    - NATGASUSDT
+    - BZUSDT
+  metals:
+    - XAUUSDT
+    - XAGUSDT
+strict_principles:
+  symbol_does_not_imply_listing: true
+  public_visibility_does_not_imply_account_authorization: true
+  never_assume_max_leverage_25x_supported: true
+  never_assume_all_symbols_are_usdm: true
+  instruments_distinct_from_underlyings: true
+  missing_data_state: UNAVAILABLE

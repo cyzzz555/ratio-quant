@@ -1,0 +1,26 @@
+id,phase,priority,feature,acceptance_reference,status
+T-001,P0,P0,Read-only Binance market API client,08_ACCEPTANCE#P0,TODO
+T-002,P0,P0,TradFi instrument capability report,08_ACCEPTANCE#P0,TODO
+T-003,P0,P0,Symbol versus underlying normalization,05_EXCHANGE_DATA,TODO
+T-004,P0,P0,1m Kline closed-bar persistence,08_ACCEPTANCE#market,TODO
+T-005,P1,P0,Decimal model and risk pure functions,04_RISK_AND_LEVERAGE,TODO
+T-006,P1,P0,Postgres schema and migrations,06_DATABASE_AND_API,TODO
+T-007,P1,P0,Deterministic point-in-time backtest engine,03_STRATEGIES_AND_RESEARCH,TODO
+T-008,P1,P1,Trend pullback research baseline,03_STRATEGIES_AND_RESEARCH,TODO
+T-009,P1,P1,Mean reversion strategy interface and model,03_STRATEGIES_AND_RESEARCH,TODO
+T-010,P1,P1,Event-driven model with release-time alignment,03_STRATEGIES_AND_RESEARCH,TODO
+T-011,P2,P0,Websocket/REST reconciliation,08_ACCEPTANCE#market,TODO
+T-012,P2,P0,Dual pool scanner and regime router,02_ARCHITECTURE,TODO
+T-013,P2,P0,Two-stage signal FSM and score explanation,03_STRATEGIES_AND_RESEARCH,TODO
+T-014,P3,P0,PaperBroker and immutable approvals,06_DATABASE_AND_API,TODO
+T-015,P3,P0,Micro-capital capital-flow/hwm/daily risk,04_RISK_AND_LEVERAGE,TODO
+T-016,P3,P0,10-20x 25x exchange-leverage distinction,04_RISK_AND_LEVERAGE,TODO
+T-017,P3,P0,Liquidation buffer fail-closed logic,04_RISK_AND_LEVERAGE,TODO
+T-018,P3,P0,Duplicate/unknown order recovery,06_DATABASE_AND_API,TODO
+T-019,P4,P0,2FA/secrets and account readonly reconciliation,06_DATABASE_AND_API,TODO
+T-020,P4,P0,Risk locks/readiness and incident recovery,08_ACCEPTANCE#failure,TODO
+T-021,P5,P0,Live manual-approval gated adapter,08_ACCEPTANCE#trade,WAIT_USER_APPROVAL
+T-022,P6,P1,Responsive Mac/iPhone PWA,07_UI_AND_OPERATIONS,TODO
+T-023,P6,P1,Chart and replay,07_UI_AND_OPERATIONS,TODO
+T-024,P6,P1,Weekly study/publish human approval,03_STRATEGIES_AND_RESEARCH,TODO
+T-025,P6,P1,Full chain business monitoring,07_UI_AND_OPERATIONS,TODO

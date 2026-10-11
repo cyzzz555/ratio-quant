@@ -1,0 +1,1151 @@
+{
+  "schema_version": "phase0-report.v2",
+  "run_id": "fcb410a6-cec4-4f81-9716-e0ce793ad598",
+  "started_at": "2026-10-10T12:20:50.927402Z",
+  "generated_at": "2026-10-10T12:21:51.839803Z",
+  "live_trading_enabled": false,
+  "approval_mode": "HUMAN",
+  "trade_adapter": "PAPER_BROKER",
+  "account_check_performed": false,
+  "product_families_probed": [
+    "USD_M_FUTURES"
+  ],
+  "documentation_urls": [
+    "https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data",
+    "https://developers.binance.com/en/docs/products/derivatives-trading-usds-futures/websocket-market-streams/Important-WebSocket-Change-Notice"
+  ],
+  "raw_directory": "reports/raw/fcb410a6-cec4-4f81-9716-e0ce793ad598",
+  "instruments": [
+    {
+      "schema_version": "phase0.v2",
+      "venue": "BINANCE",
+      "product_family": "USD_M_FUTURES",
+      "symbol": "NVDAUSDT",
+      "capability_state": "VERIFIED_PUBLIC",
+      "first_verified_at": "2026-10-10T05:03:33.349833Z",
+      "verified_at": "2026-10-10T12:20:51.773078Z",
+      "public_exchangeinfo_visible": true,
+      "account_trade_permission": "UNKNOWN",
+      "eligibility": "UNVERIFIED",
+      "max_public_leverage": null,
+      "max_account_leverage": null,
+      "isolated_supported": null,
+      "reduce_only_supported": null,
+      "stop_type_supported": null,
+      "mark_price_available": true,
+      "funding_data_available": true,
+      "historical_bars_available": true,
+      "websocket_works": null,
+      "trading_status": "TRADING",
+      "history_start_at": "2026-03-26T14:40:00Z",
+      "history_start_scope": "EARLIEST_RETURNED_BY_QUERY",
+      "instrument": {
+        "id": "BINANCE:USD_M_FUTURES:NVDAUSDT",
+        "underlying_id": "candidate:NVDAUSDT",
+        "venue": "BINANCE",
+        "symbol": "NVDAUSDT",
+        "product_family_probed": "USD_M_FUTURES",
+        "product_family_verified": "USD_M_FUTURES",
+        "contract_type": "TRADIFI_PERPETUAL",
+        "quote_asset": "USDT",
+        "margin_asset": "USDT",
+        "spec_version": "015614d14b97279a7de10118cc98d236326d85f009aa144e61bb673edb12f9d2",
+        "session_model_version": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19",
+        "price_formation_model": "UNVERIFIED"
+      },
+      "underlying": {
+        "id": "candidate:NVDAUSDT",
+        "asset_class_candidate": "stock_linked",
+        "exchange_reported_type": "EQUITY",
+        "exchange_reported_base_asset": "NVDA",
+        "name": null,
+        "native_exchange": null,
+        "mapping_state": "UNVERIFIED"
+      },
+      "evidence": [
+        {
+          "source": "https://fapi.binance.com/fapi/v1/exchangeInfo",
+          "timestamp": "2026-10-10T12:20:51.773078Z",
+          "result": "HTTP 200",
+          "request_id": "3773d7c7-2f27-4cfc-a215-050cd801d03c",
+          "http_status": 200,
+          "raw_hash": "6d842d787c44a8319fbf1419258a557b9e94fa2750d016975b9a7ab12b2fedfc",
+          "raw_file": "6d842d787c44a8319fbf1419258a557b9e94fa2750d016975b9a7ab12b2fedfc.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/tradingSchedule",
+          "timestamp": "2026-10-10T12:20:51.948148Z",
+          "result": "HTTP 200",
+          "request_id": "f2659265-6fb1-401d-b1f0-df809e1214c5",
+          "http_status": 200,
+          "raw_hash": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19",
+          "raw_file": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/time",
+          "timestamp": "2026-10-10T12:20:52.378607Z",
+          "result": "HTTP 200",
+          "request_id": "8655d165-d3d7-48d6-9df9-e32c878c0595",
+          "http_status": 200,
+          "raw_hash": "01d6e50aaf74c14e235fd8cf3241cfe755052e3ac7685066517e652569cda310",
+          "raw_file": "01d6e50aaf74c14e235fd8cf3241cfe755052e3ac7685066517e652569cda310.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/klines?symbol=NVDAUSDT&interval=1m&limit=60",
+          "timestamp": "2026-10-10T12:20:52.555491Z",
+          "result": "HTTP 200",
+          "request_id": "8ccf00fc-1e5e-4947-a2df-a71625bdd368",
+          "http_status": 200,
+          "raw_hash": "e948efab21edf6a890080e62c24480c7014bbc04cf7c88beab22cbbbd3a5babf",
+          "raw_file": "e948efab21edf6a890080e62c24480c7014bbc04cf7c88beab22cbbbd3a5babf.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/klines?symbol=NVDAUSDT&interval=1m&startTime=0&limit=1",
+          "timestamp": "2026-10-10T12:20:52.723240Z",
+          "result": "HTTP 200",
+          "request_id": "fa8a1360-b572-478c-ab2a-e8b7297b982c",
+          "http_status": 200,
+          "raw_hash": "8f7b32c27ef68b7aaad9d63630c811c75e34dd8518f4a4fffe765a83c9d83ee9",
+          "raw_file": "8f7b32c27ef68b7aaad9d63630c811c75e34dd8518f4a4fffe765a83c9d83ee9.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/premiumIndex?symbol=NVDAUSDT",
+          "timestamp": "2026-10-10T12:20:52.999560Z",
+          "result": "HTTP 200",
+          "request_id": "2ecc45a9-31d6-4f3d-8cd5-e1fe11d26839",
+          "http_status": 200,
+          "raw_hash": "c24c7e69fb0c24040468701923a56f50c5115f50bf944d30db576fb3ec563b25",
+          "raw_file": "c24c7e69fb0c24040468701923a56f50c5115f50bf944d30db576fb3ec563b25.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=NVDAUSDT&limit=3",
+          "timestamp": "2026-10-10T12:20:53.228420Z",
+          "result": "HTTP 200",
+          "request_id": "a48ffbc0-c8fd-435d-b112-0ac878462eea",
+          "http_status": 200,
+          "raw_hash": "b9a262a2b543e747f4177c520a626ca4b81a24c973e98716037b961a104ad805",
+          "raw_file": "b9a262a2b543e747f4177c520a626ca4b81a24c973e98716037b961a104ad805.bin"
+        },
+        {
+          "source": "wss://fstream.binance.com/market/ws/nvdausdt@kline_1m",
+          "timestamp": "2026-10-10T12:21:00.240160Z",
+          "result": "UNAVAILABLE: TimeoutError: ",
+          "request_id": null,
+          "http_status": null,
+          "raw_hash": null,
+          "raw_file": null
+        }
+      ],
+      "notes": [
+        "Public specification only. Account/region/leverage/margin/order semantics unverified.",
+        "Ignored requiredMarginPercent/maintMarginPercent: not leverage permission evidence.",
+        "UNAVAILABLE: TimeoutError: "
+      ]
+    },
+    {
+      "schema_version": "phase0.v2",
+      "venue": "BINANCE",
+      "product_family": "USD_M_FUTURES",
+      "symbol": "TSLAUSDT",
+      "capability_state": "VERIFIED_PUBLIC",
+      "first_verified_at": "2026-10-10T05:03:33.349833Z",
+      "verified_at": "2026-10-10T12:20:51.773078Z",
+      "public_exchangeinfo_visible": true,
+      "account_trade_permission": "UNKNOWN",
+      "eligibility": "UNVERIFIED",
+      "max_public_leverage": null,
+      "max_account_leverage": null,
+      "isolated_supported": null,
+      "reduce_only_supported": null,
+      "stop_type_supported": null,
+      "mark_price_available": true,
+      "funding_data_available": true,
+      "historical_bars_available": true,
+      "websocket_works": true,
+      "trading_status": "TRADING",
+      "history_start_at": "2026-01-28T14:30:00Z",
+      "history_start_scope": "EARLIEST_RETURNED_BY_QUERY",
+      "instrument": {
+        "id": "BINANCE:USD_M_FUTURES:TSLAUSDT",
+        "underlying_id": "candidate:TSLAUSDT",
+        "venue": "BINANCE",
+        "symbol": "TSLAUSDT",
+        "product_family_probed": "USD_M_FUTURES",
+        "product_family_verified": "USD_M_FUTURES",
+        "contract_type": "TRADIFI_PERPETUAL",
+        "quote_asset": "USDT",
+        "margin_asset": "USDT",
+        "spec_version": "67b08987bcc4ceeb08d27e1c07ce2d8ce4514ae429cb5e136ce6ab0ca2812685",
+        "session_model_version": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19",
+        "price_formation_model": "UNVERIFIED"
+      },
+      "underlying": {
+        "id": "candidate:TSLAUSDT",
+        "asset_class_candidate": "stock_linked",
+        "exchange_reported_type": "EQUITY",
+        "exchange_reported_base_asset": "TSLA",
+        "name": null,
+        "native_exchange": null,
+        "mapping_state": "UNVERIFIED"
+      },
+      "evidence": [
+        {
+          "source": "https://fapi.binance.com/fapi/v1/exchangeInfo",
+          "timestamp": "2026-10-10T12:20:51.773078Z",
+          "result": "HTTP 200",
+          "request_id": "3773d7c7-2f27-4cfc-a215-050cd801d03c",
+          "http_status": 200,
+          "raw_hash": "6d842d787c44a8319fbf1419258a557b9e94fa2750d016975b9a7ab12b2fedfc",
+          "raw_file": "6d842d787c44a8319fbf1419258a557b9e94fa2750d016975b9a7ab12b2fedfc.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/tradingSchedule",
+          "timestamp": "2026-10-10T12:20:51.948148Z",
+          "result": "HTTP 200",
+          "request_id": "f2659265-6fb1-401d-b1f0-df809e1214c5",
+          "http_status": 200,
+          "raw_hash": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19",
+          "raw_file": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/time",
+          "timestamp": "2026-10-10T12:21:01.042504Z",
+          "result": "HTTP 200",
+          "request_id": "3a1e3cbb-3ab9-4d68-b3b7-d40796eae3e4",
+          "http_status": 200,
+          "raw_hash": "bd556952c9ea6aeed8b7f1e6263d6671266e3f9b0067b1c14b3fcc05857a7ea5",
+          "raw_file": "bd556952c9ea6aeed8b7f1e6263d6671266e3f9b0067b1c14b3fcc05857a7ea5.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/klines?symbol=TSLAUSDT&interval=1m&limit=60",
+          "timestamp": "2026-10-10T12:21:01.132834Z",
+          "result": "HTTP 200",
+          "request_id": "c2810624-230b-4756-b762-0abe6f2cd5cb",
+          "http_status": 200,
+          "raw_hash": "c007bdcdec65e4024e0932cf8473b0daa777d3ad6613e9332e0f8e0b5b55e812",
+          "raw_file": "c007bdcdec65e4024e0932cf8473b0daa777d3ad6613e9332e0f8e0b5b55e812.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/klines?symbol=TSLAUSDT&interval=1m&startTime=0&limit=1",
+          "timestamp": "2026-10-10T12:21:01.472129Z",
+          "result": "HTTP 200",
+          "request_id": "6a6eb72b-ec6d-41ca-88c0-41969b4bb719",
+          "http_status": 200,
+          "raw_hash": "9361ebd861c65288b6dfb1e5c4aabd6ea57b472a5c07ee9fea5f53f7784e7763",
+          "raw_file": "9361ebd861c65288b6dfb1e5c4aabd6ea57b472a5c07ee9fea5f53f7784e7763.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/premiumIndex?symbol=TSLAUSDT",
+          "timestamp": "2026-10-10T12:21:01.640352Z",
+          "result": "HTTP 200",
+          "request_id": "97bbe46f-4e07-4864-9bcc-4d79a02457e9",
+          "http_status": 200,
+          "raw_hash": "06ddb348984d1845a5555518e71606e1563865e03f0c43a0f9557998fa309a3f",
+          "raw_file": "06ddb348984d1845a5555518e71606e1563865e03f0c43a0f9557998fa309a3f.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=TSLAUSDT&limit=3",
+          "timestamp": "2026-10-10T12:21:01.909000Z",
+          "result": "HTTP 200",
+          "request_id": "5d152c31-5697-4b13-86d9-748d30635107",
+          "http_status": 200,
+          "raw_hash": "f29d1b5bf1511edbd184941102357e6bcaf72ceecd7d32d82cc2b4954333bfd5",
+          "raw_file": "f29d1b5bf1511edbd184941102357e6bcaf72ceecd7d32d82cc2b4954333bfd5.bin"
+        },
+        {
+          "source": "wss://fstream.binance.com/market/ws/tslausdt@kline_1m",
+          "timestamp": "2026-10-10T12:21:03.022602Z",
+          "result": "Matching fresh 1m kline received",
+          "request_id": null,
+          "http_status": null,
+          "raw_hash": "9180803a7ac38ef4cced4ade854eac38d00023e6ce658d358ae887fc2a4d3668",
+          "raw_file": "9180803a7ac38ef4cced4ade854eac38d00023e6ce658d358ae887fc2a4d3668.bin"
+        }
+      ],
+      "notes": [
+        "Public specification only. Account/region/leverage/margin/order semantics unverified.",
+        "Ignored requiredMarginPercent/maintMarginPercent: not leverage permission evidence."
+      ]
+    },
+    {
+      "schema_version": "phase0.v2",
+      "venue": "BINANCE",
+      "product_family": "USD_M_FUTURES",
+      "symbol": "METAUSDT",
+      "capability_state": "VERIFIED_PUBLIC",
+      "first_verified_at": "2026-10-10T05:03:33.349833Z",
+      "verified_at": "2026-10-10T12:20:51.773078Z",
+      "public_exchangeinfo_visible": true,
+      "account_trade_permission": "UNKNOWN",
+      "eligibility": "UNVERIFIED",
+      "max_public_leverage": null,
+      "max_account_leverage": null,
+      "isolated_supported": null,
+      "reduce_only_supported": null,
+      "stop_type_supported": null,
+      "mark_price_available": true,
+      "funding_data_available": true,
+      "historical_bars_available": true,
+      "websocket_works": null,
+      "trading_status": "TRADING",
+      "history_start_at": "2026-03-26T14:30:00Z",
+      "history_start_scope": "EARLIEST_RETURNED_BY_QUERY",
+      "instrument": {
+        "id": "BINANCE:USD_M_FUTURES:METAUSDT",
+        "underlying_id": "candidate:METAUSDT",
+        "venue": "BINANCE",
+        "symbol": "METAUSDT",
+        "product_family_probed": "USD_M_FUTURES",
+        "product_family_verified": "USD_M_FUTURES",
+        "contract_type": "TRADIFI_PERPETUAL",
+        "quote_asset": "USDT",
+        "margin_asset": "USDT",
+        "spec_version": "d0b850e077c8b036dcbe825db7d9900e3c8da779be790a9deb9b0b8f18f108c8",
+        "session_model_version": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19",
+        "price_formation_model": "UNVERIFIED"
+      },
+      "underlying": {
+        "id": "candidate:METAUSDT",
+        "asset_class_candidate": "stock_linked",
+        "exchange_reported_type": "EQUITY",
+        "exchange_reported_base_asset": "META",
+        "name": null,
+        "native_exchange": null,
+        "mapping_state": "UNVERIFIED"
+      },
+      "evidence": [
+        {
+          "source": "https://fapi.binance.com/fapi/v1/exchangeInfo",
+          "timestamp": "2026-10-10T12:20:51.773078Z",
+          "result": "HTTP 200",
+          "request_id": "3773d7c7-2f27-4cfc-a215-050cd801d03c",
+          "http_status": 200,
+          "raw_hash": "6d842d787c44a8319fbf1419258a557b9e94fa2750d016975b9a7ab12b2fedfc",
+          "raw_file": "6d842d787c44a8319fbf1419258a557b9e94fa2750d016975b9a7ab12b2fedfc.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/tradingSchedule",
+          "timestamp": "2026-10-10T12:20:51.948148Z",
+          "result": "HTTP 200",
+          "request_id": "f2659265-6fb1-401d-b1f0-df809e1214c5",
+          "http_status": 200,
+          "raw_hash": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19",
+          "raw_file": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/time",
+          "timestamp": "2026-10-10T12:21:04.188636Z",
+          "result": "HTTP 200",
+          "request_id": "d42a3934-4dcd-434a-a314-ddb72ff68e6d",
+          "http_status": 200,
+          "raw_hash": "38502fcb58bb1d7a7321353c22c4538e1517998d456b3d30031e59b2d5ddf5c3",
+          "raw_file": "38502fcb58bb1d7a7321353c22c4538e1517998d456b3d30031e59b2d5ddf5c3.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/klines?symbol=METAUSDT&interval=1m&limit=60",
+          "timestamp": "2026-10-10T12:21:04.534037Z",
+          "result": "HTTP 200",
+          "request_id": "2cb9283b-8876-4c6e-88cf-e79a1c12020b",
+          "http_status": 200,
+          "raw_hash": "227063b17f1f2c3b4cb32c42d68582ed1c6c66834b4a93d2d5a77cf0692b48e9",
+          "raw_file": "227063b17f1f2c3b4cb32c42d68582ed1c6c66834b4a93d2d5a77cf0692b48e9.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/klines?symbol=METAUSDT&interval=1m&startTime=0&limit=1",
+          "timestamp": "2026-10-10T12:21:04.692662Z",
+          "result": "HTTP 200",
+          "request_id": "6cecb60d-0a3d-4468-ba0a-1ed18b0fb8ad",
+          "http_status": 200,
+          "raw_hash": "ca085015e3e02fe0fdaea45e287cdcb97fa8b07db38dc514079f7446c565fda1",
+          "raw_file": "ca085015e3e02fe0fdaea45e287cdcb97fa8b07db38dc514079f7446c565fda1.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/premiumIndex?symbol=METAUSDT",
+          "timestamp": "2026-10-10T12:21:04.942036Z",
+          "result": "HTTP 200",
+          "request_id": "3b26c27f-020c-4473-88db-217172c6bdc0",
+          "http_status": 200,
+          "raw_hash": "d69d87f6ec9af77e70ee745b4ff17e3b0528efce027035b44e56a903245ffa23",
+          "raw_file": "d69d87f6ec9af77e70ee745b4ff17e3b0528efce027035b44e56a903245ffa23.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=METAUSDT&limit=3",
+          "timestamp": "2026-10-10T12:21:05.200517Z",
+          "result": "HTTP 200",
+          "request_id": "8b4f116b-fc15-4963-800d-5111c9d4938b",
+          "http_status": 200,
+          "raw_hash": "7cb2b1a085e700afff360b770faa4b387b4511e3fbce5a5c12bee34f6daa94c9",
+          "raw_file": "7cb2b1a085e700afff360b770faa4b387b4511e3fbce5a5c12bee34f6daa94c9.bin"
+        },
+        {
+          "source": "wss://fstream.binance.com/market/ws/metausdt@kline_1m",
+          "timestamp": "2026-10-10T12:21:12.209644Z",
+          "result": "UNAVAILABLE: TimeoutError: ",
+          "request_id": null,
+          "http_status": null,
+          "raw_hash": null,
+          "raw_file": null
+        }
+      ],
+      "notes": [
+        "Public specification only. Account/region/leverage/margin/order semantics unverified.",
+        "Ignored requiredMarginPercent/maintMarginPercent: not leverage permission evidence.",
+        "UNAVAILABLE: TimeoutError: "
+      ]
+    },
+    {
+      "schema_version": "phase0.v2",
+      "venue": "BINANCE",
+      "product_family": "USD_M_FUTURES",
+      "symbol": "GOOGLUSDT",
+      "capability_state": "VERIFIED_PUBLIC",
+      "first_verified_at": "2026-10-10T05:03:33.349833Z",
+      "verified_at": "2026-10-10T12:20:51.773078Z",
+      "public_exchangeinfo_visible": true,
+      "account_trade_permission": "UNKNOWN",
+      "eligibility": "UNVERIFIED",
+      "max_public_leverage": null,
+      "max_account_leverage": null,
+      "isolated_supported": null,
+      "reduce_only_supported": null,
+      "stop_type_supported": null,
+      "mark_price_available": true,
+      "funding_data_available": true,
+      "historical_bars_available": true,
+      "websocket_works": null,
+      "trading_status": "TRADING",
+      "history_start_at": "2026-03-26T14:50:00Z",
+      "history_start_scope": "EARLIEST_RETURNED_BY_QUERY",
+      "instrument": {
+        "id": "BINANCE:USD_M_FUTURES:GOOGLUSDT",
+        "underlying_id": "candidate:GOOGLUSDT",
+        "venue": "BINANCE",
+        "symbol": "GOOGLUSDT",
+        "product_family_probed": "USD_M_FUTURES",
+        "product_family_verified": "USD_M_FUTURES",
+        "contract_type": "TRADIFI_PERPETUAL",
+        "quote_asset": "USDT",
+        "margin_asset": "USDT",
+        "spec_version": "811ef084ae7f166d4d579e426dc1a5efbe3bd08dfb6fd32cb9a3c085f4e81115",
+        "session_model_version": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19",
+        "price_formation_model": "UNVERIFIED"
+      },
+      "underlying": {
+        "id": "candidate:GOOGLUSDT",
+        "asset_class_candidate": "stock_linked",
+        "exchange_reported_type": "EQUITY",
+        "exchange_reported_base_asset": "GOOGL",
+        "name": null,
+        "native_exchange": null,
+        "mapping_state": "UNVERIFIED"
+      },
+      "evidence": [
+        {
+          "source": "https://fapi.binance.com/fapi/v1/exchangeInfo",
+          "timestamp": "2026-10-10T12:20:51.773078Z",
+          "result": "HTTP 200",
+          "request_id": "3773d7c7-2f27-4cfc-a215-050cd801d03c",
+          "http_status": 200,
+          "raw_hash": "6d842d787c44a8319fbf1419258a557b9e94fa2750d016975b9a7ab12b2fedfc",
+          "raw_file": "6d842d787c44a8319fbf1419258a557b9e94fa2750d016975b9a7ab12b2fedfc.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/tradingSchedule",
+          "timestamp": "2026-10-10T12:20:51.948148Z",
+          "result": "HTTP 200",
+          "request_id": "f2659265-6fb1-401d-b1f0-df809e1214c5",
+          "http_status": 200,
+          "raw_hash": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19",
+          "raw_file": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/time",
+          "timestamp": "2026-10-10T12:21:12.774813Z",
+          "result": "HTTP 200",
+          "request_id": "3a4ed5be-aa0c-4c6f-bc19-5efd925db1fe",
+          "http_status": 200,
+          "raw_hash": "1819053b54c63d3e7677d1ffe495502546dd4e92c0466a18870fd26077938411",
+          "raw_file": "1819053b54c63d3e7677d1ffe495502546dd4e92c0466a18870fd26077938411.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/klines?symbol=GOOGLUSDT&interval=1m&limit=60",
+          "timestamp": "2026-10-10T12:21:12.920002Z",
+          "result": "HTTP 200",
+          "request_id": "40e0e555-595f-4561-8709-344303ba1528",
+          "http_status": 200,
+          "raw_hash": "d2257e4ed29b69dad44c46f3c92fe4f7b73c5afcf1be5d5e77c42488ed5e095c",
+          "raw_file": "d2257e4ed29b69dad44c46f3c92fe4f7b73c5afcf1be5d5e77c42488ed5e095c.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/klines?symbol=GOOGLUSDT&interval=1m&startTime=0&limit=1",
+          "timestamp": "2026-10-10T12:21:13.113150Z",
+          "result": "HTTP 200",
+          "request_id": "1ac45b08-db92-407a-a5bd-60b926751233",
+          "http_status": 200,
+          "raw_hash": "5b459c71bb618bd9b3a36193deffc890842a0725382bc3ceb6c2a1cf2ad62bda",
+          "raw_file": "5b459c71bb618bd9b3a36193deffc890842a0725382bc3ceb6c2a1cf2ad62bda.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/premiumIndex?symbol=GOOGLUSDT",
+          "timestamp": "2026-10-10T12:21:13.444886Z",
+          "result": "HTTP 200",
+          "request_id": "2455d5ff-494b-4bbb-a475-fb01d62e928e",
+          "http_status": 200,
+          "raw_hash": "7f9e5e9746a2d3a864654100b1a89a06201c281405a35b63cbf3e12d8e6d4698",
+          "raw_file": "7f9e5e9746a2d3a864654100b1a89a06201c281405a35b63cbf3e12d8e6d4698.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=GOOGLUSDT&limit=3",
+          "timestamp": "2026-10-10T12:21:13.632157Z",
+          "result": "HTTP 200",
+          "request_id": "2f05f475-6c04-4ca0-80b4-413412d34426",
+          "http_status": 200,
+          "raw_hash": "5355cbfe08515c1c2621f66839c3fdb28fd53bd09d58f09ea0e21d320f94167f",
+          "raw_file": "5355cbfe08515c1c2621f66839c3fdb28fd53bd09d58f09ea0e21d320f94167f.bin"
+        },
+        {
+          "source": "wss://fstream.binance.com/market/ws/googlusdt@kline_1m",
+          "timestamp": "2026-10-10T12:21:19.677584Z",
+          "result": "UNAVAILABLE: TimeoutError: ",
+          "request_id": null,
+          "http_status": null,
+          "raw_hash": "39900e02b63337323237e8d5655197f56b935eb17b022d95be6ba00fecea47d9",
+          "raw_file": "39900e02b63337323237e8d5655197f56b935eb17b022d95be6ba00fecea47d9.bin"
+        }
+      ],
+      "notes": [
+        "Public specification only. Account/region/leverage/margin/order semantics unverified.",
+        "Ignored requiredMarginPercent/maintMarginPercent: not leverage permission evidence.",
+        "UNAVAILABLE: TimeoutError: ",
+        "Archive rejected: conflicting closed bar; requires reviewed revision"
+      ]
+    },
+    {
+      "schema_version": "phase0.v2",
+      "venue": "BINANCE",
+      "product_family": "USD_M_FUTURES",
+      "symbol": "CLUSDT",
+      "capability_state": "VERIFIED_PUBLIC",
+      "first_verified_at": "2026-10-10T05:03:33.349833Z",
+      "verified_at": "2026-10-10T12:20:51.773078Z",
+      "public_exchangeinfo_visible": true,
+      "account_trade_permission": "UNKNOWN",
+      "eligibility": "UNVERIFIED",
+      "max_public_leverage": null,
+      "max_account_leverage": null,
+      "isolated_supported": null,
+      "reduce_only_supported": null,
+      "stop_type_supported": null,
+      "mark_price_available": true,
+      "funding_data_available": true,
+      "historical_bars_available": true,
+      "websocket_works": true,
+      "trading_status": "TRADING",
+      "history_start_at": "2026-04-01T09:00:00Z",
+      "history_start_scope": "EARLIEST_RETURNED_BY_QUERY",
+      "instrument": {
+        "id": "BINANCE:USD_M_FUTURES:CLUSDT",
+        "underlying_id": "candidate:CLUSDT",
+        "venue": "BINANCE",
+        "symbol": "CLUSDT",
+        "product_family_probed": "USD_M_FUTURES",
+        "product_family_verified": "USD_M_FUTURES",
+        "contract_type": "TRADIFI_PERPETUAL",
+        "quote_asset": "USDT",
+        "margin_asset": "USDT",
+        "spec_version": "52c54115a9d4fa3ac27dae5e8f0d08a4cba02989afd5bc14c402bc23593dc200",
+        "session_model_version": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19",
+        "price_formation_model": "UNVERIFIED"
+      },
+      "underlying": {
+        "id": "candidate:CLUSDT",
+        "asset_class_candidate": "energy",
+        "exchange_reported_type": "COMMODITY",
+        "exchange_reported_base_asset": "CL",
+        "name": null,
+        "native_exchange": null,
+        "mapping_state": "UNVERIFIED"
+      },
+      "evidence": [
+        {
+          "source": "https://fapi.binance.com/fapi/v1/exchangeInfo",
+          "timestamp": "2026-10-10T12:20:51.773078Z",
+          "result": "HTTP 200",
+          "request_id": "3773d7c7-2f27-4cfc-a215-050cd801d03c",
+          "http_status": 200,
+          "raw_hash": "6d842d787c44a8319fbf1419258a557b9e94fa2750d016975b9a7ab12b2fedfc",
+          "raw_file": "6d842d787c44a8319fbf1419258a557b9e94fa2750d016975b9a7ab12b2fedfc.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/tradingSchedule",
+          "timestamp": "2026-10-10T12:20:51.948148Z",
+          "result": "HTTP 200",
+          "request_id": "f2659265-6fb1-401d-b1f0-df809e1214c5",
+          "http_status": 200,
+          "raw_hash": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19",
+          "raw_file": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/time",
+          "timestamp": "2026-10-10T12:21:20.398866Z",
+          "result": "HTTP 200",
+          "request_id": "cbb2dece-4f00-4ad8-9285-73398ed3bec6",
+          "http_status": 200,
+          "raw_hash": "3948f1ee98e868c122832dd327a33509713eb44f26141a6d7bee52ca3ba31fa3",
+          "raw_file": "3948f1ee98e868c122832dd327a33509713eb44f26141a6d7bee52ca3ba31fa3.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/klines?symbol=CLUSDT&interval=1m&limit=60",
+          "timestamp": "2026-10-10T12:21:20.588048Z",
+          "result": "HTTP 200",
+          "request_id": "2ebe032a-45e8-4282-bb0c-ce89ad536edc",
+          "http_status": 200,
+          "raw_hash": "8d785a2fe33684eb79ffc3ceb2d8089377a76ff388093ed22da8146046c46dd6",
+          "raw_file": "8d785a2fe33684eb79ffc3ceb2d8089377a76ff388093ed22da8146046c46dd6.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/klines?symbol=CLUSDT&interval=1m&startTime=0&limit=1",
+          "timestamp": "2026-10-10T12:21:20.783102Z",
+          "result": "HTTP 200",
+          "request_id": "040b1e13-e9e4-4566-89ec-ee1727c3e9e2",
+          "http_status": 200,
+          "raw_hash": "d25672bf8e246be47b4fc0bc937252141ff7ceb8bed01cee041b8cef27459768",
+          "raw_file": "d25672bf8e246be47b4fc0bc937252141ff7ceb8bed01cee041b8cef27459768.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/premiumIndex?symbol=CLUSDT",
+          "timestamp": "2026-10-10T12:21:20.999020Z",
+          "result": "HTTP 200",
+          "request_id": "822ba494-e76d-487c-9b69-469ca352ad4c",
+          "http_status": 200,
+          "raw_hash": "bca2e6b0dc684a45d9320b3b8bada2fc86a779163c36287e25d67ac1ffc890b2",
+          "raw_file": "bca2e6b0dc684a45d9320b3b8bada2fc86a779163c36287e25d67ac1ffc890b2.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=CLUSDT&limit=3",
+          "timestamp": "2026-10-10T12:21:21.307390Z",
+          "result": "HTTP 200",
+          "request_id": "9e0cbb27-e61b-48c9-a86f-ba39a7a298ee",
+          "http_status": 200,
+          "raw_hash": "08917fc26443d9eef4afc7827f87f66a17f132935b831e10c1bb99e88a2f4a32",
+          "raw_file": "08917fc26443d9eef4afc7827f87f66a17f132935b831e10c1bb99e88a2f4a32.bin"
+        },
+        {
+          "source": "wss://fstream.binance.com/market/ws/clusdt@kline_1m",
+          "timestamp": "2026-10-10T12:21:22.227019Z",
+          "result": "Matching fresh 1m kline received",
+          "request_id": null,
+          "http_status": null,
+          "raw_hash": "7a7095be24aa1fab02a5f85d3d4a2deba59078b2748e6033334ff30c0962711e",
+          "raw_file": "7a7095be24aa1fab02a5f85d3d4a2deba59078b2748e6033334ff30c0962711e.bin"
+        }
+      ],
+      "notes": [
+        "Public specification only. Account/region/leverage/margin/order semantics unverified.",
+        "Ignored requiredMarginPercent/maintMarginPercent: not leverage permission evidence."
+      ]
+    },
+    {
+      "schema_version": "phase0.v2",
+      "venue": "BINANCE",
+      "product_family": "USD_M_FUTURES",
+      "symbol": "NATGASUSDT",
+      "capability_state": "VERIFIED_PUBLIC",
+      "first_verified_at": "2026-10-10T05:03:33.349833Z",
+      "verified_at": "2026-10-10T12:20:51.773078Z",
+      "public_exchangeinfo_visible": true,
+      "account_trade_permission": "UNKNOWN",
+      "eligibility": "UNVERIFIED",
+      "max_public_leverage": null,
+      "max_account_leverage": null,
+      "isolated_supported": null,
+      "reduce_only_supported": null,
+      "stop_type_supported": null,
+      "mark_price_available": true,
+      "funding_data_available": true,
+      "historical_bars_available": true,
+      "websocket_works": true,
+      "trading_status": "TRADING",
+      "history_start_at": "2026-04-01T09:20:00Z",
+      "history_start_scope": "EARLIEST_RETURNED_BY_QUERY",
+      "instrument": {
+        "id": "BINANCE:USD_M_FUTURES:NATGASUSDT",
+        "underlying_id": "candidate:NATGASUSDT",
+        "venue": "BINANCE",
+        "symbol": "NATGASUSDT",
+        "product_family_probed": "USD_M_FUTURES",
+        "product_family_verified": "USD_M_FUTURES",
+        "contract_type": "TRADIFI_PERPETUAL",
+        "quote_asset": "USDT",
+        "margin_asset": "USDT",
+        "spec_version": "4fbfd70a5c09f01cf7cc5d7b06ee1c68f6f74126fedaaabc94f305d901870e59",
+        "session_model_version": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19",
+        "price_formation_model": "UNVERIFIED"
+      },
+      "underlying": {
+        "id": "candidate:NATGASUSDT",
+        "asset_class_candidate": "energy",
+        "exchange_reported_type": "COMMODITY",
+        "exchange_reported_base_asset": "NATGAS",
+        "name": null,
+        "native_exchange": null,
+        "mapping_state": "UNVERIFIED"
+      },
+      "evidence": [
+        {
+          "source": "https://fapi.binance.com/fapi/v1/exchangeInfo",
+          "timestamp": "2026-10-10T12:20:51.773078Z",
+          "result": "HTTP 200",
+          "request_id": "3773d7c7-2f27-4cfc-a215-050cd801d03c",
+          "http_status": 200,
+          "raw_hash": "6d842d787c44a8319fbf1419258a557b9e94fa2750d016975b9a7ab12b2fedfc",
+          "raw_file": "6d842d787c44a8319fbf1419258a557b9e94fa2750d016975b9a7ab12b2fedfc.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/tradingSchedule",
+          "timestamp": "2026-10-10T12:20:51.948148Z",
+          "result": "HTTP 200",
+          "request_id": "f2659265-6fb1-401d-b1f0-df809e1214c5",
+          "http_status": 200,
+          "raw_hash": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19",
+          "raw_file": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/time",
+          "timestamp": "2026-10-10T12:21:23.604424Z",
+          "result": "HTTP 200",
+          "request_id": "38f3c507-0c1f-4453-a694-211c6b463762",
+          "http_status": 200,
+          "raw_hash": "cdc558a1f6a290671d97ba9476d16edb549f2ae23250cbb9113d79b2c54cc323",
+          "raw_file": "cdc558a1f6a290671d97ba9476d16edb549f2ae23250cbb9113d79b2c54cc323.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/klines?symbol=NATGASUSDT&interval=1m&limit=60",
+          "timestamp": "2026-10-10T12:21:23.931803Z",
+          "result": "HTTP 200",
+          "request_id": "6c7f4e1a-5542-4442-9808-7914ad99efb8",
+          "http_status": 200,
+          "raw_hash": "8aef2490ebc2e92a0e2fdcb0c0d2e975046e5d45198464f6c85b5fd98db258c5",
+          "raw_file": "8aef2490ebc2e92a0e2fdcb0c0d2e975046e5d45198464f6c85b5fd98db258c5.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/klines?symbol=NATGASUSDT&interval=1m&startTime=0&limit=1",
+          "timestamp": "2026-10-10T12:21:24.109435Z",
+          "result": "HTTP 200",
+          "request_id": "b79762b3-38b6-4d73-a082-9c8c2f8ef951",
+          "http_status": 200,
+          "raw_hash": "9a891af142dbaa54136bc383428ebb6c8ff9d76f7981532df639bb91df858989",
+          "raw_file": "9a891af142dbaa54136bc383428ebb6c8ff9d76f7981532df639bb91df858989.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/premiumIndex?symbol=NATGASUSDT",
+          "timestamp": "2026-10-10T12:21:24.358381Z",
+          "result": "HTTP 200",
+          "request_id": "d8cb001a-5bad-4701-9ae4-a9c736db265f",
+          "http_status": 200,
+          "raw_hash": "877cc8e575a2b35c7bc8ae6af0a6032b4be24ded8208a31fc22bf8089f6fabc0",
+          "raw_file": "877cc8e575a2b35c7bc8ae6af0a6032b4be24ded8208a31fc22bf8089f6fabc0.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=NATGASUSDT&limit=3",
+          "timestamp": "2026-10-10T12:21:24.637137Z",
+          "result": "HTTP 200",
+          "request_id": "1eab58a7-45da-4977-a48b-3665749cf6b6",
+          "http_status": 200,
+          "raw_hash": "6b9e418cbfa3749c4d741de8f6f23caf38848f56f3b925aab2aa357858cc57ce",
+          "raw_file": "6b9e418cbfa3749c4d741de8f6f23caf38848f56f3b925aab2aa357858cc57ce.bin"
+        },
+        {
+          "source": "wss://fstream.binance.com/market/ws/natgasusdt@kline_1m",
+          "timestamp": "2026-10-10T12:21:29.378864Z",
+          "result": "Matching fresh 1m kline received",
+          "request_id": null,
+          "http_status": null,
+          "raw_hash": "8619cca19db77774d27963a63faa498a98fd7ed047adaeaf003ee70adcd8692a",
+          "raw_file": "8619cca19db77774d27963a63faa498a98fd7ed047adaeaf003ee70adcd8692a.bin"
+        }
+      ],
+      "notes": [
+        "Public specification only. Account/region/leverage/margin/order semantics unverified.",
+        "Ignored requiredMarginPercent/maintMarginPercent: not leverage permission evidence."
+      ]
+    },
+    {
+      "schema_version": "phase0.v2",
+      "venue": "BINANCE",
+      "product_family": "USD_M_FUTURES",
+      "symbol": "BZUSDT",
+      "capability_state": "VERIFIED_PUBLIC",
+      "first_verified_at": "2026-10-10T05:03:33.349833Z",
+      "verified_at": "2026-10-10T12:20:51.773078Z",
+      "public_exchangeinfo_visible": true,
+      "account_trade_permission": "UNKNOWN",
+      "eligibility": "UNVERIFIED",
+      "max_public_leverage": null,
+      "max_account_leverage": null,
+      "isolated_supported": null,
+      "reduce_only_supported": null,
+      "stop_type_supported": null,
+      "mark_price_available": true,
+      "funding_data_available": true,
+      "historical_bars_available": true,
+      "websocket_works": null,
+      "trading_status": "TRADING",
+      "history_start_at": "2026-04-01T09:10:00Z",
+      "history_start_scope": "EARLIEST_RETURNED_BY_QUERY",
+      "instrument": {
+        "id": "BINANCE:USD_M_FUTURES:BZUSDT",
+        "underlying_id": "candidate:BZUSDT",
+        "venue": "BINANCE",
+        "symbol": "BZUSDT",
+        "product_family_probed": "USD_M_FUTURES",
+        "product_family_verified": "USD_M_FUTURES",
+        "contract_type": "TRADIFI_PERPETUAL",
+        "quote_asset": "USDT",
+        "margin_asset": "USDT",
+        "spec_version": "137f65c947ef2dc0be4821f428e71121ad4a1419cac114ceac640f885e5b4654",
+        "session_model_version": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19",
+        "price_formation_model": "UNVERIFIED"
+      },
+      "underlying": {
+        "id": "candidate:BZUSDT",
+        "asset_class_candidate": "energy",
+        "exchange_reported_type": "COMMODITY",
+        "exchange_reported_base_asset": "BZ",
+        "name": null,
+        "native_exchange": null,
+        "mapping_state": "UNVERIFIED"
+      },
+      "evidence": [
+        {
+          "source": "https://fapi.binance.com/fapi/v1/exchangeInfo",
+          "timestamp": "2026-10-10T12:20:51.773078Z",
+          "result": "HTTP 200",
+          "request_id": "3773d7c7-2f27-4cfc-a215-050cd801d03c",
+          "http_status": 200,
+          "raw_hash": "6d842d787c44a8319fbf1419258a557b9e94fa2750d016975b9a7ab12b2fedfc",
+          "raw_file": "6d842d787c44a8319fbf1419258a557b9e94fa2750d016975b9a7ab12b2fedfc.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/tradingSchedule",
+          "timestamp": "2026-10-10T12:20:51.948148Z",
+          "result": "HTTP 200",
+          "request_id": "f2659265-6fb1-401d-b1f0-df809e1214c5",
+          "http_status": 200,
+          "raw_hash": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19",
+          "raw_file": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/time",
+          "timestamp": "2026-10-10T12:21:30.967744Z",
+          "result": "HTTP 200",
+          "request_id": "a9dad7ff-bdc0-489c-8aaa-5d14999bc097",
+          "http_status": 200,
+          "raw_hash": "368f1cc4487bd88403457146ea91258998901b14178e210cab7c576522c62e58",
+          "raw_file": "368f1cc4487bd88403457146ea91258998901b14178e210cab7c576522c62e58.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/klines?symbol=BZUSDT&interval=1m&limit=60",
+          "timestamp": "2026-10-10T12:21:31.099968Z",
+          "result": "HTTP 200",
+          "request_id": "9bb30f67-cd59-4ae6-a9b7-d425909817c2",
+          "http_status": 200,
+          "raw_hash": "b5974c4024e83863d21e78a144e9fe6ed1b7b48ae30e902f15b593f23ef91957",
+          "raw_file": "b5974c4024e83863d21e78a144e9fe6ed1b7b48ae30e902f15b593f23ef91957.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/klines?symbol=BZUSDT&interval=1m&startTime=0&limit=1",
+          "timestamp": "2026-10-10T12:21:31.353466Z",
+          "result": "HTTP 200",
+          "request_id": "b97c7175-6793-4a5d-bd64-6f1f65ec1630",
+          "http_status": 200,
+          "raw_hash": "c3482d018842b5ac57425e550e1cf54295866267e44794c0ce4a1db8f53cae5a",
+          "raw_file": "c3482d018842b5ac57425e550e1cf54295866267e44794c0ce4a1db8f53cae5a.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/premiumIndex?symbol=BZUSDT",
+          "timestamp": "2026-10-10T12:21:31.562178Z",
+          "result": "HTTP 200",
+          "request_id": "8438e8aa-8b5a-4dd5-aa3f-8693fcb26ca5",
+          "http_status": 200,
+          "raw_hash": "6a917add87481b1b3ed96e0ed2a452de5fbe0635b487ca267d083591de11ed9d",
+          "raw_file": "6a917add87481b1b3ed96e0ed2a452de5fbe0635b487ca267d083591de11ed9d.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BZUSDT&limit=3",
+          "timestamp": "2026-10-10T12:21:31.886407Z",
+          "result": "HTTP 200",
+          "request_id": "b4ab112c-5f09-400d-9dd3-90c305d1ab29",
+          "http_status": 200,
+          "raw_hash": "56080b6d939dd43211f94b573500f8a8c44b2003d15631bfb088b0c952717e84",
+          "raw_file": "56080b6d939dd43211f94b573500f8a8c44b2003d15631bfb088b0c952717e84.bin"
+        },
+        {
+          "source": "wss://fstream.binance.com/market/ws/bzusdt@kline_1m",
+          "timestamp": "2026-10-10T12:21:38.895091Z",
+          "result": "UNAVAILABLE: TimeoutError: ",
+          "request_id": null,
+          "http_status": null,
+          "raw_hash": null,
+          "raw_file": null
+        }
+      ],
+      "notes": [
+        "Public specification only. Account/region/leverage/margin/order semantics unverified.",
+        "Ignored requiredMarginPercent/maintMarginPercent: not leverage permission evidence.",
+        "UNAVAILABLE: TimeoutError: "
+      ]
+    },
+    {
+      "schema_version": "phase0.v2",
+      "venue": "BINANCE",
+      "product_family": "USD_M_FUTURES",
+      "symbol": "XAUUSDT",
+      "capability_state": "VERIFIED_PUBLIC",
+      "first_verified_at": "2026-10-10T05:03:33.349833Z",
+      "verified_at": "2026-10-10T12:20:51.773078Z",
+      "public_exchangeinfo_visible": true,
+      "account_trade_permission": "UNKNOWN",
+      "eligibility": "UNVERIFIED",
+      "max_public_leverage": null,
+      "max_account_leverage": null,
+      "isolated_supported": null,
+      "reduce_only_supported": null,
+      "stop_type_supported": null,
+      "mark_price_available": true,
+      "funding_data_available": true,
+      "historical_bars_available": true,
+      "websocket_works": true,
+      "trading_status": "TRADING",
+      "history_start_at": "2025-12-11T08:05:00Z",
+      "history_start_scope": "EARLIEST_RETURNED_BY_QUERY",
+      "instrument": {
+        "id": "BINANCE:USD_M_FUTURES:XAUUSDT",
+        "underlying_id": "candidate:XAUUSDT",
+        "venue": "BINANCE",
+        "symbol": "XAUUSDT",
+        "product_family_probed": "USD_M_FUTURES",
+        "product_family_verified": "USD_M_FUTURES",
+        "contract_type": "TRADIFI_PERPETUAL",
+        "quote_asset": "USDT",
+        "margin_asset": "USDT",
+        "spec_version": "dc3b68fcf78c93cef53edcd6e9f65996522a2f27ba3f9b0d0c27df4f4cbef24e",
+        "session_model_version": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19",
+        "price_formation_model": "UNVERIFIED"
+      },
+      "underlying": {
+        "id": "candidate:XAUUSDT",
+        "asset_class_candidate": "metals",
+        "exchange_reported_type": "COMMODITY",
+        "exchange_reported_base_asset": "XAU",
+        "name": null,
+        "native_exchange": null,
+        "mapping_state": "UNVERIFIED"
+      },
+      "evidence": [
+        {
+          "source": "https://fapi.binance.com/fapi/v1/exchangeInfo",
+          "timestamp": "2026-10-10T12:20:51.773078Z",
+          "result": "HTTP 200",
+          "request_id": "3773d7c7-2f27-4cfc-a215-050cd801d03c",
+          "http_status": 200,
+          "raw_hash": "6d842d787c44a8319fbf1419258a557b9e94fa2750d016975b9a7ab12b2fedfc",
+          "raw_file": "6d842d787c44a8319fbf1419258a557b9e94fa2750d016975b9a7ab12b2fedfc.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/tradingSchedule",
+          "timestamp": "2026-10-10T12:20:51.948148Z",
+          "result": "HTTP 200",
+          "request_id": "f2659265-6fb1-401d-b1f0-df809e1214c5",
+          "http_status": 200,
+          "raw_hash": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19",
+          "raw_file": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/time",
+          "timestamp": "2026-10-10T12:21:39.542514Z",
+          "result": "HTTP 200",
+          "request_id": "cd57255e-41d1-4a5a-9be8-a68dd8efdbbf",
+          "http_status": 200,
+          "raw_hash": "ae933181f0005f717720efdb011b5fee84e6f864485b44350f7911e19b9e9f71",
+          "raw_file": "ae933181f0005f717720efdb011b5fee84e6f864485b44350f7911e19b9e9f71.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/klines?symbol=XAUUSDT&interval=1m&limit=60",
+          "timestamp": "2026-10-10T12:21:39.658453Z",
+          "result": "HTTP 200",
+          "request_id": "b2d155b1-a929-401e-a76b-9235c17a274c",
+          "http_status": 200,
+          "raw_hash": "188ebc579162da2146da7508019b6fef36343d913c583a9b473a04088ba17a10",
+          "raw_file": "188ebc579162da2146da7508019b6fef36343d913c583a9b473a04088ba17a10.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/klines?symbol=XAUUSDT&interval=1m&startTime=0&limit=1",
+          "timestamp": "2026-10-10T12:21:39.891790Z",
+          "result": "HTTP 200",
+          "request_id": "a7fe6799-0b5d-43be-8b39-318473feb0fe",
+          "http_status": 200,
+          "raw_hash": "1c61826d8b568a73161c4b0dd2d50154740e33fb1ecaed18df75b9c18f3d9cad",
+          "raw_file": "1c61826d8b568a73161c4b0dd2d50154740e33fb1ecaed18df75b9c18f3d9cad.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/premiumIndex?symbol=XAUUSDT",
+          "timestamp": "2026-10-10T12:21:40.248868Z",
+          "result": "HTTP 200",
+          "request_id": "8e8f6fc0-348c-4fba-93bd-4e12cff6dc12",
+          "http_status": 200,
+          "raw_hash": "44c2de92ef8c21248ceec0fb4638d505464bca58747b0044590e2fff5ec96eaa",
+          "raw_file": "44c2de92ef8c21248ceec0fb4638d505464bca58747b0044590e2fff5ec96eaa.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=XAUUSDT&limit=3",
+          "timestamp": "2026-10-10T12:21:40.398898Z",
+          "result": "HTTP 200",
+          "request_id": "b1cbe42e-1999-4469-b424-73975c701cff",
+          "http_status": 200,
+          "raw_hash": "ec545d10ff9de6f0b3ffbaf160f4b0d9750c7586dd333b6ca8424718a80ccf16",
+          "raw_file": "ec545d10ff9de6f0b3ffbaf160f4b0d9750c7586dd333b6ca8424718a80ccf16.bin"
+        },
+        {
+          "source": "wss://fstream.binance.com/market/ws/xauusdt@kline_1m",
+          "timestamp": "2026-10-10T12:21:42.614701Z",
+          "result": "Matching fresh 1m kline received",
+          "request_id": null,
+          "http_status": null,
+          "raw_hash": "65b161ab517015f4b1d589ccae245a17abf198462e210a07d7323321a49f0db4",
+          "raw_file": "65b161ab517015f4b1d589ccae245a17abf198462e210a07d7323321a49f0db4.bin"
+        }
+      ],
+      "notes": [
+        "Public specification only. Account/region/leverage/margin/order semantics unverified.",
+        "Ignored requiredMarginPercent/maintMarginPercent: not leverage permission evidence."
+      ]
+    },
+    {
+      "schema_version": "phase0.v2",
+      "venue": "BINANCE",
+      "product_family": "USD_M_FUTURES",
+      "symbol": "XAGUSDT",
+      "capability_state": "VERIFIED_PUBLIC",
+      "first_verified_at": "2026-10-10T05:03:33.349833Z",
+      "verified_at": "2026-10-10T12:20:51.773078Z",
+      "public_exchangeinfo_visible": true,
+      "account_trade_permission": "UNKNOWN",
+      "eligibility": "UNVERIFIED",
+      "max_public_leverage": null,
+      "max_account_leverage": null,
+      "isolated_supported": null,
+      "reduce_only_supported": null,
+      "stop_type_supported": null,
+      "mark_price_available": true,
+      "funding_data_available": true,
+      "historical_bars_available": true,
+      "websocket_works": null,
+      "trading_status": "TRADING",
+      "history_start_at": "2026-01-07T10:00:00Z",
+      "history_start_scope": "EARLIEST_RETURNED_BY_QUERY",
+      "instrument": {
+        "id": "BINANCE:USD_M_FUTURES:XAGUSDT",
+        "underlying_id": "candidate:XAGUSDT",
+        "venue": "BINANCE",
+        "symbol": "XAGUSDT",
+        "product_family_probed": "USD_M_FUTURES",
+        "product_family_verified": "USD_M_FUTURES",
+        "contract_type": "TRADIFI_PERPETUAL",
+        "quote_asset": "USDT",
+        "margin_asset": "USDT",
+        "spec_version": "796965cdfbe3d976c6e4a1af7df96663b83c5281b16ecf94a38e3bafb50bebe6",
+        "session_model_version": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19",
+        "price_formation_model": "UNVERIFIED"
+      },
+      "underlying": {
+        "id": "candidate:XAGUSDT",
+        "asset_class_candidate": "metals",
+        "exchange_reported_type": "COMMODITY",
+        "exchange_reported_base_asset": "XAG",
+        "name": null,
+        "native_exchange": null,
+        "mapping_state": "UNVERIFIED"
+      },
+      "evidence": [
+        {
+          "source": "https://fapi.binance.com/fapi/v1/exchangeInfo",
+          "timestamp": "2026-10-10T12:20:51.773078Z",
+          "result": "HTTP 200",
+          "request_id": "3773d7c7-2f27-4cfc-a215-050cd801d03c",
+          "http_status": 200,
+          "raw_hash": "6d842d787c44a8319fbf1419258a557b9e94fa2750d016975b9a7ab12b2fedfc",
+          "raw_file": "6d842d787c44a8319fbf1419258a557b9e94fa2750d016975b9a7ab12b2fedfc.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/tradingSchedule",
+          "timestamp": "2026-10-10T12:20:51.948148Z",
+          "result": "HTTP 200",
+          "request_id": "f2659265-6fb1-401d-b1f0-df809e1214c5",
+          "http_status": 200,
+          "raw_hash": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19",
+          "raw_file": "f353af7c65910fb353c0a9154b30d9f25a7ae4fed632c0f2bca75889d550dc19.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/time",
+          "timestamp": "2026-10-10T12:21:43.758272Z",
+          "result": "HTTP 200",
+          "request_id": "4761ebb2-e8b6-4f69-ac46-19d69ddd72ae",
+          "http_status": 200,
+          "raw_hash": "038a1853618f512800517c0a5730bad07df88251a4cba83ad79ad743d10d70dc",
+          "raw_file": "038a1853618f512800517c0a5730bad07df88251a4cba83ad79ad743d10d70dc.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/klines?symbol=XAGUSDT&interval=1m&limit=60",
+          "timestamp": "2026-10-10T12:21:44.019992Z",
+          "result": "HTTP 200",
+          "request_id": "e13373ba-eb02-4abd-b117-6a3bb82d93e8",
+          "http_status": 200,
+          "raw_hash": "472f33ed51135802e087591847a622e054c7985b284c23a295078b291cbe9d84",
+          "raw_file": "472f33ed51135802e087591847a622e054c7985b284c23a295078b291cbe9d84.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/klines?symbol=XAGUSDT&interval=1m&startTime=0&limit=1",
+          "timestamp": "2026-10-10T12:21:44.285923Z",
+          "result": "HTTP 200",
+          "request_id": "853eed9a-dcd6-4620-a3c6-7429b7487837",
+          "http_status": 200,
+          "raw_hash": "44e64ba2296622abd209dc017c6a9cc334fad0f6f407b477eb2ea9c5976e5ee9",
+          "raw_file": "44e64ba2296622abd209dc017c6a9cc334fad0f6f407b477eb2ea9c5976e5ee9.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/premiumIndex?symbol=XAGUSDT",
+          "timestamp": "2026-10-10T12:21:44.522498Z",
+          "result": "HTTP 200",
+          "request_id": "e8553dd6-109a-4e94-a646-1cfb8ce19992",
+          "http_status": 200,
+          "raw_hash": "6194f708919f465f34ef723e16d8d5a5cb0c103d23848f8e1fec5566eeb64231",
+          "raw_file": "6194f708919f465f34ef723e16d8d5a5cb0c103d23848f8e1fec5566eeb64231.bin"
+        },
+        {
+          "source": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=XAGUSDT&limit=3",
+          "timestamp": "2026-10-10T12:21:44.772229Z",
+          "result": "HTTP 200",
+          "request_id": "c6785835-e6ea-49ce-a26d-9f39b224dab7",
+          "http_status": 200,
+          "raw_hash": "348e1f92e4ba7b28fa4ef38da153030a0e36a843ff59d9ae1781b50d0c2a06c3",
+          "raw_file": "348e1f92e4ba7b28fa4ef38da153030a0e36a843ff59d9ae1781b50d0c2a06c3.bin"
+        },
+        {
+          "source": "wss://fstream.binance.com/market/ws/xagusdt@kline_1m",
+          "timestamp": "2026-10-10T12:21:51.776411Z",
+          "result": "UNAVAILABLE: TimeoutError: ",
+          "request_id": null,
+          "http_status": null,
+          "raw_hash": null,
+          "raw_file": null
+        }
+      ],
+      "notes": [
+        "Public specification only. Account/region/leverage/margin/order semantics unverified.",
+        "Ignored requiredMarginPercent/maintMarginPercent: not leverage permission evidence.",
+        "UNAVAILABLE: TimeoutError: "
+      ]
+    }
+  ]
+}

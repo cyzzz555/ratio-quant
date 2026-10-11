@@ -1,0 +1,50 @@
+{
+  "checked_at": "2026-10-10T05:14:38.838147+00:00",
+  "trust_env": false,
+  "initial_environment_issue": "Default HTTP proxy intercepted first localhost check; direct loopback check succeeded.",
+  "checks": [
+    {
+      "path": "/health/live",
+      "status": 200,
+      "body": {
+        "alive": true,
+        "phase": "P0",
+        "live_trading_enabled": false
+      }
+    },
+    {
+      "path": "/health/ready",
+      "status": 503,
+      "body": {
+        "service_ready": true,
+        "trading_ready": false,
+        "allow_new_risk": false,
+        "live_trading_enabled": false,
+        "reasons": [
+          "P0_READ_ONLY",
+          "LIVE_DISABLED",
+          "ACCOUNT_PERMISSIONS_UNVERIFIED"
+        ],
+        "checked_at": "2026-10-10T05:14:38.833963+00:00"
+      }
+    },
+    {
+      "path": "/api/v1/instruments",
+      "status": 200,
+      "body": {
+        "instrument_count": 9,
+        "run_id": "e316c7cd-c048-4ad8-8d46-ab06cba1f160"
+      }
+    },
+    {
+      "path": "/api/v1/instruments",
+      "method": "POST",
+      "status": 405
+    },
+    {
+      "path": "/api/v1/orders",
+      "method": "POST",
+      "status": 404
+    }
+  ]
+}

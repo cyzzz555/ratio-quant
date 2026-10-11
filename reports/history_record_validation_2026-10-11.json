@@ -1,0 +1,82 @@
+{
+  "dataset_id": "88825a16-6364-4549-ad72-478c7f02cfd7",
+  "run_id": "5c276475-ab41-4ca1-bdf2-a85edac2b0bd",
+  "result_hash": "3ef68b1ff81a8c8b3e0910b657630ccc18f07bf53f32154fadbfe6feb423bc0e",
+  "report_file_hash_before": "5a2f15f932d0cbd4b60240c0747b5ad235c75583cea0458b4bf98ecc552b0f0c",
+  "original_report_hashes": {
+    "f0beb638-3681-42a5-83d9-03e7ffff4033.json": "429f6744b5abb88a27878429395af9723725c30c4d74f5f3ce7613ed60a84094",
+    "f55a7fc2-ef07-4ca4-bdc4-f5325226cad3.json": "a2fd95674b39cce88009612994b16dc292639542538f6f43ee1147ed4de94e82",
+    "84e219c7-b6e5-4382-851a-9b59a9e7860f.json": "ff6ef8a86b7e513eeeac1db03d9b2d33a0708a0e821a8d038b15fd75e431c6d4"
+  },
+  "dataset_files_before": {
+    "funding.json": "cb958208d915683571af5f29dfbca164d2d2291f9859c808b5859457c1e754c7",
+    "spec.json": "545acb12dc9f43781e07e1a637fcf641c344db4d1350c823505aaa7db6cd76e6",
+    "bars.parquet": "da6e379bbb7167cfb67aa239602a8d85a6ada020427987629faa99f4b7891629",
+    "manifest.json": "1c72dd59a69e7b88cb210f19d60d767d871b437110ffd550e0442177a0dd92dd"
+  },
+  "deleted_verification": {
+    "download_status": 404,
+    "hidden_from_active": true,
+    "present_in_trash": true,
+    "archived_bytes_unchanged": true
+  },
+  "restored_verification": {
+    "download_status": 200,
+    "active_again": true,
+    "removed_from_trash": true,
+    "report_bytes_unchanged": true,
+    "original_reports_unchanged": true,
+    "dataset_unchanged": true
+  },
+  "actual_dataset": {
+    "id": "88825a16-6364-4549-ad72-478c7f02cfd7",
+    "symbol": "MUUSDT",
+    "quote_asset": "USDT",
+    "account_permission": "UNKNOWN",
+    "created_at": "2026-10-11T08:30:23.184299+00:00",
+    "days_requested": 1,
+    "count": 1440,
+    "first_at": "2026-10-10T08:30:00+00:00",
+    "last_at": "2026-10-11T08:29:59.999000+00:00",
+    "files": {
+      "bars.parquet": "da6e379bbb7167cfb67aa239602a8d85a6ada020427987629faa99f4b7891629",
+      "funding.json": "cb958208d915683571af5f29dfbca164d2d2291f9859c808b5859457c1e754c7",
+      "spec.json": "545acb12dc9f43781e07e1a637fcf641c344db4d1350c823505aaa7db6cd76e6"
+    },
+    "data_hash": "5c75038bd1256ec9758bfd0db4a5054366ee8ab26c35697eeb20684ec1a8c92d",
+    "spec_version": "b512355ad8ffcca88de5c5a1c9f30fb8a4418a957edc77f74c68003431e59c83",
+    "gaps": [],
+    "complete_requested_range": true,
+    "funding_count": 3,
+    "funding_coverage": "OBSERVED_NOT_ACCOUNT_VERIFIED",
+    "status": "RESEARCH_ONLY",
+    "warnings": [
+      "RESEARCH_ONLY：短历史不能证明长期有效性；账户权限未核验。",
+      "历史发布延迟假设为闭合后 1ms；实际延迟和历史修订未核验。",
+      "当前交易所规格仅在采集时核验；历史规格、合约乘数仍未核验。",
+      "日线按 UTC 边界聚合，仅为研究约定；真实交易时段尚未批准。"
+    ],
+    "metadata_ledger": "FILE_STAGING_PENDING_POSTGRESQL"
+  },
+  "catalog_count": 789,
+  "offline_tests": {
+    "passed": 137,
+    "deselected": 3,
+    "warnings": 1,
+    "seconds": 4.32
+  },
+  "checks": {
+    "ruff": "PASS",
+    "mypy": "PASS (23 source files)",
+    "frontend_build": "PASS (34 modules)",
+    "browser_error_logs": [],
+    "unselected_filtered_collection_disabled": true,
+    "seven_day_filter_empty_state": true,
+    "delete_cancel_keeps_record": true,
+    "postgres": "NOT_READY; real synchronization not exercised",
+    "live_trading_enabled": false,
+    "spcx_search_market_and_history": "2 matches each (SPCXUSD1 / SPCXUSDT)",
+    "history_chinese_name_editor": "opened for SPCXUSDT; cancelled without writing"
+  },
+  "public_history_request_count": 18
+}

@@ -1,0 +1,102 @@
+{
+  "version": "d0b850e077c8b036dcbe825db7d9900e3c8da779be790a9deb9b0b8f18f108c8",
+  "observed_at": "2026-10-11T07:05:14.264231+00:00",
+  "effective_at": null,
+  "effective_at_state": "UNVERIFIED",
+  "response_hash": "db6a0c5bde5fc247224826f26be78729da74eecd2bc419a93728f255fd9244f4",
+  "spec": {
+    "schema_version": "spec.v1",
+    "tick_size": "0.01000",
+    "quantity_step": "0.01",
+    "min_quantity": "0.01",
+    "min_notional": "5",
+    "raw_exchange_symbol": {
+      "symbol": "METAUSDT",
+      "pair": "METAUSDT",
+      "contractType": "TRADIFI_PERPETUAL",
+      "deliveryDate": 4133404800000,
+      "onboardDate": 1774535400000,
+      "status": "TRADING",
+      "maintMarginPercent": "2.5000",
+      "requiredMarginPercent": "5.0000",
+      "baseAsset": "META",
+      "quoteAsset": "USDT",
+      "marginAsset": "USDT",
+      "pricePrecision": 5,
+      "quantityPrecision": 2,
+      "baseAssetPrecision": 8,
+      "quotePrecision": 8,
+      "underlyingType": "EQUITY",
+      "underlyingSubType": [
+        "TradFi"
+      ],
+      "triggerProtect": "0.0300",
+      "liquidationFee": "0.015000",
+      "marketTakeBound": "0.03",
+      "maxMoveOrderLimit": 10000,
+      "filters": [
+        {
+          "maxPrice": "20000",
+          "minPrice": "0.01000",
+          "filterType": "PRICE_FILTER",
+          "tickSize": "0.01000"
+        },
+        {
+          "stepSize": "0.01",
+          "maxQty": "4000",
+          "filterType": "LOT_SIZE",
+          "minQty": "0.01"
+        },
+        {
+          "maxQty": "700",
+          "minQty": "0.01",
+          "stepSize": "0.01",
+          "filterType": "MARKET_LOT_SIZE"
+        },
+        {
+          "filterType": "MAX_NUM_ORDERS",
+          "limit": 200
+        },
+        {
+          "filterType": "MIN_NOTIONAL",
+          "notional": "5"
+        },
+        {
+          "multiplierDown": "0.9700",
+          "multiplierDecimal": "4",
+          "multiplierUp": "1.0300",
+          "filterType": "PERCENT_PRICE"
+        },
+        {
+          "positionControlSide": "NONE",
+          "filterType": "POSITION_RISK_CONTROL"
+        }
+      ],
+      "orderTypes": [
+        "LIMIT",
+        "MARKET",
+        "STOP",
+        "STOP_MARKET",
+        "TAKE_PROFIT",
+        "TAKE_PROFIT_MARKET",
+        "TRAILING_STOP_MARKET"
+      ],
+      "timeInForce": [
+        "GTC",
+        "IOC",
+        "FOK",
+        "GTX",
+        "GTD"
+      ],
+      "permissionSets": [
+        "GRID",
+        "COPY",
+        "RPI",
+        "DCA",
+        "PSB"
+      ]
+    },
+    "contract_multiplier": null,
+    "multiplier_state": "UNVERIFIED"
+  }
+}

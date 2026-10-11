@@ -1,0 +1,174 @@
+{
+  "00_START_HERE.md": {
+    "bytes": 3825,
+    "sha256": "6c96a253922688b79fdfb8106d7090fde9b5ed3400b8ccce127c1114cde7a78c"
+  },
+  "README.md": {
+    "bytes": 2570,
+    "sha256": "29d1414d4edd94af5325eec90ff38b9e2942c22539b6ce3d6b88a8273bb24dee"
+  },
+  "archive/original_files/Quant_System_V1_1_Blueprint.md": {
+    "bytes": 42970,
+    "sha256": "1c2c2a30c314ce2f1dae0c6b6145549fa6f091c4047c3c51f9047dd122b31ac6"
+  },
+  "archive/original_files/Quant_System_V1_1_Codex_Kickoff.md": {
+    "bytes": 4762,
+    "sha256": "c3236382db5830c3b1d91405ca72915e65f5006df4c46f0d527eb2da4814515a"
+  },
+  "archive/original_files/Quant_System_V1_1_Config_Draft.yaml": {
+    "bytes": 3933,
+    "sha256": "df759d6ba4680f5c835daf81446b3075394fe70950c7123e09211ec55d7ac276"
+  },
+  "archive/original_files/Quant_System_V1_1_MicroCapital_Risk_Addendum.md": {
+    "bytes": 8840,
+    "sha256": "6f85f2af9c55ef4c570af8e41ebdd9e5cab9527cc9f66eb3f6ee6f37640baa31"
+  },
+  "archive/original_files/Quant_System_V1_2_Blueprint.md": {
+    "bytes": 40584,
+    "sha256": "ccf7e3c5613b8841c43bce84741e290f81154927b4d30c6115aa9dddc7c43c17"
+  },
+  "archive/original_files/Quant_System_V1_2_Codex_Kickoff.md": {
+    "bytes": 5661,
+    "sha256": "c3259181c940076e4e770320d3fd048cf2a172dce2f076b8ecad699217ee8d66"
+  },
+  "archive/original_files/Quant_System_V1_2_Config_Draft.yaml": {
+    "bytes": 5179,
+    "sha256": "07fe0059d5d8e33c61e363d7b2f2d84ff8ffc710965cd1cdfd25ae7e8b119238"
+  },
+  "archive/original_files/Quant_System_V1_2_High_Leverage_Addendum.md": {
+    "bytes": 6226,
+    "sha256": "6845f359f8c466c88c80a135e93c6b8303241783b0dbc4573f9477d20a5127d5"
+  },
+  "archive/original_files/Quant_System_V1_2_README.md": {
+    "bytes": 925,
+    "sha256": "5a5fe88ba8f7079118c066d49055110f308f44ccd7e7efdf5013a747120e8505"
+  },
+  "archive/original_files/Quant_System_V1_Blueprint.md": {
+    "bytes": 32180,
+    "sha256": "1cdb9a75c0e78a0c8b4d5d217403f84ad356fd61cabd7d8c522e9801324c0250"
+  },
+  "archive/original_files/Quant_System_V1_Codex_Kickoff.md": {
+    "bytes": 3714,
+    "sha256": "ad7dfd8e521e6a5d9d2ac46e3bc37e34a01f5c57ea9cfb807d5f51c0566e3033"
+  },
+  "archive/original_files/Quant_System_V1_Config_Draft.yaml": {
+    "bytes": 1804,
+    "sha256": "5703285931c8b987e79b621deb4a495d3c2192d7fe660ab284cc91003ce2c5f9"
+  },
+  "codex/00_MASTER_PROMPT.md": {
+    "bytes": 1619,
+    "sha256": "9479f163d3eabb209f245234a0378d1d9cb06435349a9a3cd02b6dd84a5ed933"
+  },
+  "codex/01_PHASE_0_PROMPT.md": {
+    "bytes": 2156,
+    "sha256": "370c595bef00f5c8405dd04d53e25cff0dbabc21d4de0e040014064fbe07f587"
+  },
+  "codex/02_PHASE_1_PROMPT.md": {
+    "bytes": 1339,
+    "sha256": "5a5c2ebaf276c9419aed47f1d58b633236adcf203795a60e3b87a246773a6d47"
+  },
+  "codex/03_PHASE_2_TO_6.md": {
+    "bytes": 1463,
+    "sha256": "25ed59844d30ad860dac3ee8c4f35c346da8bf3e167197a7abf916e1511b2634"
+  },
+  "codex/AGENTS.md": {
+    "bytes": 2234,
+    "sha256": "e0d9644b5c50cdddda73af5b4411ef50ddd430977e08b942ea720ed5e351d2d7"
+  },
+  "config/instruments.example.yaml": {
+    "bytes": 595,
+    "sha256": "059df1d546f00242c816c66848acf631cd948a59f159b89d6bc1abdfe7dda009"
+  },
+  "config/settings.example.yaml": {
+    "bytes": 3961,
+    "sha256": "17873e963ba82417b765d44a732337d58a5d907b38660ddbf89ec6e2e6fff3fd"
+  },
+  "contracts/instrument_capabilities.schema.json": {
+    "bytes": 1447,
+    "sha256": "073db87ce593bfe8d27309d247d6bfbbedbdb3b2aa6a5a00576d79c6d2763745"
+  },
+  "contracts/signal.schema.json": {
+    "bytes": 1488,
+    "sha256": "c60fc5c9f7a4d88c785594dfd368d077c1c718d3e4e239eac3df2e22c960064a"
+  },
+  "contracts/trade_plan.schema.json": {
+    "bytes": 1737,
+    "sha256": "996f9b210cd323664be7be83b40db480460c34dcec65907382e3f5a238e61f30"
+  },
+  "docs/01_DECISIONS_42.md": {
+    "bytes": 3457,
+    "sha256": "2c5cde25131b3c6106ee8f3edf384435e752174a968f2c6ad80431347f704485"
+  },
+  "docs/02_ARCHITECTURE.md": {
+    "bytes": 3801,
+    "sha256": "aefced4e9b942452df67cff40f7bb38d1053de964a0a2d5c211cdf68fc2d84bb"
+  },
+  "docs/03_STRATEGIES_AND_RESEARCH.md": {
+    "bytes": 4861,
+    "sha256": "0a350f207728a019c87086374438ed56c66da7fd624e5b954aada47b351a4fa7"
+  },
+  "docs/04_RISK_AND_LEVERAGE.md": {
+    "bytes": 6427,
+    "sha256": "38e8a4390aaa398a9f51d28f5f25c7c6abfe1be0c60ecaf58d63a49365a5f5e3"
+  },
+  "docs/05_EXCHANGE_DATA.md": {
+    "bytes": 4101,
+    "sha256": "ad3c00ccc49b606ef49fb42bb9ee66f0d9dd89eb211dcff90d3468ec4e09c171"
+  },
+  "docs/06_DATABASE_AND_API.md": {
+    "bytes": 5891,
+    "sha256": "7c8d17450d68a92c9ce694c9db30a51f2aac589b40e9e784bb37327aa688111c"
+  },
+  "docs/07_UI_AND_OPERATIONS.md": {
+    "bytes": 2068,
+    "sha256": "a8285b51ba119f4cbc000096fb7d77b9118dc1861ee955c61570f6218270b8da"
+  },
+  "docs/08_ACCEPTANCE.md": {
+    "bytes": 3983,
+    "sha256": "b64ca6aa9fe0c2594f427384df273dc0e92d69b5751a836d8e6d47ef4dd005ae"
+  },
+  "docs/09_MILESTONES.md": {
+    "bytes": 1619,
+    "sha256": "a0bf54f4aac59276a298ffa27eb81963278a6e82820e80a5772c03e4408d662e"
+  },
+  "docs/10_PROFIT_MODEL.md": {
+    "bytes": 1834,
+    "sha256": "c9b68fb9dfea18130721ef7674aab1725cd44a504dc2cfcc8b89b6e84bf7ac3d"
+  },
+  "docs/11_OPEN_ISSUES.md": {
+    "bytes": 1960,
+    "sha256": "5047d44c8cf17c476b032875b0d2fdc78c4c7be3ab3bd49fc1df4bc46a5f88d8"
+  },
+  "docs/12_OFFICIAL_REFERENCES.md": {
+    "bytes": 1448,
+    "sha256": "a14759e6bd39fee4ec3ca8df6bca5171f68720fb6a4dd5cae648c2d77a2cb046"
+  },
+  "docs/13_PRECEDENCE_AND_CHANGELOG.md": {
+    "bytes": 2080,
+    "sha256": "098870fcdc04b5d4b285804480d69f98a46f26f876e093db1be5b60dd2e4ddff"
+  },
+  "docs/profit_model_infographic.png": {
+    "bytes": 1861794,
+    "sha256": "9b0d4c6fc6fc1c12231a098cbc0c122c6f2c63573a77f1559b506885c78633aa"
+  },
+  "reference/risk_math.py": {
+    "bytes": 4282,
+    "sha256": "ad59d98378fc0f91724e89a065b1cdb6b9a401effe78e200a0e8f9a70d256396"
+  },
+  "reference/tests/test_risk_math.py": {
+    "bytes": 2958,
+    "sha256": "5645b871a75b5ace189a2e25aeb481ae545b0cafdbe5e0983cc3b65803fff2d3"
+  },
+  "templates/decision_log.csv": {
+    "bytes": 558,
+    "sha256": "1acd9aa01f019b868f8fc111ebba97010810abad3b23a82d18481a9c86162ef0"
+  },
+  "templates/dev_backlog.csv": {
+    "bytes": 1947,
+    "sha256": "ab81b0f7bd6b999114b24085f8ba732f8ffd521a42bacc0af1d30aebc67129a8"
+  },
+  "templates/instrument_capabilities.csv": {
+    "bytes": 381,
+    "sha256": "facf207b3c35f10b1ecd3976630961bab1f6263411dce577e9b013f97de7ca70"
+  }
+}

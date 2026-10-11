@@ -1,0 +1,73 @@
+{
+  "checked_at": "2026-10-10T05:40:15.925326+00:00",
+  "run_id": "c798184b-4f79-4989-8db4-31f6306010b0",
+  "generated_at": "2026-10-10T05:40:03.974285Z",
+  "public_verified": 9,
+  "history_observed": 9,
+  "ws_observed": 2,
+  "ws_unknown": [
+    "TSLAUSDT",
+    "METAUSDT",
+    "GOOGLUSDT",
+    "CLUSDT",
+    "NATGASUSDT",
+    "BZUSDT",
+    "XAGUSDT"
+  ],
+  "account_check_performed": false,
+  "live_trading_enabled": false,
+  "api_checks": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5173/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/health/live",
+      "status": 200,
+      "body": {
+        "alive": true,
+        "phase": "P0",
+        "live_trading_enabled": false
+      }
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/health/ready",
+      "status": 503,
+      "body": {
+        "service_ready": true,
+        "trading_ready": false,
+        "allow_new_risk": false,
+        "live_trading_enabled": false,
+        "reasons": [
+          "P0_READ_ONLY",
+          "LIVE_DISABLED",
+          "ACCOUNT_PERMISSIONS_UNVERIFIED"
+        ],
+        "checked_at": "2026-10-10T05:40:15.903497+00:00"
+      }
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/api/v1/instruments",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5173/api/v1/instruments",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/api/v1/instruments",
+      "status": 405
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/api/v1/orders",
+      "status": 404
+    }
+  ]
+}

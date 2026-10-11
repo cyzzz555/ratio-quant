@@ -1,0 +1,138 @@
+# Quant System V1.2: DESIGN ONLY. LIVE TRADING DISABLED.
+# Micro profile: 10-20x preferred exchange leverage, 25x absolute cap, if permitted.
+# The separately proposed 2x overall effective-leverage cap is NOT user-approved.
+version: 1.2-high-leverage-micro-draft
+environment: research
+live_trading_enabled: false
+exchange: binance
+instrument_model: tradfi_perpetual_derivative
+market:
+  timeframes:
+  - 1m
+  - 5m
+  - 15m
+  - 1h
+  - 1d
+  raw_tick_required: false
+  watchlist_enabled: true
+  discovery_enabled: true
+strategies:
+- id: trend_pullback
+  enabled: true
+  scoring: independent
+- id: mean_reversion
+  enabled: true
+  scoring: independent
+- id: event_driven
+  enabled: true
+  scoring: independent
+strategy_management:
+  regime_router: true
+  macro_as_auxiliary: true
+  two_stage_confirmation: true
+  weekly_research_enabled: true
+  auto_deploy_strategy_changes: false
+risk:
+  active_profile: micro_capital
+  profiles:
+    standard:
+      standard_trade_risk_pct: 0.5
+      qualified_trade_risk_max_pct: 1.0
+      daily_warning_pct: 1.5
+      daily_halt_pct: 2.0
+      equity_drawdown_halt_pct: 10.0
+      total_open_planned_risk_max_pct: 5.0
+      correlation_hard_cap_enabled: false
+      correlation_warnings_enabled: true
+      halt_state_persistent: true
+      trade_execution_requires_human_approval: true
+    micro_capital:
+      proposal_approved_for_live: false
+      standard_trade_risk_pct: 1.0
+      qualified_trade_risk_max_pct: 2.0
+      qualified_requires_out_of_sample_and_forward_test: true
+      daily_warning_pct: 3.0
+      daily_halt_pct: 5.0
+      total_open_planned_risk_max_pct: 5.0
+      initial_principal_loss_warning_pct: 20.0
+      initial_principal_loss_reduce_new_risk_pct: 30.0
+      risk_multiplier_after_reduction: 0.5
+      initial_principal_loss_halt_new_risk_pct: 40.0
+      initial_principal_loss_final_budget_pct: 50.0
+      peak_drawdown_warning_pct: 25.0
+      peak_drawdown_halt_pct: 35.0
+      account_gross_effective_leverage_max: 2.0
+      prefer_margin_mode: ISOLATED
+      single_position_margin_equity_max_pct: 25.0
+      portfolio_margin_equity_max_pct: 50.0
+      max_simultaneous_positions: 2
+      estimated_roundtrip_cost_to_risk_max_ratio: 0.2
+      liquidation_buffer_threshold: RESEARCH_TODO_FAIL_CLOSED
+      risk_day_definition: PENDING_USER_APPROVAL_FAIL_CLOSED
+      enable_martingale: false
+      enable_automatic_margin_topup: false
+      liquidation_before_stop_protection_must_be_verified: true
+      correlation_hard_cap_enabled: false
+      correlation_warnings_enabled: true
+      halt_state_persistent: true
+      trade_execution_requires_human_approval: true
+      exchange_position_leverage_normal_min_preferred: 10
+      exchange_position_leverage_normal_max: 20
+      exchange_position_leverage_max: 25
+      exchange_position_leverage_special_range_min: 21
+      exchange_position_leverage_special_range_max: 25
+      special_leverage_requires_explicit_order_approval: true
+      leverage_cap_must_use_exchange_symbol_and_account_max: true
+      leverage_preference_is_not_risk_budget: true
+      leverage_below_10_allowed_for_safety: false
+      min_leverage_suitability_failure_action: SKIP_TRADE
+      enforce_strict_stop_and_liquidation_buffer: true
+      account_gross_effective_leverage_cap_is_proposal: true
+  all_other_micro_numeric_risk_limits_are_proposals: true
+exits:
+  initial_stop: structure_plus_volatility
+  profit_taking: partial_plus_trailing
+  time_stop: dynamic_logic_decay
+  per_strategy_exit_rules: later_version
+infrastructure:
+  backend: python_fastapi
+  frontend: typescript_react
+  primary_database: postgresql
+  historical_data: parquet
+  analytical_query: duckdb
+  transient_cache: redis
+  realtime_feed: websocket_plus_periodic_verification
+  deployment: mac_and_cloud
+pending_user_or_research_decision:
+- risk_day_reset_definition
+- tradfi_account_permissions_and_api_eligibility
+- initial_instrument_watchlist
+- provider_licenses_and_event_feeds
+- strategy_scoring_parameters
+- forward_test_duration_and_release_thresholds
+- cloud_provider_and_notifications
+- micro_capital_isolated_margin_availability
+- liquidation_buffer_model_validation
+- actual_initial_usdt_principal_after_conversion
+- micro_capital_start_date_and_flow_ledger
+- micro_capital_other_suggested_risk_thresholds_user_approval
+- underlying_symbol_and_account_leverage_ceiling_verification
+- account_gross_effective_leverage_cap_user_approval
+- special_21_to_25x_additional_approval_flow
+- liquidation_distance_vs_structure_stop_for_10_to_25x
+change_status: leverage_preference_user_confirmed; all_trade_thresholds_except_50pct_loss_pending_simulation;
+  live_disabled
+capital:
+  user_confirmed:
+    initial_principal_cny_min: 500
+    initial_principal_cny_max: 1000
+    acceptable_initial_principal_loss_pct: 50.0
+    leverage_allowed: true
+    exchange_leverage_normal_range: 10x-20x
+    exchange_leverage_absolute_max: 25
+    minimum_leverage_a_hard_requirement: false
+    normal_leverage_10_to_20_and_absolute_max_25_are_design_preferences: true
+  accounting_currency: USDT
+  funding_flow_adjustment_required: true
+  fresh_deposit_does_not_reset_lock: true
+  initial_conversion_record_required: true

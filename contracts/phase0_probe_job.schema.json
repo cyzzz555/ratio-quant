@@ -1,0 +1,97 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "job_id": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Job Id"
+    },
+    "state": {
+      "default": "IDLE",
+      "enum": [
+        "IDLE",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED"
+      ],
+      "title": "State",
+      "type": "string"
+    },
+    "started_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Started At"
+    },
+    "finished_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Finished At"
+    },
+    "exit_code": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Exit Code"
+    },
+    "message": {
+      "default": "尚未从控制台运行探测",
+      "title": "Message",
+      "type": "string"
+    },
+    "completed_symbols": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Completed Symbols",
+      "type": "array"
+    },
+    "total_symbols": {
+      "default": 0,
+      "title": "Total Symbols",
+      "type": "integer"
+    },
+    "log": {
+      "default": "",
+      "title": "Log",
+      "type": "string"
+    },
+    "live_trading_enabled": {
+      "const": false,
+      "default": false,
+      "title": "Live Trading Enabled",
+      "type": "boolean"
+    }
+  },
+  "title": "ProbeStatus",
+  "type": "object"
+}

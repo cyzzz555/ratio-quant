@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quant-system.example/schemas/signal.json",
+  "title": "CandidateSignal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["signal_id", "instrument_id", "strategy_id", "strategy_version", "direction", "score", "state", "generated_at", "expires_at", "score_is_probability", "data_quality", "reasons", "features"],
+  "properties": {
+    "signal_id": {"type":"string","minLength":1},
+    "instrument_id": {"type":"string","minLength":1},
+    "strategy_id": {"type":"string","enum":["TREND_PULLBACK","MEAN_REVERSION","EVENT_DRIVEN"]},
+    "strategy_version": {"type":"string"},
+    "regime": {"type":"string","enum":["TREND","RANGE","EVENT_SHOCK","UNKNOWN"]},
+    "direction": {"type":"string","enum":["LONG","SHORT","NONE"]},
+    "score": {"type":"integer","minimum":0,"maximum":100},
+    "score_is_probability": {"type":"boolean","const":false},
+    "state": {"type":"string","enum":["DISCOVERED","WATCHING","CONFIRMED","INVALIDATED","EXPIRED","CONFLICTED","BLOCKED_BY_RISK"]},
+    "generated_at": {"type":"string","format":"date-time"},
+    "expires_at": {"type":"string","format":"date-time"},
+    "data_quality": {"type":"string","enum":["VALID","STALE","PARTIAL","UNAVAILABLE","INVALID"]},
+    "reasons": {"type":"array","items":{"type":"string"}},
+    "features": {"type":"object"},
+    "risk_check_status": {"type":"string","enum":["NOT_CHECKED","APPROVED","BLOCKED","PENDING"]}
+  }
+}

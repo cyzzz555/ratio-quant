@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BinanceInstrumentCapabilityEvidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["venue", "product_family", "symbol", "capability_state", "verified_at", "public_exchangeinfo_visible", "account_trade_permission", "evidence"],
+  "properties": {
+    "venue": {"type":"string","const":"BINANCE"},
+    "product_family": {"type":"string"},
+    "symbol": {"type":"string"},
+    "capability_state": {"type":"string","enum":["VERIFIED_PUBLIC","VERIFIED_ACCOUNT","NEEDS_AUTHORIZED_CHECK","UNAVAILABLE","UNKNOWN"]},
+    "verified_at": {"type":"string","format":"date-time"},
+    "public_exchangeinfo_visible": {"type":"boolean"},
+    "account_trade_permission": {"type":"string","enum":["YES","NO","UNKNOWN"]},
+    "max_public_leverage": {"type":["integer","null"],"minimum":1},
+    "max_account_leverage": {"type":["integer","null"],"minimum":1},
+    "isolated_supported": {"type":["boolean","null"]},
+    "reduce_only_supported": {"type":["boolean","null"]},
+    "mark_price_available": {"type":["boolean","null"]},
+    "historical_bars_available": {"type":["boolean","null"]},
+    "trading_status": {"type":["string","null"]},
+    "evidence": {"type":"array","items":{"type":"object","required":["source","timestamp","result"],"properties":{"source":{"type":"string"},"timestamp":{"type":"string","format":"date-time"},"result":{"type":"string"}}}}
+  }
+}

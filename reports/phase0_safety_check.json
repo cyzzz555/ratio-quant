@@ -1,0 +1,12 @@
+{
+  "phase": "P0",
+  "live_trading_enabled": false,
+  "account_credentials_loaded": false,
+  "public_http_attempts_latest_run": 47,
+  "http_methods_observed": [
+    "GET"
+  ],
+  "backend_mutating_transport_calls": 0,
+  "asgi_routes": "GET health/live, health/ready, api/v1/instruments; framework documentation routes",
+  "note": "Static source check and request audit cover P0 source; no claim of full future security certification."
+}

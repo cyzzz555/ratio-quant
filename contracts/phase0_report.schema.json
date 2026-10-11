@@ -1,0 +1,613 @@
+{
+  "$defs": {
+    "Capability": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "phase0.v2",
+          "default": "phase0.v2",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "venue": {
+          "const": "BINANCE",
+          "default": "BINANCE",
+          "title": "Venue",
+          "type": "string"
+        },
+        "product_family": {
+          "title": "Product Family",
+          "type": "string"
+        },
+        "symbol": {
+          "title": "Symbol",
+          "type": "string"
+        },
+        "capability_state": {
+          "$ref": "#/$defs/CapabilityState"
+        },
+        "first_verified_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "First Verified At"
+        },
+        "verified_at": {
+          "format": "date-time",
+          "title": "Verified At",
+          "type": "string"
+        },
+        "public_exchangeinfo_visible": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Public Exchangeinfo Visible"
+        },
+        "account_trade_permission": {
+          "const": "UNKNOWN",
+          "default": "UNKNOWN",
+          "title": "Account Trade Permission",
+          "type": "string"
+        },
+        "eligibility": {
+          "const": "UNVERIFIED",
+          "default": "UNVERIFIED",
+          "title": "Eligibility",
+          "type": "string"
+        },
+        "max_public_leverage": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Public Leverage"
+        },
+        "max_account_leverage": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Account Leverage"
+        },
+        "isolated_supported": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Isolated Supported"
+        },
+        "reduce_only_supported": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reduce Only Supported"
+        },
+        "stop_type_supported": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Stop Type Supported"
+        },
+        "mark_price_available": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mark Price Available"
+        },
+        "funding_data_available": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Funding Data Available"
+        },
+        "historical_bars_available": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Historical Bars Available"
+        },
+        "websocket_works": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Websocket Works"
+        },
+        "trading_status": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Trading Status"
+        },
+        "history_start_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "History Start At"
+        },
+        "history_start_scope": {
+          "default": "UNVERIFIED",
+          "enum": [
+            "EARLIEST_RETURNED_BY_QUERY",
+            "UNVERIFIED"
+          ],
+          "title": "History Start Scope",
+          "type": "string"
+        },
+        "instrument": {
+          "$ref": "#/$defs/Instrument"
+        },
+        "underlying": {
+          "$ref": "#/$defs/Underlying"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "notes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "product_family",
+        "symbol",
+        "capability_state",
+        "verified_at",
+        "instrument",
+        "underlying",
+        "evidence",
+        "notes"
+      ],
+      "title": "Capability",
+      "type": "object"
+    },
+    "CapabilityState": {
+      "enum": [
+        "VERIFIED_PUBLIC",
+        "VERIFIED_ACCOUNT",
+        "NEEDS_AUTHORIZED_CHECK",
+        "UNAVAILABLE",
+        "UNKNOWN"
+      ],
+      "title": "CapabilityState",
+      "type": "string"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "title": "Source",
+          "type": "string"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "title": "Timestamp",
+          "type": "string"
+        },
+        "result": {
+          "title": "Result",
+          "type": "string"
+        },
+        "request_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Request Id"
+        },
+        "http_status": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Http Status"
+        },
+        "raw_hash": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Hash"
+        },
+        "raw_file": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw File"
+        }
+      },
+      "required": [
+        "source",
+        "timestamp",
+        "result"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "Instrument": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "underlying_id": {
+          "title": "Underlying Id",
+          "type": "string"
+        },
+        "venue": {
+          "const": "BINANCE",
+          "default": "BINANCE",
+          "title": "Venue",
+          "type": "string"
+        },
+        "symbol": {
+          "pattern": "^[A-Z0-9_]+$",
+          "title": "Symbol",
+          "type": "string"
+        },
+        "product_family_probed": {
+          "$ref": "#/$defs/ProductFamily"
+        },
+        "product_family_verified": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ProductFamily"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "contract_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Contract Type"
+        },
+        "quote_asset": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Quote Asset"
+        },
+        "margin_asset": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Margin Asset"
+        },
+        "spec_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Spec Version"
+        },
+        "session_model_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Session Model Version"
+        },
+        "price_formation_model": {
+          "const": "UNVERIFIED",
+          "default": "UNVERIFIED",
+          "title": "Price Formation Model",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "underlying_id",
+        "symbol",
+        "product_family_probed"
+      ],
+      "title": "Instrument",
+      "type": "object"
+    },
+    "ProductFamily": {
+      "enum": [
+        "USD_M_FUTURES",
+        "COIN_M_FUTURES",
+        "SPOT",
+        "STOCKS"
+      ],
+      "title": "ProductFamily",
+      "type": "string"
+    },
+    "Underlying": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "asset_class_candidate": {
+          "title": "Asset Class Candidate",
+          "type": "string"
+        },
+        "exchange_reported_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Exchange Reported Type"
+        },
+        "exchange_reported_base_asset": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Exchange Reported Base Asset"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "native_exchange": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Native Exchange"
+        },
+        "mapping_state": {
+          "const": "UNVERIFIED",
+          "default": "UNVERIFIED",
+          "title": "Mapping State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "asset_class_candidate"
+      ],
+      "title": "Underlying",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "phase0-report.v2",
+      "default": "phase0-report.v2",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "run_id": {
+      "title": "Run Id",
+      "type": "string"
+    },
+    "started_at": {
+      "format": "date-time",
+      "title": "Started At",
+      "type": "string"
+    },
+    "generated_at": {
+      "format": "date-time",
+      "title": "Generated At",
+      "type": "string"
+    },
+    "live_trading_enabled": {
+      "const": false,
+      "default": false,
+      "title": "Live Trading Enabled",
+      "type": "boolean"
+    },
+    "approval_mode": {
+      "const": "HUMAN",
+      "default": "HUMAN",
+      "title": "Approval Mode",
+      "type": "string"
+    },
+    "trade_adapter": {
+      "const": "PAPER_BROKER",
+      "default": "PAPER_BROKER",
+      "title": "Trade Adapter",
+      "type": "string"
+    },
+    "account_check_performed": {
+      "const": false,
+      "default": false,
+      "title": "Account Check Performed",
+      "type": "boolean"
+    },
+    "product_families_probed": {
+      "items": {
+        "$ref": "#/$defs/ProductFamily"
+      },
+      "title": "Product Families Probed",
+      "type": "array"
+    },
+    "documentation_urls": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Documentation Urls",
+      "type": "array"
+    },
+    "raw_directory": {
+      "title": "Raw Directory",
+      "type": "string"
+    },
+    "instruments": {
+      "items": {
+        "$ref": "#/$defs/Capability"
+      },
+      "title": "Instruments",
+      "type": "array"
+    }
+  },
+  "required": [
+    "run_id",
+    "started_at",
+    "generated_at",
+    "product_families_probed",
+    "documentation_urls",
+    "raw_directory",
+    "instruments"
+  ],
+  "title": "Phase0Report",
+  "type": "object"
+}

@@ -1,0 +1,67 @@
+id,symbol,category,status,blocked_until,next_check
+P0-NVDAUSDT-account_trade_permission,NVDAUSDT,account_trade_permission,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-NVDAUSDT-eligibility,NVDAUSDT,eligibility,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-NVDAUSDT-max_account_leverage,NVDAUSDT,max_account_leverage,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-NVDAUSDT-isolated_supported,NVDAUSDT,isolated_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-NVDAUSDT-reduce_only_supported,NVDAUSDT,reduce_only_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-NVDAUSDT-stop_type_supported,NVDAUSDT,stop_type_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-NVDAUSDT-WS,NVDAUSDT,websocket,UNVERIFIED,P2_CONTINUOUS_MARKET_READINESS,Observe data frames in eligible session; 6s timeout is not evidence of unsupported stream
+P0-TSLAUSDT-account_trade_permission,TSLAUSDT,account_trade_permission,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-TSLAUSDT-eligibility,TSLAUSDT,eligibility,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-TSLAUSDT-max_account_leverage,TSLAUSDT,max_account_leverage,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-TSLAUSDT-isolated_supported,TSLAUSDT,isolated_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-TSLAUSDT-reduce_only_supported,TSLAUSDT,reduce_only_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-TSLAUSDT-stop_type_supported,TSLAUSDT,stop_type_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-TSLAUSDT-WS,TSLAUSDT,websocket,UNVERIFIED,P2_CONTINUOUS_MARKET_READINESS,Observe data frames in eligible session; 6s timeout is not evidence of unsupported stream
+P0-METAUSDT-account_trade_permission,METAUSDT,account_trade_permission,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-METAUSDT-eligibility,METAUSDT,eligibility,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-METAUSDT-max_account_leverage,METAUSDT,max_account_leverage,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-METAUSDT-isolated_supported,METAUSDT,isolated_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-METAUSDT-reduce_only_supported,METAUSDT,reduce_only_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-METAUSDT-stop_type_supported,METAUSDT,stop_type_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-GOOGLUSDT-account_trade_permission,GOOGLUSDT,account_trade_permission,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-GOOGLUSDT-eligibility,GOOGLUSDT,eligibility,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-GOOGLUSDT-max_account_leverage,GOOGLUSDT,max_account_leverage,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-GOOGLUSDT-isolated_supported,GOOGLUSDT,isolated_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-GOOGLUSDT-reduce_only_supported,GOOGLUSDT,reduce_only_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-GOOGLUSDT-stop_type_supported,GOOGLUSDT,stop_type_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-CLUSDT-account_trade_permission,CLUSDT,account_trade_permission,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-CLUSDT-eligibility,CLUSDT,eligibility,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-CLUSDT-max_account_leverage,CLUSDT,max_account_leverage,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-CLUSDT-isolated_supported,CLUSDT,isolated_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-CLUSDT-reduce_only_supported,CLUSDT,reduce_only_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-CLUSDT-stop_type_supported,CLUSDT,stop_type_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-NATGASUSDT-account_trade_permission,NATGASUSDT,account_trade_permission,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-NATGASUSDT-eligibility,NATGASUSDT,eligibility,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-NATGASUSDT-max_account_leverage,NATGASUSDT,max_account_leverage,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-NATGASUSDT-isolated_supported,NATGASUSDT,isolated_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-NATGASUSDT-reduce_only_supported,NATGASUSDT,reduce_only_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-NATGASUSDT-stop_type_supported,NATGASUSDT,stop_type_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-NATGASUSDT-WS,NATGASUSDT,websocket,UNVERIFIED,P2_CONTINUOUS_MARKET_READINESS,Observe data frames in eligible session; 6s timeout is not evidence of unsupported stream
+P0-BZUSDT-account_trade_permission,BZUSDT,account_trade_permission,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-BZUSDT-eligibility,BZUSDT,eligibility,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-BZUSDT-max_account_leverage,BZUSDT,max_account_leverage,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-BZUSDT-isolated_supported,BZUSDT,isolated_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-BZUSDT-reduce_only_supported,BZUSDT,reduce_only_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-BZUSDT-stop_type_supported,BZUSDT,stop_type_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-XAUUSDT-account_trade_permission,XAUUSDT,account_trade_permission,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-XAUUSDT-eligibility,XAUUSDT,eligibility,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-XAUUSDT-max_account_leverage,XAUUSDT,max_account_leverage,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-XAUUSDT-isolated_supported,XAUUSDT,isolated_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-XAUUSDT-reduce_only_supported,XAUUSDT,reduce_only_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-XAUUSDT-stop_type_supported,XAUUSDT,stop_type_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-XAGUSDT-account_trade_permission,XAGUSDT,account_trade_permission,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-XAGUSDT-eligibility,XAGUSDT,eligibility,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-XAGUSDT-max_account_leverage,XAGUSDT,max_account_leverage,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-XAGUSDT-isolated_supported,XAGUSDT,isolated_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-XAGUSDT-reduce_only_supported,XAGUSDT,reduce_only_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-XAGUSDT-stop_type_supported,XAGUSDT,stop_type_supported,NEEDS_AUTHORIZED_CHECK,NO_LIVE_TRADING,P4: authorized local/cloud read-only account verification; no keys in chat
+P0-XAGUSDT-WS,XAGUSDT,websocket,UNVERIFIED,P2_CONTINUOUS_MARKET_READINESS,Observe data frames in eligible session; 6s timeout is not evidence of unsupported stream
+OI-04,ALL,risk_proposals,UNRESOLVED,NO_LIVE_TRADING,User approval before live
+OI-05,ALL,gross_effective_leverage,UNRESOLVED,NO_LIVE_TRADING,2x remains research-only proposal
+OI-06,ALL,risk_day,UNRESOLVED,NO_LIVE_TRADING,Define and approve cutover before live
+OI-09,ALL,event_data,UNRESOLVED,NO_LIVE_TRADING,License/PIT evidence
+OI-10,ALL,cost_and_price_formation,UNRESOLVED,NO_LIVE_TRADING,"Fees, special dividend funding, non-native-session index mechanism"
+OI-12,ALL,admission_criteria,UNRESOLVED,NO_LIVE_TRADING,Approve research/paper/live gates
+OI-13,ALL,cloud_operations,UNRESOLVED,NO_LIVE_TRADING,Choose hosting/DNS/alerts at later phase
+P0-UNDERLYING,ALL,underlying_and_multiplier,UNRESOLVED,NO_LIVE_TRADING,"Exact mapping, contract multiplier and session mapping before formal backtest"

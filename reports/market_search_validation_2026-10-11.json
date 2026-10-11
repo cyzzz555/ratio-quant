@@ -1,0 +1,63 @@
+{
+  "checked_at": "2026-10-11T07:21:04.613836+00:00",
+  "scope": "P1 market directory and Chinese search increment; not phase acceptance",
+  "checks": {
+    "pytest": {
+      "command": ".venv/bin/pytest -m 'not network and not postgres' -q",
+      "passed": 120,
+      "deselected": 3,
+      "warnings": 1,
+      "seconds": 1.32
+    },
+    "ruff": {
+      "command": ".venv/bin/ruff check backend/app tests migrations",
+      "result": "All checks passed"
+    },
+    "mypy": {
+      "command": ".venv/bin/mypy backend/app",
+      "source_files": 22,
+      "result": "Success"
+    },
+    "frontend": {
+      "command": "pnpm build",
+      "result": "tsc --noEmit and Vite build passed",
+      "modules": 31
+    }
+  },
+  "catalog": {
+    "count": 789,
+    "observed_at": "2026-10-11T07:20:14.162762Z",
+    "raw_hash": "b512355ad8ffcca88de5c5a1c9f30fb8a4418a957edc77f74c68003431e59c83",
+    "aliases_available": 204,
+    "account_permission": "UNKNOWN"
+  },
+  "browser_checks": [
+    "比特币 -> BTCUSDT and BTCUSDC plus delivery contracts",
+    "BTCUSDT actual mark price and 98 closed 1m bars",
+    "美光 -> MUUSDT, actual mark price and 98 closed 1m bars",
+    "spcx / 太空探索 / SpaceX -> SPCXUSDT and SPCXUSD1",
+    "SPCXUSDT actual mark price and 98 closed 1m bars",
+    "No-match message and disabled results selector",
+    "Clear search -> full 789 contracts"
+  ],
+  "latest_market": {
+    "symbol": "SPCXUSDT",
+    "quote_asset": "USDT",
+    "mark_price": "163.88007044",
+    "server_at": "2026-10-11T07:19:31.483000+00:00",
+    "spec_version": "826b26af926b79501502eda7dc78b916a8ffe587009714f9ece688581b68fe8e",
+    "account_permission": "UNKNOWN",
+    "live_trading_enabled": false
+  },
+  "closed_bars": 98,
+  "live_trading_enabled": false,
+  "limitations": [
+    "Chinese aliases are local display names; uncovered names remain explicitly unavailable",
+    "Historical collection still uses P0 verified research candidates",
+    "PostgreSQL phase acceptance remains pending; no paper order workflow or live trading added"
+  ],
+  "official_references": [
+    "https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data",
+    "https://www.binance.com/en/blog/markets/8537494775843598839"
+  ]
+}

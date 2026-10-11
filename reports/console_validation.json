@@ -1,0 +1,146 @@
+{
+  "validated_at": "2026-10-10T12:18:08.288961+00:00",
+  "offline_tests": {
+    "passed": 69,
+    "network_deselected": 1
+  },
+  "ruff": "PASS",
+  "mypy": "PASS: 11 source files",
+  "frontend_build": "PASS: TypeScript and Vite",
+  "api_checks": [
+    {
+      "method": "GET",
+      "path": "/",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "method": "GET",
+      "path": "/health/live",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "method": "GET",
+      "path": "/health/ready",
+      "status": 503,
+      "passed": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/instruments",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/probe",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/data-quality",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/probe",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/probe",
+      "status": 422,
+      "passed": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/orders",
+      "status": 404,
+      "passed": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/instruments",
+      "status": 405,
+      "passed": true
+    }
+  ],
+  "downloads": [
+    {
+      "name": "capabilities_json",
+      "filename": "instrument_capabilities.json",
+      "sha256": "5773c51b1455c07f93ad97d29e2754be433c1890a056b1541473574de952021c",
+      "passed": true
+    },
+    {
+      "name": "capabilities_csv",
+      "filename": "instrument_capabilities.csv",
+      "sha256": "930846abd39e42647ff253e8018e5b867676b613dfe091349e4f4259f83edc6f",
+      "passed": true
+    },
+    {
+      "name": "quality_md",
+      "filename": "data_quality_report.md",
+      "sha256": "3603da33660ec936a9b68ba8bf1b44ae59c49d8290e566e34e29d27347724ca7",
+      "passed": true
+    },
+    {
+      "name": "quality_json",
+      "filename": "data_quality.json",
+      "sha256": "ffcfe8e6bcbb40a7f580e13c78967d1ed7f446e3facdf25e9e5208a92426abff",
+      "passed": true
+    }
+  ],
+  "browser_csv_download_verified": "/Users/zhantaorui/Downloads/instrument_capabilities.csv",
+  "ui_checks": [
+    "five-page navigation",
+    "NVDA search returns one result",
+    "WS unknown filter returns four results",
+    "instrument native dialog opens and closes",
+    "probe button starts fixed job",
+    "running button disabled",
+    "completion and logs survive API restart",
+    "reports show nine actual quality rows",
+    "safety displays preserved confirmed design and unknown permissions"
+  ],
+  "probe_job": {
+    "job_id": "ede045d4-d8cb-407d-8c3e-3ec1ede209cb",
+    "state": "SUCCEEDED",
+    "started_at": "2026-10-10T12:08:43.177242Z",
+    "finished_at": "2026-10-10T12:09:42.470297Z",
+    "exit_code": 0,
+    "message": "探测完成；各项能力以报告证据为准",
+    "completed_symbols": [
+      "NVDAUSDT",
+      "TSLAUSDT",
+      "METAUSDT",
+      "GOOGLUSDT",
+      "CLUSDT",
+      "NATGASUSDT",
+      "BZUSDT",
+      "XAUUSDT",
+      "XAGUSDT"
+    ],
+    "total_symbols": 9,
+    "log": "/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l1dcachesize'. Detail: [errno 1] Operation not permitted\n/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l2cachesize'. Detail: [errno 1] Operation not permitted\n/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l3cachesize'. Detail: [errno 1] Operation not permitted\n/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.optional.neon'. Detail: [errno 1] Operation not permitted\nNVDAUSDT: VERIFIED_PUBLIC; history=True; ws=None; closed=59\nTSLAUSDT: VERIFIED_PUBLIC; history=True; ws=True; closed=59\nMETAUSDT: VERIFIED_PUBLIC; history=True; ws=True; closed=60\nGOOGLUSDT: VERIFIED_PUBLIC; history=True; ws=None; closed=60\nCLUSDT: VERIFIED_PUBLIC; history=True; ws=True; closed=59\nNATGASUSDT: VERIFIED_PUBLIC; history=True; ws=None; closed=59\nBZUSDT: VERIFIED_PUBLIC; history=True; ws=None; closed=59\nXAUUSDT: VERIFIED_PUBLIC; history=True; ws=True; closed=59\nXAGUSDT: VERIFIED_PUBLIC; history=True; ws=True; closed=59\n",
+    "live_trading_enabled": false
+  },
+  "report_run_id": "dd660897-b5c2-49f3-8707-c86a8008e23d",
+  "report_generated_at": "2026-10-10T12:09:42.370694Z",
+  "public_verified": 9,
+  "ws_observed": 5,
+  "ws_unknown": [
+    "NVDAUSDT",
+    "GOOGLUSDT",
+    "NATGASUSDT",
+    "BZUSDT"
+  ],
+  "audited_public_get_requests": 47,
+  "raw_evidence_hash_checks": 69,
+  "live_trading_enabled": false,
+  "account_permissions": "UNKNOWN"
+}

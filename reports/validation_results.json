@@ -1,0 +1,87 @@
+{
+  "executed_at": "2026-10-10T05:14:02.546426+00:00",
+  "checks": [
+    {
+      "check": "ruff",
+      "argv": [
+        ".venv/bin/ruff",
+        "check",
+        "backend",
+        "tests"
+      ],
+      "cwd": "/Users/zhantaorui/Documents/Codex/2026-10-10/quant-system-v1-2-1-00/outputs/quant-system",
+      "env_overrides": {},
+      "exit_code": 0,
+      "elapsed_seconds": 0.065,
+      "output_file": "reports/ruff.txt"
+    },
+    {
+      "check": "mypy",
+      "argv": [
+        ".venv/bin/mypy",
+        "backend/app"
+      ],
+      "cwd": "/Users/zhantaorui/Documents/Codex/2026-10-10/quant-system-v1-2-1-00/outputs/quant-system",
+      "env_overrides": {},
+      "exit_code": 0,
+      "elapsed_seconds": 0.365,
+      "output_file": "reports/mypy.txt"
+    },
+    {
+      "check": "pytest_offline",
+      "argv": [
+        ".venv/bin/pytest",
+        "-m",
+        "not network"
+      ],
+      "cwd": "/Users/zhantaorui/Documents/Codex/2026-10-10/quant-system-v1-2-1-00/outputs/quant-system",
+      "env_overrides": {},
+      "exit_code": 0,
+      "elapsed_seconds": 0.825,
+      "output_file": "reports/pytest_offline.txt"
+    },
+    {
+      "check": "pytest_network",
+      "argv": [
+        ".venv/bin/pytest",
+        "-m",
+        "network"
+      ],
+      "cwd": "/Users/zhantaorui/Documents/Codex/2026-10-10/quant-system-v1-2-1-00/outputs/quant-system",
+      "env_overrides": {
+        "RUN_NETWORK_TESTS": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 1.027,
+      "output_file": "reports/pytest_network.txt"
+    },
+    {
+      "check": "frontend_frozen_install",
+      "argv": [
+        "/Users/zhantaorui/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback/pnpm",
+        "install",
+        "--frozen-lockfile",
+        "--store-dir",
+        "../../../work/pnpm-store"
+      ],
+      "cwd": "/Users/zhantaorui/Documents/Codex/2026-10-10/quant-system-v1-2-1-00/outputs/quant-system/frontend",
+      "env_overrides": {},
+      "exit_code": 0,
+      "elapsed_seconds": 1.183,
+      "output_file": "reports/frontend_frozen_install.txt"
+    },
+    {
+      "check": "frontend_build",
+      "argv": [
+        "/Users/zhantaorui/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback/pnpm",
+        "build"
+      ],
+      "cwd": "/Users/zhantaorui/Documents/Codex/2026-10-10/quant-system-v1-2-1-00/outputs/quant-system/frontend",
+      "env_overrides": {},
+      "exit_code": 0,
+      "elapsed_seconds": 1.575,
+      "output_file": "reports/frontend_build.txt"
+    }
+  ],
+  "remote_ci_executed": false
+}

@@ -1,0 +1,183 @@
+{
+  "checked_at": "2026-10-10T14:38:46.707342+00:00",
+  "phase": "P1_IN_PROGRESS_NOT_ACCEPTED",
+  "checks": {
+    "offline_tests": {
+      "passed": 109,
+      "deselected": 3,
+      "exit_code": 0
+    },
+    "ruff": {
+      "exit_code": 0
+    },
+    "mypy": {
+      "sources": 21,
+      "exit_code": 0
+    },
+    "frontend_build": {
+      "modules": 31,
+      "exit_code": 0
+    },
+    "alembic_offline_sql": {
+      "exit_code": 0,
+      "database_migration_executed": false
+    },
+    "postgres_integration": {
+      "executed": false,
+      "tests": 2,
+      "reason": "Codex sandbox denied shmget, initdb failed twice"
+    },
+    "startup_command": {
+      "shell_syntax_passed": true,
+      "postgres_start_verified": false
+    }
+  },
+  "datasets": [
+    {
+      "id": "51fe80f6-79de-4a5a-ae64-acb03416ca2d",
+      "symbol": "XAUUSDT",
+      "created_at": "2026-10-10T14:32:11.409297+00:00",
+      "days_requested": 7,
+      "count": 10080,
+      "first_at": "2026-10-03T14:31:00+00:00",
+      "last_at": "2026-10-10T14:30:59.999000+00:00",
+      "files": {
+        "bars.parquet": "e9c8f0b91260792bea164f9a88a505f701efeb772a302ba612f22b5a0518224f",
+        "funding.json": "7162d8c3fa6c0bd0785f57d69afc8f38cb4c7b8bd76c8023636ff5044e2e5de3",
+        "spec.json": "1b93a8770cdf723e872ccb34ededb59c96b6d5d742e60bc2c0c6477734b57506"
+      },
+      "data_hash": "b8d185f6c646eb2d8cd32f2e0f362af955057a4a44f41e3f9fb58a3408b1f671",
+      "spec_version": "db6a0c5bde5fc247224826f26be78729da74eecd2bc419a93728f255fd9244f4",
+      "gaps": [],
+      "complete_requested_range": true,
+      "funding_count": 42,
+      "funding_coverage": "OBSERVED_NOT_ACCOUNT_VERIFIED",
+      "status": "RESEARCH_ONLY",
+      "warnings": [
+        "RESEARCH_ONLY：短历史不能证明长期有效性；账户权限未核验。",
+        "历史发布延迟假设为闭合后 1ms；实际延迟和历史修订未核验。",
+        "当前交易所规格仅在采集时核验；历史规格、合约乘数仍未核验。",
+        "日线按 UTC 边界聚合，仅为研究约定；真实交易时段尚未批准。"
+      ],
+      "metadata_ledger": "FILE_STAGING_PENDING_POSTGRESQL"
+    },
+    {
+      "id": "7230885c-1fee-4690-b6c0-c4c1cc2c864e",
+      "symbol": "XAUUSDT",
+      "created_at": "2026-10-10T14:16:42.452682+00:00",
+      "days_requested": 7,
+      "count": 10080,
+      "first_at": "2026-10-03T14:16:00+00:00",
+      "last_at": "2026-10-10T14:15:59.999000+00:00",
+      "files": {
+        "bars.parquet": "daf6b31c214426e9e8a16d0f0f07e609f26f836a33003ecb9ed6f295595b7df7",
+        "funding.json": "7162d8c3fa6c0bd0785f57d69afc8f38cb4c7b8bd76c8023636ff5044e2e5de3",
+        "spec.json": "4ee5b8884268c05625888cfc1027ddc732a9c327a43d12d3c25f1f47c8c9fb06"
+      },
+      "data_hash": "1c3f56328243dd2b75762e39af2b9ed9e92e8323c577de034a23a4903301425e",
+      "spec_version": "b512355ad8ffcca88de5c5a1c9f30fb8a4418a957edc77f74c68003431e59c83",
+      "gaps": [],
+      "complete_requested_range": true,
+      "funding_count": 42,
+      "funding_coverage": "OBSERVED_NOT_ACCOUNT_VERIFIED",
+      "status": "RESEARCH_ONLY",
+      "warnings": [
+        "RESEARCH_ONLY：短历史不能证明长期有效性；账户权限未核验。",
+        "历史发布延迟假设为闭合后 1ms；实际延迟和历史修订未核验。",
+        "当前交易所规格仅在采集时核验；历史规格、合约乘数仍未核验。",
+        "日线按 UTC 边界聚合，仅为研究约定；真实交易时段尚未批准。"
+      ],
+      "metadata_ledger": "FILE_STAGING_PENDING_POSTGRESQL"
+    }
+  ],
+  "reproducibility": {
+    "run_ids": [
+      "84e219c7-b6e5-4382-851a-9b59a9e7860f",
+      "f55a7fc2-ef07-4ca4-bdc4-f5325226cad3"
+    ],
+    "identical_result_hash": true,
+    "result_hash": "38cc671f6c6ee40296847e960e7be78715500cc95d7bb3ecf9722574000473e7",
+    "data_hash": "b8d185f6c646eb2d8cd32f2e0f362af955057a4a44f41e3f9fb58a3408b1f671",
+    "parameter_hash": "0a69f3d713c65a5762c8ebe419d71716b528f028dffbdc3c4a97ba7b36dc2189",
+    "code_hash": "5682692c8822a72c3bde9945444ed93472006c056637c7fd3a0561a8849b3d6d"
+  },
+  "metrics": {
+    "train": {
+      "initial_equity": "1000",
+      "final_equity": "689.6705726093883217845",
+      "net_pnl": "-310.3294273906116782155",
+      "return_pct": "-31.0329427390611678215500",
+      "max_drawdown_pct": "31.0329427390611678215500",
+      "trade_count": 65,
+      "win_rate_pct": "15.38461538461538461538461538",
+      "profit_factor": "0.05180132359992996873399878995",
+      "expectancy": "-4.774298882932487357161538462",
+      "costs": {
+        "fees": "205.1141736691933475000",
+        "funding": "0.1200602654533307155",
+        "slippage_spread": "102.557086675965000"
+      }
+    },
+    "validation": {
+      "initial_equity": "1000",
+      "final_equity": "876.8906774676371875052",
+      "net_pnl": "-123.1093225323628124948",
+      "return_pct": "-12.3109322532362812494800",
+      "max_drawdown_pct": "13.33279475531966654159067017",
+      "trade_count": 26,
+      "win_rate_pct": "19.23076923076923076923076923",
+      "profit_factor": "0.1307799011849949422433962651",
+      "expectancy": "-4.734973943552415865184615385",
+      "costs": {
+        "fees": "84.4257147497261468750",
+        "funding": "-0.5237589550695843802",
+        "slippage_spread": "42.212857562706250"
+      }
+    },
+    "holdout": {
+      "initial_equity": "1000",
+      "final_equity": "819.7077378102944690625",
+      "net_pnl": "-180.2922621897055309375",
+      "return_pct": "-18.0292262189705530937500",
+      "max_drawdown_pct": "18.53958481632013246991704789",
+      "trade_count": 28,
+      "win_rate_pct": "3.571428571428571428571428571",
+      "profit_factor": "0.02780802664976255605641070211",
+      "expectancy": "-6.439009363918054676339285714",
+      "costs": {
+        "fees": "98.8446364944966059375",
+        "funding": "-0.0220533965792000000",
+        "slippage_spread": "49.422316244288125"
+      }
+    }
+  },
+  "public_history_requests": 210,
+  "all_exchange_requests_public_get": true,
+  "api_checks": {
+    "live_disabled": true,
+    "ready_http_status": 503,
+    "orders_http_status": 404,
+    "untrusted_origin_http_status": 403,
+    "report_download_http_status": 200
+  },
+  "database": {
+    "ready": false,
+    "error": "RuntimeError",
+    "checked_at": "2026-10-10T14:38:46.707380+00:00"
+  },
+  "ui_checks": {
+    "browser_console_errors": 0,
+    "market_1m_closed_count": 98,
+    "market_1h_closed_count": 167,
+    "market_1d_closed_count": 6,
+    "forming_1m_isolated_count": 1,
+    "actual_backtest_button_runs": 2,
+    "actual_risk_button_example": {
+      "quantity": "5",
+      "notional": "500",
+      "theoretical_margin": "25",
+      "executable": false
+    },
+    "screenshot": "p1_market_ui.png"
+  }
+}

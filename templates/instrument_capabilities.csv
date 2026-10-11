@@ -1,0 +1,2 @@
+venue,product_family,symbol,capability_state,public_exchangeinfo_visible,account_trade_permission,max_public_leverage,max_account_leverage,isolated_supported,reduce_only_supported,mark_price_available,historical_bars_available,verified_at,evidence_url,raw_payload_sha,notes
+BINANCE,UNVERIFIED,XAUUSDT,UNKNOWN,false,UNKNOWN,,,,,,,2026-10-10T00:00:00Z,,,template only - not verified

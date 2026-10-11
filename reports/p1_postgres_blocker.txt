@@ -1,0 +1,5 @@
+本轮实际工具输出摘录（不是再次执行的日志）：
+2026-10-10 22:04:45.901 CST [45028] FATAL: could not create shared memory segment: Operation not permitted
+DETAIL: Failed system call was shmget(key=294541778, size=56, 03600).
+2026-10-10 22:10:47.837 CST [45390] 同一 shmget 错误；已设置 shared_memory_type=mmap / dynamic_shared_memory_type=mmap。
+initdb 返回1，清理自己刚创建的新研究数据目录；无已有数据库数据。

@@ -1,0 +1,57 @@
+{
+  "checked_at": "2026-10-11T08:10:44.740397+00:00",
+  "scope": "P1 local Chinese display name editor increment; not phase acceptance",
+  "checks": {
+    "pytest": {
+      "command": ".venv/bin/pytest -m 'not network and not postgres' -q",
+      "passed": 129,
+      "deselected": 3,
+      "warnings": 1,
+      "seconds": 4.53
+    },
+    "ruff": {
+      "command": ".venv/bin/ruff check backend/app tests migrations",
+      "result": "All checks passed"
+    },
+    "mypy": {
+      "command": ".venv/bin/mypy backend/app",
+      "source_files": 22,
+      "result": "Success"
+    },
+    "frontend": {
+      "command": "pnpm build",
+      "result": "TypeScript and Vite build passed",
+      "modules": 32
+    }
+  },
+  "browser": {
+    "dialog_opened": true,
+    "missing_only_options": 585,
+    "english_only_save_enabled": false,
+    "actual_saved_event": {
+      "event": "LOCAL_DISPLAY_NAME_SAVED",
+      "saved_at": "2026-10-11T08:06:29.870921+00:00",
+      "key": "EQUITY:MU",
+      "symbol": "MUUSDT",
+      "before": "美光科技（Micron／镁光）",
+      "after": "美光科技（Micron Technology／镁光）",
+      "affected_symbols": [
+        "MUUSDT"
+      ],
+      "directory_hash": "f4dff1fde97aa968087138c2a9d9a9e869074ee74cfd8ffee33c973e2465343a",
+      "account_permission": "UNKNOWN",
+      "live_trading_enabled": false
+    },
+    "new_alias_search_match_count": 1,
+    "refresh_preserves_name": true,
+    "escape_cancel_preserved_file_sha256": "e3641cf1c85d10bacad8e9678bd644491b5239f714dc9a8660e074a754d7276a",
+    "console_errors": 0,
+    "final_dialog": "Open on 0GUSDT, missing-name filter enabled, empty input, no draft saved"
+  },
+  "names_file_sha256": "e3641cf1c85d10bacad8e9678bd644491b5239f714dc9a8660e074a754d7276a",
+  "live_trading_enabled": false,
+  "limitations": [
+    "Local display aliases only; account permissions remain UNKNOWN",
+    "P1 database acceptance and later order workflows remain pending"
+  ]
+}

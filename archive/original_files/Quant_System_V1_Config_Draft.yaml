@@ -1,0 +1,60 @@
+# Quant System V1.0 — version-controlled research default; not a production approval.
+version: '1.0-blueprint'
+environment: research
+live_trading_enabled: false
+exchange: binance
+instrument_model: tradfi_perpetual_derivative
+market:
+  timeframes: [1m, 5m, 15m, 1h, 1d]
+  raw_tick_required: false
+  watchlist_enabled: true
+  discovery_enabled: true
+strategies:
+  - id: trend_pullback
+    enabled: true
+    scoring: independent
+  - id: mean_reversion
+    enabled: true
+    scoring: independent
+  - id: event_driven
+    enabled: true
+    scoring: independent
+strategy_management:
+  regime_router: true
+  macro_as_auxiliary: true
+  two_stage_confirmation: true
+  weekly_research_enabled: true
+  auto_deploy_strategy_changes: false
+risk:
+  standard_trade_risk_pct: 0.5
+  qualified_trade_risk_max_pct: 1.0
+  daily_warning_pct: 1.5
+  daily_halt_pct: 2.0
+  equity_drawdown_halt_pct: 10.0
+  total_open_planned_risk_max_pct: 5.0
+  correlation_hard_cap_enabled: false
+  correlation_warnings_enabled: true
+  halt_state_persistent: true
+  trade_execution_requires_human_approval: true
+exits:
+  initial_stop: structure_plus_volatility
+  profit_taking: partial_plus_trailing
+  time_stop: dynamic_logic_decay
+  per_strategy_exit_rules: later_version
+infrastructure:
+  backend: python_fastapi
+  frontend: typescript_react
+  primary_database: postgresql
+  historical_data: parquet
+  analytical_query: duckdb
+  transient_cache: redis
+  realtime_feed: websocket_plus_periodic_verification
+  deployment: mac_and_cloud
+pending_user_or_research_decision:
+  - risk_day_reset_definition
+  - tradfi_account_permissions_and_api_eligibility
+  - initial_instrument_watchlist
+  - provider_licenses_and_event_feeds
+  - strategy_scoring_parameters
+  - forward_test_duration_and_release_thresholds
+  - cloud_provider_and_notifications

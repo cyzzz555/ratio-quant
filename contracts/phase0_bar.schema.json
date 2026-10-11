@@ -1,0 +1,215 @@
+{
+  "$defs": {
+    "ProductFamily": {
+      "enum": [
+        "USD_M_FUTURES",
+        "COIN_M_FUTURES",
+        "SPOT",
+        "STOCKS"
+      ],
+      "title": "ProductFamily",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "bar.v1",
+      "default": "bar.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "venue": {
+      "const": "BINANCE",
+      "default": "BINANCE",
+      "title": "Venue",
+      "type": "string"
+    },
+    "instrument_id": {
+      "title": "Instrument Id",
+      "type": "string"
+    },
+    "product_family": {
+      "$ref": "#/$defs/ProductFamily"
+    },
+    "timeframe": {
+      "const": "1m",
+      "default": "1m",
+      "title": "Timeframe",
+      "type": "string"
+    },
+    "open_time_utc": {
+      "format": "date-time",
+      "title": "Open Time Utc",
+      "type": "string"
+    },
+    "close_time_utc": {
+      "format": "date-time",
+      "title": "Close Time Utc",
+      "type": "string"
+    },
+    "open": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Open"
+    },
+    "high": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "High"
+    },
+    "low": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Low"
+    },
+    "close": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Close"
+    },
+    "volume": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Volume"
+    },
+    "is_closed": {
+      "title": "Is Closed",
+      "type": "boolean"
+    },
+    "exchange_event_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Exchange Event At"
+    },
+    "received_at": {
+      "format": "date-time",
+      "title": "Received At",
+      "type": "string"
+    },
+    "processed_at": {
+      "format": "date-time",
+      "title": "Processed At",
+      "type": "string"
+    },
+    "available_at": {
+      "format": "date-time",
+      "title": "Available At",
+      "type": "string"
+    },
+    "source": {
+      "enum": [
+        "BINANCE_REST",
+        "BINANCE_WS"
+      ],
+      "title": "Source",
+      "type": "string"
+    },
+    "raw_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Raw Hash",
+      "type": "string"
+    },
+    "response_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Response Hash",
+      "type": "string"
+    },
+    "spec_version": {
+      "title": "Spec Version",
+      "type": "string"
+    },
+    "session_type": {
+      "const": "UNVERIFIED",
+      "default": "UNVERIFIED",
+      "title": "Session Type",
+      "type": "string"
+    },
+    "session_model_version": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Session Model Version"
+    },
+    "quality": {
+      "default": "VALID",
+      "enum": [
+        "VALID",
+        "STALE",
+        "PARTIAL"
+      ],
+      "title": "Quality",
+      "type": "string"
+    }
+  },
+  "required": [
+    "instrument_id",
+    "product_family",
+    "open_time_utc",
+    "close_time_utc",
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume",
+    "is_closed",
+    "exchange_event_at",
+    "received_at",
+    "processed_at",
+    "available_at",
+    "source",
+    "raw_hash",
+    "response_hash",
+    "spec_version"
+  ],
+  "title": "Bar",
+  "type": "object"
+}

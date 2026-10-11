@@ -1,0 +1,102 @@
+{
+  "version": "137f65c947ef2dc0be4821f428e71121ad4a1419cac114ceac640f885e5b4654",
+  "observed_at": "2026-10-10T12:20:51.773078+00:00",
+  "effective_at": null,
+  "effective_at_state": "UNVERIFIED",
+  "response_hash": "6d842d787c44a8319fbf1419258a557b9e94fa2750d016975b9a7ab12b2fedfc",
+  "spec": {
+    "schema_version": "spec.v1",
+    "tick_size": "0.01000",
+    "quantity_step": "0.01",
+    "min_quantity": "0.01",
+    "min_notional": "5",
+    "raw_exchange_symbol": {
+      "symbol": "BZUSDT",
+      "pair": "BZUSDT",
+      "contractType": "TRADIFI_PERPETUAL",
+      "deliveryDate": 4133404800000,
+      "onboardDate": 1775034600000,
+      "status": "TRADING",
+      "maintMarginPercent": "2.5000",
+      "requiredMarginPercent": "5.0000",
+      "baseAsset": "BZ",
+      "quoteAsset": "USDT",
+      "marginAsset": "USDT",
+      "pricePrecision": 5,
+      "quantityPrecision": 2,
+      "baseAssetPrecision": 8,
+      "quotePrecision": 8,
+      "underlyingType": "COMMODITY",
+      "underlyingSubType": [
+        "TradFi"
+      ],
+      "triggerProtect": "0.0300",
+      "liquidationFee": "0.015000",
+      "marketTakeBound": "0.03",
+      "maxMoveOrderLimit": 10000,
+      "filters": [
+        {
+          "tickSize": "0.01000",
+          "maxPrice": "20000",
+          "minPrice": "0.01000",
+          "filterType": "PRICE_FILTER"
+        },
+        {
+          "maxQty": "300000",
+          "filterType": "LOT_SIZE",
+          "stepSize": "0.01",
+          "minQty": "0.01"
+        },
+        {
+          "minQty": "0.01",
+          "maxQty": "30000",
+          "filterType": "MARKET_LOT_SIZE",
+          "stepSize": "0.01"
+        },
+        {
+          "filterType": "MAX_NUM_ORDERS",
+          "limit": 200
+        },
+        {
+          "notional": "5",
+          "filterType": "MIN_NOTIONAL"
+        },
+        {
+          "multiplierDown": "0.9700",
+          "multiplierDecimal": "4",
+          "multiplierUp": "1.0300",
+          "filterType": "PERCENT_PRICE"
+        },
+        {
+          "filterType": "POSITION_RISK_CONTROL",
+          "positionControlSide": "NONE"
+        }
+      ],
+      "orderTypes": [
+        "LIMIT",
+        "MARKET",
+        "STOP",
+        "STOP_MARKET",
+        "TAKE_PROFIT",
+        "TAKE_PROFIT_MARKET",
+        "TRAILING_STOP_MARKET"
+      ],
+      "timeInForce": [
+        "GTC",
+        "IOC",
+        "FOK",
+        "GTX",
+        "GTD"
+      ],
+      "permissionSets": [
+        "GRID",
+        "COPY",
+        "RPI",
+        "DCA",
+        "PSB"
+      ]
+    },
+    "contract_multiplier": null,
+    "multiplier_state": "UNVERIFIED"
+  }
+}

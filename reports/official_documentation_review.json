@@ -1,0 +1,37 @@
+{
+  "reviewed_at": "2026-10-10",
+  "review_method": "official Binance pages retrieved with web browser search tool",
+  "sources": [
+    {
+      "url": "https://developers.binance.com/en/docs/catalog/core-trading-derivatives-trading-usd-s-m-futures/api/rest-api/market-data",
+      "verified_facts": [
+        "GET fapi/v1/exchangeInfo and klines; 1m/limit <=99 uses weight 1",
+        "GET tradingSchedule provides underlying-session snapshots",
+        "Ignored margin percentage fields are not maximum-leverage evidence"
+      ]
+    },
+    {
+      "url": "https://developers.binance.com/en/docs/products/derivatives-trading-usds-futures/websocket-market-streams/Important-WebSocket-Change-Notice",
+      "verified_facts": [
+        "Kline stream uses /market/ws/<symbol>@kline_1m",
+        "Connection alone or subscribe ACK is not evidence of usable market data"
+      ]
+    },
+    {
+      "url": "https://developers.binance.com/en/docs/catalog/advanced-trading-stocks-trading/api/rest-api/market-data",
+      "verified_facts": [
+        "Stocks Trading uses separate sapi/v1/equity family; market endpoints require API key; not queried in P0"
+      ]
+    },
+    {
+      "url": "https://developers.binance.com/en/docs/products/derivatives-trading-usds-futures/change-log",
+      "verified_facts": [
+        "TradFi dividend funding and session coverage have current revisions; future cost model must retain special funding types"
+      ]
+    }
+  ],
+  "unavailable_sources": [
+    "Legacy Kline/Candlestick-Streams page returned home/404; catalog WS stream index did not yield a readable page; migration notice and public live probe were used instead."
+  ],
+  "scope": "Documentation is endpoint-design evidence, never proof of symbol listing or account permission."
+}

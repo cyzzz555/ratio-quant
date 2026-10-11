@@ -1,0 +1,115 @@
+# Quant System: values under proposed_* are RESEARCH_ONLY and not approved for live.
+metadata:
+  spec_version: "1.2-consolidated-2026-10-10"
+  document_status: DESIGN_HANDOFF
+  timezone_storage: UTC
+  timezone_display: Asia/Shanghai
+safety:
+  live_trading_enabled: false
+  approval_mode: HUMAN
+  default_execution_environment: PAPER
+  fail_closed_on_unknown_data: true
+  never_store_trade_keys_in_browser: true
+  withdrawals_permission_forbidden: true
+  strategy_auto_deploy_enabled: false
+  require_readiness_check_for_all_risk_increasing_orders: true
+platform:
+  venue: BINANCE
+  product_family: USD_M_FUTURES_CANDIDATE_UNVERIFIED
+  instrument_capability_verification_required: true
+  user_permission: UNKNOWN
+  trade_adapter: PAPER_BROKER
+  account_margin_mode: UNKNOWN
+markets:
+  timeframe: [1m, 5m, 15m, 1h, 1d]
+  primary_horizon: [INTRADAY, SWING_1_TO_5_DAYS]
+  future_horizon: [SWING_1_TO_4_WEEKS, TREND_1_TO_6_MONTHS]
+  scan_pools: [WATCHLIST, DISCOVERY]
+  candidate_filters: [VOLUME_ANOMALY, TREND_PULLBACK, EVENT_CATALYST, CROSS_MARKET_LINK]
+strategies:
+  independent_scoring: true
+  regime_adaptive_priority: true
+  macro_auxiliary_only: true
+  score_is_win_probability: false
+  two_stage_confirmation: true
+  trend_pullback:
+    enabled_for_research: true
+    entry_parameters: RESEARCH_TODO
+  mean_reversion:
+    enabled_for_research: true
+    entry_parameters: RESEARCH_TODO
+  event_driven:
+    enabled_for_research: true
+    event_provider: UNVERIFIED
+    entry_parameters: RESEARCH_TODO
+risk:
+  profile_selected: MICRO_CAPITAL
+  standard:
+    approval_status: USER_CONFIRMED_FOR_DESIGN
+    normal_trade_risk_pct: "0.5"
+    qualified_trade_risk_max_pct: "1.0"
+    daily_warning_pct: "1.5"
+    daily_no_new_risk_pct: "2.0"
+    hwm_drawdown_lock_pct: "10.0"
+    total_planned_risk_cap_pct: "5.0"
+    correlation_extra_hard_cap: false
+  micro_capital:
+    user_confirmed:
+      initial_principal_min_cny: "500"
+      initial_principal_max_cny: "1000"
+      acceptable_initial_principal_loss_pct: "50.0"
+      preferred_exchange_leverage_min: 10
+      preferred_exchange_leverage_max: 20
+      absolute_exchange_leverage_max: 25
+    simulated_proposal:
+      approval_status: RESEARCH_ONLY_NOT_USER_APPROVED
+      trade_risk_normal_pct: "1.0"
+      trade_risk_qualified_max_pct: "2.0"
+      daily_warning_pct: "3.0"
+      daily_no_new_risk_pct: "5.0"
+      open_risk_total_cap_pct: "5.0"
+      principal_warning_pct: "20.0"
+      principal_reduce_risk_pct: "30.0"
+      reduced_risk_multiplier: "0.5"
+      principal_preemptive_lock_pct: "40.0"
+      hwm_drawdown_warning_pct: "25.0"
+      hwm_drawdown_lock_pct: "35.0"
+      gross_effective_leverage_max: "2.0"
+      position_margin_equity_cap_pct: "25.0"
+      total_margin_equity_cap_pct: "50.0"
+      max_simultaneous_positions: 2
+      cost_to_risk_ratio_cap: "0.2"
+      special_leverage_21_to_25_requires_2fa: true
+    settlement_currency: USDT
+    capital_conversion_proof_required: true
+    external_cash_flows_adjusted: true
+    additional_deposits_cannot_reset_lock: true
+    isolated_margin_preferred: true
+    liquidation_buffer_model: RESEARCH_TODO_FAIL_CLOSED
+    risk_day_definition: UNRESOLVED_FAIL_CLOSED
+    guaranteed_max_loss: false
+orders:
+  client_order_id_unique: true
+  require_unexpired_immutable_approval: true
+  require_final_risk_recheck: true
+  unknown_submit_state_query_before_retry: true
+  require_exchange_verified_reduce_only_support: true
+  no_auto_opening_orders: true
+exits:
+  stop_model: STRUCTURE_PLUS_VOLATILITY
+  phase_1_take_profit: PARTIAL_PLUS_TRAILING
+  take_profit_R_parameters: RESEARCH_TODO
+  dynamic_time_stop: true
+  strategy_specific_exit_models: FUTURE_PHASE
+storage:
+  database: POSTGRESQL
+  historical_bars: PARQUET
+  research: DUCKDB
+  ephemeral_cache: REDIS
+  critical_events: POSTGRES_OUTBOX
+research:
+  cadence: WEEKLY
+  auto_suggest_parameters: true
+  auto_publish: false
+  walk_forward_required: true
+  point_in_time_events_required: true

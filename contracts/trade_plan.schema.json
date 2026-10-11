@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quant-system.example/schemas/trade-plan.json",
+  "title": "TradePlanImmutableSnapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["plan_id", "signal_id", "account_id", "instrument_id", "instrument_spec_version", "side", "entry_price", "stop_price", "quantity", "contract_multiplier", "requested_exchange_leverage", "estimated_liquidation_price", "planned_loss_quote", "gross_effective_leverage_after", "fee_budget_quote", "snapshot_at", "expires_at", "environment", "approval_hash"],
+  "properties": {
+    "plan_id": {"type":"string"},
+    "signal_id": {"type":"string"},
+    "account_id": {"type":"string"},
+    "instrument_id": {"type":"string"},
+    "instrument_spec_version": {"type":"string"},
+    "side": {"type":"string","enum":["LONG","SHORT"]},
+    "entry_price": {"$ref":"#/$defs/decimal"},
+    "stop_price": {"$ref":"#/$defs/decimal"},
+    "quantity": {"$ref":"#/$defs/decimal"},
+    "contract_multiplier": {"$ref":"#/$defs/decimal"},
+    "requested_exchange_leverage": {"type":"integer","minimum":1,"maximum":25},
+    "estimated_liquidation_price": {"$ref":"#/$defs/decimal"},
+    "planned_loss_quote": {"$ref":"#/$defs/decimal"},
+    "gross_effective_leverage_after": {"$ref":"#/$defs/decimal"},
+    "fee_budget_quote": {"$ref":"#/$defs/decimal"},
+    "snapshot_at": {"type":"string","format":"date-time"},
+    "expires_at": {"type":"string","format":"date-time"},
+    "environment": {"type":"string","enum":["BACKTEST","PAPER","LIVE"]},
+    "approval_hash": {"type":"string","minLength":64,"maxLength":64,"pattern":"^[a-f0-9]{64}$"}
+  },
+  "$defs": {"decimal":{"type":"string","pattern":"^-?[0-9]+(\\.[0-9]+)?$"}}
+}

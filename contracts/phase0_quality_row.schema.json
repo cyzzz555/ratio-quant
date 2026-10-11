@@ -1,0 +1,80 @@
+{
+  "properties": {
+    "symbol": {
+      "title": "Symbol",
+      "type": "string"
+    },
+    "closed_sample": {
+      "minimum": 0,
+      "title": "Closed Sample",
+      "type": "integer"
+    },
+    "unclosed_sample": {
+      "minimum": 0,
+      "title": "Unclosed Sample",
+      "type": "integer"
+    },
+    "closed_total": {
+      "minimum": 0,
+      "title": "Closed Total",
+      "type": "integer"
+    },
+    "timeliness": {
+      "enum": [
+        "FRESH",
+        "STALE",
+        "UNAVAILABLE"
+      ],
+      "title": "Timeliness",
+      "type": "string"
+    },
+    "quality": {
+      "enum": [
+        "VALID",
+        "UNAVAILABLE"
+      ],
+      "title": "Quality",
+      "type": "string"
+    },
+    "gaps": {
+      "items": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "title": "Gaps",
+      "type": "array"
+    },
+    "normalization_errors": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Normalization Errors",
+      "type": "array"
+    },
+    "latest_closed_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Latest Closed At"
+    }
+  },
+  "required": [
+    "symbol",
+    "closed_sample",
+    "unclosed_sample",
+    "closed_total",
+    "timeliness",
+    "quality",
+    "gaps",
+    "normalization_errors",
+    "latest_closed_at"
+  ],
+  "title": "QualityRow",
+  "type": "object"
+}
