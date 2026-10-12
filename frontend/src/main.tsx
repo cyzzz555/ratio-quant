@@ -19,6 +19,21 @@ const pages = [
   {id: 'safety', title: '安全与阶段', icon: '◇', hint: '当前边界与待核验事项'},
 ] as const;
 type Page = typeof pages[number]['id'];
+const iconPaths: Record<Page, string> = {
+  market: 'M4 17V9m0 2h4v4H4m2-8V5m6 12V5m-2 3h4v5h-4m2 2v4m6-12V3m-2 3h4v5h-4m2 2v3',
+  research: 'M4 4v16h16M7 15l4-5 4 3 5-7',
+  realtime: 'M3 12h4l3-7 4 14 3-7h4',
+  paper: 'M7 3h10l3 3v15H4V3h3m10 0v4h3M8 11h8M8 15h5',
+  risk: 'M12 3l8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3m-4 9 3 3 5-6',
+  overview: 'M3 3h7v7H3V3m11 0h7v7h-7V3M3 14h7v7H3v-7m11 0h7v7h-7v-7',
+  instruments: 'M4 7h16M7 3v8m10-8v8M4 17h16m-7-4v8',
+  probe: 'M8 5l11 7-11 7V5',
+  reports: 'M6 3h12v18H6V3m4 5h4m-4 4h4m-4 4h4',
+  safety: 'M6 10V8a6 6 0 0 1 12 0v2M4 10h16v11H4V10m8 4v3',
+};
+function NavIcon({id}: {id: Page}) {
+  return <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round"><path d={iconPaths[id]}/></svg>;
+}
 function currentPage(): Page {
   const id = location.hash.slice(1);
   return pages.find(p => p.id === id)?.id ?? 'market';
@@ -128,16 +143,17 @@ function App() {
       || (filter === 'public' && c.public_exchangeinfo_visible !== true)));
   const active = pages.find(p => p.id === page)!;
   return <div className="app-shell">
-    <aside className="sidebar"><a className="brand" href="#overview"><span className="brand-mark">Q</span><span>QUANT SYSTEM<small>V1.2 / P3 PAPER</small></span></a>
+    <a className="skip-link" href="#workspace-content" onClick={event => { event.preventDefault(); document.getElementById('workspace-content')?.focus(); document.getElementById('workspace-content')?.scrollIntoView(); }}>跳到页面内容</a>
+    <aside className="sidebar"><a className="brand" href="#overview" aria-label="Quant System 运行总览"><img className="brand-mark" src="/quant-mark.svg" alt="K线波动标志"/><span>Quant System<small>量化研究工作台 · V1.2</small></span></a>
       <p className="nav-label">本地研究控制台</p><nav aria-label="功能导航">{pages.map(p =>
         <a key={p.id} href={`#${p.id}`} aria-current={page === p.id ? 'page' : undefined}>
-          <span aria-hidden="true">{p.icon}</span>{p.title}</a>)}</nav>
-      <div className="sidebar-foot"><span className="status-dot"/> 只读环境<small>Mac 本地 · Binance 公共接口</small></div>
+          <NavIcon id={p.id}/><span>{p.title}</span><span className="nav-indicator" aria-hidden="true"/></a>)}</nav>
+      <div className="sidebar-foot"><span className="status-dot"/> 研究与纸面模拟<small>Mac 本地 · 真实执行禁用</small></div>
     </aside>
-    <main><header className="topbar"><div><p className="eyebrow">WORKSPACE / {active.id.toUpperCase()}</p>
+    <main id="workspace-content" tabIndex={-1}><div className="workspace-meta"><span>个人研究空间 <span className="meta-divider">/</span> {active.title}</span><span className="environment-pill"><span className="status-dot"/> LOCAL · PAPER</span></div><header className="topbar"><div><p className="eyebrow">QUANT WORKSPACE / {active.id.toUpperCase()}</p>
       <h1>{active.title}</h1><p className="muted">{active.hint}</p></div>
-      <button disabled={loading} onClick={() => { void loadSnapshot(); void refreshJob(); }}>{loading ? '正在刷新…' : '刷新报告'}</button></header>
-      <div className="safety-banner"><span className="badge">LIVE=false</span><span>账户权限未核验 · 禁止新增风险 · P3 模拟交易开发中 · 真实订单执行禁用</span></div>
+      <button className="refresh-button" disabled={loading} onClick={() => { void loadSnapshot(); void refreshJob(); }}><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5M5.2 8a7 7 0 0 1 12-3L20 8M4 16l2.8 3a7 7 0 0 0 12-3"/></svg>{loading ? '正在刷新…' : '刷新报告'}</button></header>
+      <div className="safety-banner"><span className="badge">LIVE=false</span><span>账户权限未核验 · 禁止新增风险 · P3 模拟交易开发中 · 真实订单执行禁用</span><a href="#safety" aria-label="查看安全与阶段">查看边界 <span aria-hidden="true">↗</span></a></div>
       {[...errors, ...(actionError ? [actionError] : [])].map((error, i) => <p role="alert" className="error" key={i}>{error}</p>)}
       {page === 'paper' && <PaperDesk/>}
       {page === 'realtime' && <RealtimeDesk/>}

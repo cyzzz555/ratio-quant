@@ -1,0 +1,187 @@
+{
+  "scope": "UI presentation only; no exchange order or risk configuration changes",
+  "backend": {
+    "passed": 215,
+    "skipped_postgresql": 4,
+    "deselected_network": 1,
+    "warnings": 1
+  },
+  "ruff": "passed",
+  "mypy": {
+    "status": "passed",
+    "source_files": 34
+  },
+  "frontend_tests": {
+    "passed": 5
+  },
+  "frontend_build": {
+    "status": "passed",
+    "modules": 40
+  },
+  "layout_checks": {
+    "desktop": [
+      {
+        "heading": "纸面交易",
+        "page": "#paper",
+        "scrollWidth": 1280,
+        "width": 1280
+      },
+      {
+        "heading": "实时监控",
+        "page": "#realtime",
+        "scrollWidth": 1280,
+        "width": 1280
+      },
+      {
+        "heading": "合约行情",
+        "page": "#market",
+        "scrollWidth": 1280,
+        "width": 1280
+      },
+      {
+        "heading": "历史与回测",
+        "page": "#research",
+        "scrollWidth": 1280,
+        "width": 1280
+      },
+      {
+        "heading": "交易准备",
+        "page": "#risk",
+        "scrollWidth": 1280,
+        "width": 1280
+      },
+      {
+        "heading": "运行总览",
+        "page": "#overview",
+        "scrollWidth": 1280,
+        "width": 1280
+      },
+      {
+        "heading": "合约能力",
+        "page": "#instruments",
+        "scrollWidth": 1280,
+        "width": 1280
+      },
+      {
+        "heading": "只读探测",
+        "page": "#probe",
+        "scrollWidth": 1280,
+        "width": 1280
+      },
+      {
+        "heading": "数据与报告",
+        "page": "#reports",
+        "scrollWidth": 1280,
+        "width": 1280
+      },
+      {
+        "heading": "安全与阶段",
+        "page": "#safety",
+        "scrollWidth": 1280,
+        "width": 1280
+      }
+    ],
+    "mobile": [
+      {
+        "activeLinks": 1,
+        "heading": "纸面交易",
+        "page": "#paper",
+        "panels": 8,
+        "scrollWidth": 390,
+        "width": 390
+      },
+      {
+        "activeLinks": 1,
+        "heading": "实时监控",
+        "page": "#realtime",
+        "panels": 5,
+        "scrollWidth": 390,
+        "width": 390
+      },
+      {
+        "activeLinks": 1,
+        "heading": "合约行情",
+        "page": "#market",
+        "panels": 2,
+        "scrollWidth": 390,
+        "width": 390
+      },
+      {
+        "activeLinks": 1,
+        "heading": "历史与回测",
+        "page": "#research",
+        "panels": 3,
+        "scrollWidth": 390,
+        "width": 390
+      },
+      {
+        "activeLinks": 1,
+        "heading": "交易准备",
+        "page": "#risk",
+        "panels": 2,
+        "scrollWidth": 390,
+        "width": 390
+      },
+      {
+        "activeLinks": 1,
+        "heading": "运行总览",
+        "page": "#overview",
+        "panels": 3,
+        "scrollWidth": 390,
+        "width": 390
+      },
+      {
+        "activeLinks": 1,
+        "heading": "合约能力",
+        "page": "#instruments",
+        "panels": 1,
+        "scrollWidth": 390,
+        "width": 390
+      },
+      {
+        "activeLinks": 1,
+        "heading": "只读探测",
+        "page": "#probe",
+        "panels": 3,
+        "scrollWidth": 390,
+        "width": 390
+      },
+      {
+        "activeLinks": 1,
+        "heading": "数据与报告",
+        "page": "#reports",
+        "panels": 2,
+        "scrollWidth": 390,
+        "width": 390
+      },
+      {
+        "activeLinks": 1,
+        "heading": "安全与阶段",
+        "page": "#safety",
+        "panels": 3,
+        "scrollWidth": 390,
+        "width": 390
+      }
+    ]
+  },
+  "manual_checks": {
+    "market_chinese_search": "美光 -> MUUSDT (1 / 793)",
+    "research_symbol_search": "SPCX -> SPCXUSD1, SPCXUSDT (2 / 793)",
+    "name_dialog": "opened and canceled; no names saved",
+    "risk_mode_dialog": "opened; Escape closes and restores focus",
+    "research_mode_dialog": "opened and canceled",
+    "record_delete_dialog": "opened and canceled; no records deleted",
+    "skip_navigation": "focus workspace-content; hash remains #research",
+    "market_chart": "90 closed candles rendered from public Binance data"
+  },
+  "safety": {
+    "LIVE_TRADING_ENABLED": false,
+    "APPROVAL_MODE": "HUMAN",
+    "TRADE_ADAPTER": "PAPER_BROKER"
+  },
+  "limitations": [
+    "PostgreSQL integration tests skipped because no configured database",
+    "Rapidly switching market pages can encounter existing HTTP 409 market request serialization; refreshing after completion renders data",
+    "This is a web UI inspired by Apple materials, not a native iOS implementation"
+  ]
+}
