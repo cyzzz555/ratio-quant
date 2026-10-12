@@ -81,7 +81,7 @@ def test_migrations_metadata_and_atomic_foreign_keys(database: Path) -> None:
     with engine(database).connect() as conn:
         assert (
             conn.execute(text("select version_num from alembic_version")).scalar_one()
-            == "001_research"
+            == "002_paper"
         )
 
 

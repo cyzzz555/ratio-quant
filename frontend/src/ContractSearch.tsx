@@ -9,7 +9,7 @@ export function matchingContracts(catalog:MarketCatalog|null,query:string):Marke
 }
 
 export function ContractSearch({id,symbol,disabled,onCatalog,onChoose,onSelectionAvailable}:{id:string;symbol:string;disabled:boolean;onCatalog:(catalog:MarketCatalog)=>void;onChoose:(symbol:string)=>void;onSelectionAvailable:(available:boolean)=>void}) {
-  const selectionLabel=id==='market-search'?'行情合约':id==='realtime-search'?'实时关注合约':'研究合约';
+  const selectionLabel=id==='market-search'?'行情合约':id==='realtime-search'?'实时关注合约':id==='paper-search'?'模拟合约':'研究合约';
   const [catalog,setCatalog]=useState<MarketCatalog|null>(null),[query,setQuery]=useState('');
   const [busy,setBusy]=useState(false),[error,setError]=useState('');
   const [nameOpen,setNameOpen]=useState(false),[message,setMessage]=useState('');

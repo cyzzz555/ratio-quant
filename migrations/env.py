@@ -1,4 +1,5 @@
 from alembic import context
+from app import paper_db  # noqa: F401 — register paper metadata without connecting
 from app.research_db import Base, database_url, engine
 
 if context.is_offline_mode():

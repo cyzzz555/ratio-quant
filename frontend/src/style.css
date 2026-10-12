@@ -177,3 +177,5 @@ button.danger{color:#a33232;border-color:#dcb2b2;background:#fff5f3}button.dange
 .realtime-watchlist{list-style:none;padding:0}.realtime-watchlist li{padding:10px 0;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.realtime-watchlist button{margin-left:auto}.realtime-event{padding:14px 0;border-bottom:1px solid var(--border,#e4e8e6)}.realtime-event p{margin:6px 0}.realtime-event small{color:#687b73}
 
 .realtime-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:16px 0}.realtime-controls label{display:flex;flex-direction:column;gap:8px}.realtime-feed{max-height:460px;overflow:auto}@media(max-width:640px){.realtime-controls{grid-template-columns:1fr}}
+
+.paper-order{padding:20px 0;border-bottom:1px solid #e0e8e4}.paper-order .mono{display:block;margin-top:8px}.paper-approval{max-width:680px}.paper-confirm{display:flex;gap:10px;align-items:center;margin:16px 0}.paper-confirm input{width:auto}.paper-order .actions label{display:flex;flex-direction:column;gap:6px;max-width:230px}

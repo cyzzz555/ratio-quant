@@ -4,8 +4,10 @@ import type { Capability, Health, ProbeJob, Quality, Report } from './types';
 import './style.css';
 import {MarketDesk,ResearchDesk,RiskDesk} from './ResearchDesk';
 import {RealtimeDesk} from './RealtimeDesk';
+import {PaperDesk} from './PaperDesk';
 
 const pages = [
+  {id: 'paper', title: '纸面交易', icon: '⊡', hint: 'P3 场景模拟、审批、订单与持仓台账'},
   {id: 'realtime', title: '实时监控', icon: '◉', hint: 'P2 公共行情、质量与研究信号'},
   {id: 'market', title: '合约行情', icon: '↗', hint: '真实闭合 K 线与标记价'},
   {id: 'research', title: '历史与回测', icon: '⌁', hint: '采集历史、运行研究回测并复查结果'},
@@ -126,7 +128,7 @@ function App() {
       || (filter === 'public' && c.public_exchangeinfo_visible !== true)));
   const active = pages.find(p => p.id === page)!;
   return <div className="app-shell">
-    <aside className="sidebar"><a className="brand" href="#overview"><span className="brand-mark">Q</span><span>QUANT SYSTEM<small>V1.2 / P2 RESEARCH</small></span></a>
+    <aside className="sidebar"><a className="brand" href="#overview"><span className="brand-mark">Q</span><span>QUANT SYSTEM<small>V1.2 / P3 PAPER</small></span></a>
       <p className="nav-label">本地研究控制台</p><nav aria-label="功能导航">{pages.map(p =>
         <a key={p.id} href={`#${p.id}`} aria-current={page === p.id ? 'page' : undefined}>
           <span aria-hidden="true">{p.icon}</span>{p.title}</a>)}</nav>
@@ -135,8 +137,9 @@ function App() {
     <main><header className="topbar"><div><p className="eyebrow">WORKSPACE / {active.id.toUpperCase()}</p>
       <h1>{active.title}</h1><p className="muted">{active.hint}</p></div>
       <button disabled={loading} onClick={() => { void loadSnapshot(); void refreshJob(); }}>{loading ? '正在刷新…' : '刷新报告'}</button></header>
-      <div className="safety-banner"><span className="badge">LIVE=false</span><span>账户权限未核验 · 禁止新增风险 · P2 首批功能开发中 · 真实订单执行禁用</span></div>
+      <div className="safety-banner"><span className="badge">LIVE=false</span><span>账户权限未核验 · 禁止新增风险 · P3 模拟交易开发中 · 真实订单执行禁用</span></div>
       {[...errors, ...(actionError ? [actionError] : [])].map((error, i) => <p role="alert" className="error" key={i}>{error}</p>)}
+      {page === 'paper' && <PaperDesk/>}
       {page === 'realtime' && <RealtimeDesk/>}
       {page === 'market' && <MarketDesk/>}
       {page === 'research' && <ResearchDesk/>}
@@ -156,7 +159,8 @@ function App() {
             <div><dt>执行适配配置</dt><dd>PAPER_BROKER · 无订单适配器</dd></div></dl><a href="http://127.0.0.1:8000/docs" target="_blank" rel="noreferrer">打开 FastAPI 文档 ↗</a></section></div>
         <section className="panel"><h2>阶段进度</h2><div className="roadmap"><article><span className="badge">P0 证据核验</span><h3>能力与数据核验</h3><p>公共接口、样本归档、可追溯证据</p></article>
           <article><span className="muted">P1 开发中 · 数据库验收待完成</span><h3>研究与回测</h3><p>持续数据、策略研究、成本与验证</p></article>
-          <article><span className="badge">当前 P2 · 首批功能</span><h3>实时监控</h3><p>实时公共行情、断线补数与研究信号</p><a href="#realtime">打开实时监控 ↗</a></article>
+          <article><span className="badge">P2 · 首批功能</span><h3>实时监控</h3><p>实时公共行情、断线补数与研究信号</p><a href="#realtime">打开实时监控 ↗</a></article>
+          <article><span className="badge">当前 P3 · 场景模拟</span><h3>纸面交易</h3><p>审批、订单、风险预占与持仓台账</p><a href="#paper">打开纸面交易 ↗</a></article>
           <article><span className="muted">后续阶段 · 未实现</span><h3>人审与执行</h3><p>账户核验、2FA、纸面交易及实盘授权</p></article></div></section>
       </>}
       {page === 'instruments' && <section className="panel">
@@ -188,10 +192,10 @@ function App() {
           {!quality.length && <p className="empty">没有可用的质量报告，请运行只读探测。</p>}
           <p className="muted mono">报告 ID：{report?.run_id ?? '—'}</p></section></>}
       {page === 'safety' && <><section className="panel"><h2>当前运行边界</h2><dl className="facts"><div><dt>实盘开关</dt><dd>LIVE_TRADING_ENABLED=false</dd></div><div><dt>审批模式</dt><dd>HUMAN</dd></div><div><dt>账户凭证</dt><dd>P0 不接入密钥</dd></div><div><dt>真实订单执行</dt><dd>尚未实现</dd></div></dl>
-        <p>行情、历史研究回测与风险试算已接入；P1 数据库验收待完成。纸面订单在 P3，认证账户核验在 P4，真实执行在独立授权后的 P5。</p></section>
+        <p>行情、历史研究回测与风险试算已接入；P1 数据库验收待完成。P3 离线纸面交易已接入，数据库验收待完成；认证账户核验在 P4，真实执行在独立授权后的 P5。</p></section>
         <div className="two-columns"><section className="panel"><h2>已确认的设计要求</h2><dl className="facts"><div><dt>微资金本金亏损容忍</dt><dd>50%</dd></div><div><dt>常规交易所单仓杠杆</dt><dd>10–20x</dd></div><div><dt>单仓杠杆上限偏好</dt><dd>25x</dd></div></dl><p className="muted">这是设计要求。实际账户与合约能力尚未核验；50% 为容忍预算，不保证最大亏损。</p></section>
           <section className="panel"><h2>仍待核验或批准</h2><ul><li>逐品种账户权限和地区适用性</li><li>账户最大杠杆、逐仓、reduceOnly 和保护单</li><li>其他微资金风险阈值：研究/模拟候选</li><li>持续行情稳定性、完整历史与时段映射</li></ul><p className="muted">当前健康接口返回 503 是交易未就绪的预期状态。</p></section></div></>}
-      <footer>Quant System V1.2 · P2 实时研究（开发中）<span>时间展示：Asia/Shanghai · 存储：UTC</span></footer>
+      <footer>Quant System V1.2 · P3 纸面模拟（开发中）<span>时间展示：Asia/Shanghai · 存储：UTC</span></footer>
     </main>{selected && <InstrumentDialog cap={selected} close={() => setSelected(null)}/>}
   </div>;
 }

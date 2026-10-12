@@ -1,0 +1,47 @@
+{
+  "sessions": [
+    {
+      "session_id": "139b29c6-d88c-4141-9fcc-a83e857db9ef",
+      "name": "P3 故障验收（响应丢失）",
+      "commands": 9,
+      "replay_verified": true,
+      "state_hash": "2f0317b1e966db33779d65c196ae3dca6ec0b1b149eed76945f313c23504ce57",
+      "journal_hash": "2ab4455ce5d92a64242c993ccfc9a2d1682599eb6002a45da088cc07c7b7f4e5",
+      "cash": "999.7500",
+      "positions": 0,
+      "orders": 1,
+      "fills": 2,
+      "funding_events": 1,
+      "engine_versions": [
+        "paper.engine.v2"
+      ]
+    },
+    {
+      "session_id": "d81bcdbb-855f-4d20-9751-dff6f8061cd4",
+      "name": "P3 界面验收 2026-10-12",
+      "commands": 12,
+      "replay_verified": true,
+      "state_hash": "3d8dbd49bf03e8f8aff613fff145eb2e930f9c5557ad4b9fae5f83fd840bd3b1",
+      "journal_hash": "97c1c6d9a08473defd2e59bf668148eff3dfa828fe313a6e13c1ee2f14acab4c",
+      "cash": "998.8655125",
+      "positions": 0,
+      "orders": 1,
+      "fills": 3,
+      "funding_events": 1,
+      "engine_versions": [
+        "paper.engine.v1",
+        "paper.engine.v2",
+        "paper.engine.v3"
+      ]
+    }
+  ],
+  "database": {
+    "ready": false,
+    "error": "RuntimeError",
+    "checked_at": "2026-10-12 13:19:05.266709+00:00"
+  },
+  "live_trading_enabled": false,
+  "backend_tests": 215,
+  "frontend_tests": 5,
+  "phase": "P3_IN_PROGRESS_NOT_FULLY_ACCEPTED"
+}

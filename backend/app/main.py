@@ -12,6 +12,7 @@ from fastapi.responses import FileResponse, JSONResponse
 from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
 
 from app.models import Capability, Phase0Report, utc_now
+from app.paper_api import router as paper_router
 from app.probe_jobs import ProbeBusy, ProbeCooldown, ProbeRunner, ProbeStatus
 from app.realtime_api import router as realtime_router
 from app.realtime_worker import RealtimeController
@@ -57,12 +58,13 @@ def create_app(root: Path = ROOT) -> FastAPI:
     api = FastAPI(title="Quant System Research", version="0.2.0", lifespan=lifespan)
     api.state.realtime = controller
     api.include_router(realtime_router(controller))
+    api.include_router(paper_router(root))
     api.include_router(router(root))
     runner = ProbeRunner(root)
 
     @api.get("/health/live")
     def live() -> dict[str, Any]:
-        return {"alive": True, "phase": "P2_FIRST_INCREMENT", "live_trading_enabled": False}
+        return {"alive": True, "phase": "P3_IN_PROGRESS", "live_trading_enabled": False}
 
     @api.get("/health/ready")
     def ready() -> JSONResponse:
